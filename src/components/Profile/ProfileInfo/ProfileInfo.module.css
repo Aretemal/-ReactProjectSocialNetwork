@@ -1,0 +1,19 @@
+.descriptionBlock{
+    padding: 30px 40px;
+    grid-area: info;
+}
+.ava{
+    width: 250px;
+    height: 250px;
+    padding: 20px;
+    border-radius:50%;
+    grid-area: ava;
+}
+.container{
+    display: grid;
+    grid-template-areas:"ava info";
+    width: 1200px;
+    color: #808080;
+    grid-template-columns: 25% 75%;
+}
+

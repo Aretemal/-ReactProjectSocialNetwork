@@ -1,0 +1,17 @@
+.item{
+    margin:0px 50px 20px;
+    display: grid;
+    grid-template-areas:"ava info";
+    width: 400px;
+    color: #808080;
+    grid-template-columns: 25% 75%;
+}
+.item img{
+    width: 70px;
+    height: 70px;
+    border-radius: 20%;
+    grid-area: ava;
+}
+.description{
+    grid-area: info;
+}

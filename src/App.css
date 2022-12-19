@@ -1,0 +1,20 @@
+.app-wrapper-content{
+  background-color: white ;
+  grid-area: profile;
+}
+.app-wrapper{
+  display: grid;
+  margin: 0 auto;
+  grid-template-areas:
+  "header"
+  "nav"
+  "profile";
+  width: 1200px;
+  grid-template-rows:  80px 70px 10fr;
+  grid-template-columns:10fr;
+  /*grid-gap:10px;*/
+  color:white;
+  font-size: 18px;
+}
+
+

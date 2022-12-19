@@ -1,0 +1,12 @@
+.nav{
+    grid-area: nav;
+    padding: 20px 30px 10px;
+    display: flex;
+    justify-content:space-between;
+    background: #66e0d6;
+}
+.item{
+    color:white;
+    text-decoration:none;
+    font-size: 20px;
+}
