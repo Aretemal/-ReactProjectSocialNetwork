@@ -16,7 +16,6 @@ export let rerenderEntireTree = (state) => {
             />
         </React.StrictMode>
     );
-
 }
 
 rerenderEntireTree(store.getState());
