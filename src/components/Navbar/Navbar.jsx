@@ -1,14 +1,14 @@
-import React from 'react';
-import classes from "./Navbar.module.css";
-import {NavLink} from 'react-router-dom';
-const Navbar = () =>{
-    return  <nav className={classes.nav}>
+import React from 'react'
+import classes from './Navbar.module.css'
+import { NavLink } from 'react-router-dom'
+const Navbar = () => {
+  return <nav className={classes.nav}>
     <div >
       <NavLink to="/profile" className={classes.item}>Profile
       </NavLink>
     </div>
     <div >
-      <NavLink to ="/dialogs" className={classes.item}  >Messages
+      <NavLink to ="/dialogs" className={classes.item} >Messages
       </NavLink>
       </div>
     <div >
@@ -24,4 +24,4 @@ const Navbar = () =>{
       </div>
   </nav>
 }
-export default Navbar;
+export default Navbar

@@ -1,5 +1,5 @@
-import React from 'react';
-import classes from "./Post.module.css";
+import React from 'react'
+import classes from './Post.module.css'
 const Post = (props) => {
   return (
     <div className={classes.item}>
@@ -13,4 +13,4 @@ const Post = (props) => {
     </div>
   )
 }
-export default Post;
+export default Post

@@ -1,29 +1,27 @@
-import React from 'react';
-import {addMessageActionCreator, updateNewMessageTextActionCreator,} from "../../redux/state.js";
-import classes from './Dialogs.module.css';
-import Message from "./Message/Message.jsx";
-import DialogItem from "./DialogItem/DialogItem.jsx";
+import React from 'react'
+import { addMessageActionCreator, updateNewMessageTextActionCreator } from '../../redux/state.js'
+import classes from './Dialogs.module.css'
+import { Message } from './Message/Message.jsx'
+import DialogItem from './DialogItem/DialogItem.jsx'
 
 const Dialogs = (props) => {
+  const dialogsElements = props.dialogsPage.dialogs
+    .map(dialog => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id}/>)
+  const messagesElements = props.dialogsPage.messages
+    .map(message => <Message key='1' message={message.message}/>)
 
+  const newMessageElement = React.createRef()
 
-    let dialogsElements = props.dialogsPage.dialogs
-        .map(dialog => <DialogItem name={dialog.name} id={dialog.id}/>);
-    let messagesElements = props.dialogsPage.messages
-        .map(message => <Message message={message.message}/>);
+  const addMessage = () => {
+    props.dispatch(addMessageActionCreator())
+  }
+  const onMessageChange = () => {
+    const text = newMessageElement.current.value
+    const action = updateNewMessageTextActionCreator(text)
+    props.dispatch(action)
+  }
 
-    let newMessageElement = React.createRef();
-
-    let addMessage = () => {
-        props.dispatch(addMessageActionCreator());
-    }
-    let onMessageChange = () => {
-        let text = newMessageElement.current.value;
-        let action = updateNewMessageTextActionCreator(text);
-        props.dispatch(action);
-    }
-
-    return (
+  return (
         <div className={classes.dialogs}>
             <div className={classes.dialogsItem}>
                 {dialogsElements}
@@ -42,6 +40,6 @@ const Dialogs = (props) => {
                 </div>
             </div>
         </div>
-    )
+  )
 }
-export default Dialogs;
+export default Dialogs

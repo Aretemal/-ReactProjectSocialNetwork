@@ -1,11 +1,9 @@
-import React from 'react';
-import ProfileInfo from "./ProfileInfo/ProfileInfo.jsx";
-import MyPosts from './MyPosts/MyPosts.jsx';
-import classes from "./Profile.module.css";
+import React from 'react'
+import ProfileInfo from './ProfileInfo/ProfileInfo.jsx'
+import MyPosts from './MyPosts/MyPosts.jsx'
 
 const Profile = (props) => {
-
-    return (
+  return (
         <div>
             <ProfileInfo/>
             <MyPosts posts = {props.profilePage.posts}
@@ -13,6 +11,6 @@ const Profile = (props) => {
                      dispatch={props.dispatch}
             />
         </div>
-    )
+  )
 }
-export default Profile;
+export default Profile

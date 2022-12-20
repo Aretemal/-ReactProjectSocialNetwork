@@ -1,24 +1,22 @@
-import React from 'react';
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/state.js";
-import classes from "./MyPosts.module.css";
-import Post from './Posts/Post.jsx';
-
-
+import React from 'react'
+import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../redux/state.js'
+import classes from './MyPosts.module.css'
+import Post from './Posts/Post.jsx'
 
 const MyPosts = (props) => {
-    let postsElements = props.posts
-        .map(post => <Post message={post.message} likesCount={post.likeCount}/>)
+  const postsElements = props.posts
+    .map(post => <Post key ={post.likeCount} message={post.message} likesCount={post.likeCount}/>)
 
-    let newPostElement = React.createRef();
-    let addPost = () => {
-        props.dispatch(addPostActionCreator());
-    }
-    let onPostChange = () => {
-        let text = newPostElement.current.value;
-        let action = updateNewPostTextActionCreator(text);
-        props.dispatch(action);
-    }
-    return (<div>
+  const newPostElement = React.createRef()
+  const addPost = () => {
+    props.dispatch(addPostActionCreator())
+  }
+  const onPostChange = () => {
+    const text = newPostElement.current.value
+    const action = updateNewPostTextActionCreator(text)
+    props.dispatch(action)
+  }
+  return (<div>
         <div className={classes.postsBlock}>
             My post
         </div>
@@ -37,4 +35,4 @@ const MyPosts = (props) => {
         </div>
     </div>)
 }
-export default MyPosts;
+export default MyPosts
