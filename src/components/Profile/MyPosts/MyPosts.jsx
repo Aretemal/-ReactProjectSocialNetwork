@@ -1,5 +1,5 @@
 import React from 'react'
-import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../redux/state.js'
+import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../redux/Profile-reducer.js'
 import classes from './MyPosts.module.css'
 import Post from './Posts/Post.jsx'
 
@@ -17,7 +17,7 @@ const MyPosts = (props) => {
     props.dispatch(action)
   }
   return (<div>
-        <div className={classes.postsBlock}>
+        <div className={classes.postsBlock}>npm
             My post
         </div>
         <div className={classes.AddPost}>

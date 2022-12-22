@@ -1,8 +1,8 @@
-import React from 'react'
-import { addMessageActionCreator, updateNewMessageTextActionCreator } from '../../redux/state.js'
+import { addMessageActionCreator, updateNewMessageTextActionCreator } from '../../redux/Dialogs-reducer.js'
 import classes from './Dialogs.module.css'
 import { Message } from './Message/Message.jsx'
 import DialogItem from './DialogItem/DialogItem.jsx'
+import React from 'react'
 
 const Dialogs = (props) => {
   const dialogsElements = props.dialogsPage.dialogs
@@ -42,4 +42,5 @@ const Dialogs = (props) => {
         </div>
   )
 }
+
 export default Dialogs
