@@ -1,5 +1,6 @@
 import './App.css'
 import React from 'react'
+import DialogsContainer from "./components/Dialogs/DialogsContainer.jsx";
 import Header from './components/Header/Header.jsx'
 import Navbar from './components/Navbar/Navbar.jsx'
 import Profile from './components/Profile/Profile.jsx'
@@ -15,16 +16,10 @@ function App (props) {
                 <div className='app-wrapper-content'>
                     <Routes>
                         <Route path="/dialogs"
-                               element={<Dialogs
-                                   dialogsPage={props.state.dialogsPage}
-                                   dispatch={props.dispatch}
-                               />}
+                               element={<DialogsContainer store={props.store}/>}
                         />
                         <Route path='/profile'
-                               element={<Profile
-                                   profilePage={props.state.profilePage}
-                                   dispatch={props.dispatch}
-                               />}
+                               element={<Profile store={props.store}/>}
                         />
                     </Routes>
                 </div>

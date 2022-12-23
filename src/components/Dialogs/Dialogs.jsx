@@ -5,20 +5,20 @@ import DialogItem from './DialogItem/DialogItem.jsx'
 import React from 'react'
 
 const Dialogs = (props) => {
-  const dialogsElements = props.dialogsPage.dialogs
+
+  const dialogsElements = props.dialogs
     .map(dialog => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id}/>)
-  const messagesElements = props.dialogsPage.messages
+  const messagesElements = props.messages
     .map(message => <Message key='1' message={message.message}/>)
 
   const newMessageElement = React.createRef()
 
-  const addMessage = () => {
-    props.dispatch(addMessageActionCreator())
+  const onAddMessage = () => {
+    props.addMessage();
   }
   const onMessageChange = () => {
-    const text = newMessageElement.current.value
-    const action = updateNewMessageTextActionCreator(text)
-    props.dispatch(action)
+    let text = newMessageElement.current.value
+    props.messageChange(text)
   }
 
   return (
@@ -33,10 +33,10 @@ const Dialogs = (props) => {
                 <div>
                 <textarea onChange={onMessageChange}
                           ref={newMessageElement}
-                          value={props.dialogsPage.newMessageText}/>
+                          value={props.newMessageText}/>
                 </div>
                 <div>
-                    <button onClick={addMessage}>Add</button>
+                    <button onClick={onAddMessage}>Add</button>
                 </div>
             </div>
         </div>

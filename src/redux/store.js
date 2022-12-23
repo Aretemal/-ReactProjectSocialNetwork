@@ -31,7 +31,7 @@ let store = {
     },
     sidebar: {}
   },
-  _callSubscriber () {
+  _callSubscriber () {W
   },
 
   getState () {
