@@ -1,36 +1,34 @@
-import './App.css'
-import React from 'react'
-import Header from './components/Header/Header.jsx'
-import Navbar from './components/Navbar/Navbar.jsx'
-import Profile from './components/Profile/Profile.jsx'
-import Dialogs from './components/Dialogs/Dialogs'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import './App.css';
+import React from 'react';
+import DialogsContainer from './components/Dialogs/DialogsContainer.jsx';
+import FindUsersContainer from './components/FindUsers/FindUsersContainer.jsx';
+import Header from './components/Header/Header.jsx';
+import Navbar from './components/Navbar/Navbar.jsx';
+import Profile from './components/Profile/Profile.jsx';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
 
-function App (props) {
+function App(props) {
   return (
-        <BrowserRouter>
-            <div className='app-wrapper'>
-                <Header/>
-                <Navbar/>
-                <div className='app-wrapper-content'>
-                    <Routes>
-                        <Route path="/dialogs"
-                               element={<Dialogs
-                                   dialogsPage={props.state.dialogsPage}
-                                   dispatch={props.dispatch}
-                               />}
-                        />
-                        <Route path='/profile'
-                               element={<Profile
-                                   profilePage={props.state.profilePage}
-                                   dispatch={props.dispatch}
-                               />}
-                        />
-                    </Routes>
-                </div>
-            </div>
-        </BrowserRouter>
-  )
+    <BrowserRouter>
+      <div className='app-wrapper'>
+        <Header/>
+        <Navbar/>
+        <div className='app-wrapper-content'>
+          <Routes>
+            <Route path="/dialogs"
+              element={<DialogsContainer />}
+            />
+            <Route path='/profile'
+              element={<Profile />}
+            />
+            <Route path='/users'
+              element={<FindUsersContainer/>}
+            />
+          </Routes>
+        </div>
+      </div>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
