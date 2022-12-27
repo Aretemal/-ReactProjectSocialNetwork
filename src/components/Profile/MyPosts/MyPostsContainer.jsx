@@ -8,16 +8,16 @@ let mapStateToProps = (state) => {
     return {
         posts: state.profilePage.posts,
         newPostText: state.profilePage.newPostText
-
     }
 }
 let mapDispatchToProps = (dispatch) => {
     return {
         addPost: () => {
-            store.dispatch(addPostActionCreator())
+            console.log('1')
+            dispatch(addPostActionCreator())
         },
         updateNewPostText: (text) => {
-            store.dispatch(updateNewPostTextActionCreator(text))
+            dispatch(updateNewPostTextActionCreator(text))
         }
     }
 }

@@ -5,7 +5,6 @@ import React from 'react'
 
 
 let mapStateToProps = (state) => {
-
     return {
         messages: state.dialogsPage.messages,
         dialogs: state.dialogsPage.dialogs,
@@ -15,10 +14,10 @@ let mapStateToProps = (state) => {
 let mapDispatchToProps = (dispatch) => {
     return {
         addMessage: () => {
-            store.dispatch(addMessageActionCreator())
+            dispatch(addMessageActionCreator())
         },
         messageChange: (text) => {
-            store.dispatch(updateNewMessageTextActionCreator(text))
+            dispatch(updateNewMessageTextActionCreator(text))
         }
     }
 }

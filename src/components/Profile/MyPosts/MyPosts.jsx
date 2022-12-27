@@ -3,7 +3,6 @@ import classes from './MyPosts.module.css'
 import Post from './Posts/Post.jsx'
 
 const MyPosts = (props) => {
-
   const postsElements = props.posts
     .map(post => <Post key ={post.likeCount} message={post.message} likesCount={post.likeCount}/>)
 
