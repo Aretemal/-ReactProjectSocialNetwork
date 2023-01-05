@@ -3,3 +3,10 @@
     color: #808080;
 }
 .photoUser{}
+.normalPage{
+    color: #808080;
+}
+.selectedPage {
+    font-weight:bold;
+    color: #808080;
+}

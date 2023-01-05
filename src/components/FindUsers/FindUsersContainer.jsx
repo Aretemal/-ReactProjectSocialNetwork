@@ -1,12 +1,20 @@
 //  import React from 'react';
 import {connect} from 'react-redux';
-import {followAC, setUsersAC, unfollowAC} from '../../redux/FindUsers-reducer.js';
+import {
+  followAC,
+  setCurrentPageAC, setTotalUsersCountAC,
+  setUsersAC,
+  unfollowAC,
+} from '../../redux/FindUsers-reducer.js';
 import FindUsers from './FindUsers.jsx';
 
 
 const mapStateToProps = (state) => {
   return {
     users: state.findUsersPage.users,
+    pageSize: state.findUsersPage.pageSize,
+    totalUsersCount: state.findUsersPage.totalUsersCount,
+    currentPage: state.findUsersPage.currentPage,
   };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -19,6 +27,12 @@ const mapDispatchToProps = (dispatch) => {
     },
     setUsers: (users)=>{
       dispatch(setUsersAC(users));
+    },
+    setCurrentPage: (pageNumber)=>{
+      dispatch(setCurrentPageAC(pageNumber));
+    },
+    setTotalUsersCount: (totalCount)=>{
+      dispatch(setTotalUsersCountAC(totalCount));
     },
   };
 };
