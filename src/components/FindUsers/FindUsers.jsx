@@ -1,80 +1,80 @@
+import axios from 'axios';
 import React from 'react';
 import classes from './FindUsers.module.css';
+import userPhoto from '../../assets/images/ava (FindUsers) .jpg';
 
-const FindUsers = (props) => {
-  if (props.users.length === 0) {
-    props.setUsers(
-        [
-          {
-            photoURL: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXwBFRcXHhoeOyEhO3xTRlN8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fP/AABEIAIIAggMBIgACEQEDEQH/xAAZAAEBAQEBAQAAAAAAAAAAAAAAAwQCAQb/xAAmEAEAAgIBBAEEAwEAAAAAAAAAAQIDESEEEjFRcTJBYYEiUpET/8QAFwEBAQEBAAAAAAAAAAAAAAAAAAEEA//EABYRAQEBAAAAAAAAAAAAAAAAAAARAf/aAAwDAQACEQMRAD8A+oAdmUAABxmma04nU7BRxe00rvW2but/af8AXm59yFaIzUnzwp3Rre40xgVsGbHlmnE8w0xMWjceAAAAAAAAAAAeXvFI3Ms2TJN59Q76iOYlITQBQAAdUyTTevDkBsie6ImPuJ4bbp+1EUAAAAAAABHqPNUV+o+mvygJoAoAAAAv0/i3yqngj+G/yoigAAAAAAAM2TL3xrWuXBMdszE/YVAAAAAAFcWTUxTXC7LjjeSvy1IuAAAAAAAAOMmKL871LNMamY9NjPnjV9+w1MBUAAHtK99tPFunrxNvYO8eOKfmXYIoAAAAAAAA4y0768eY5dkTE+JBjHeeIjJw4VAAHtKze2oa4iIiIjxCPT61ZaJifExKLgAAAAAAAAABM6iZ9Me5idxxK2bJGu2P2iJpM7ncgKAACvT/AFTH4SdY79lt63ANQ8raLRuJ29RQAAAARnqPVXFstrffUfgKvbJWnmefUI3yzbiOITBKAKAAAAAAEceFa55j6uUgGqt628S6Y3dc14jzv5QrSIf97eoeC1MBUAAAAAAAAAAAAAAAAf/Z',
-            id: 1,
-            followed: false,
-            fullName: 'Dmitry',
-            location: {city: 'Minsk', country: 'Belarus'},
-            status: 'I am student',
-          },
-          {
-            photoURL: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXwBFRcXHhoeOyEhO3xTRlN8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fP/AABEIAIIAggMBIgACEQEDEQH/xAAZAAEBAQEBAQAAAAAAAAAAAAAAAwQCAQb/xAAmEAEAAgIBBAEEAwEAAAAAAAAAAQIDESEEEjFRcTJBYYEiUpET/8QAFwEBAQEBAAAAAAAAAAAAAAAAAAEEA//EABYRAQEBAAAAAAAAAAAAAAAAAAARAf/aAAwDAQACEQMRAD8A+oAdmUAABxmma04nU7BRxe00rvW2but/af8AXm59yFaIzUnzwp3Rre40xgVsGbHlmnE8w0xMWjceAAAAAAAAAAAeXvFI3Ms2TJN59Q76iOYlITQBQAAdUyTTevDkBsie6ImPuJ4bbp+1EUAAAAAAABHqPNUV+o+mvygJoAoAAAAv0/i3yqngj+G/yoigAAAAAAAM2TL3xrWuXBMdszE/YVAAAAAAFcWTUxTXC7LjjeSvy1IuAAAAAAAAOMmKL871LNMamY9NjPnjV9+w1MBUAAHtK99tPFunrxNvYO8eOKfmXYIoAAAAAAAA4y0768eY5dkTE+JBjHeeIjJw4VAAHtKze2oa4iIiIjxCPT61ZaJifExKLgAAAAAAAAABM6iZ9Me5idxxK2bJGu2P2iJpM7ncgKAACvT/AFTH4SdY79lt63ANQ8raLRuJ29RQAAAARnqPVXFstrffUfgKvbJWnmefUI3yzbiOITBKAKAAAAAAEceFa55j6uUgGqt628S6Y3dc14jzv5QrSIf97eoeC1MBUAAAAAAAAAAAAAAAAf/Z',
-            id: 2,
-            followed: true,
-            fullName: 'Oleg',
-            location: {city: 'Kiev', country: 'Ukraine'},
-            status: 'I am student',
-          },
-          {
-            photoURL: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXwBFRcXHhoeOyEhO3xTRlN8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fP/AABEIAIIAggMBIgACEQEDEQH/xAAZAAEBAQEBAQAAAAAAAAAAAAAAAwQCAQb/xAAmEAEAAgIBBAEEAwEAAAAAAAAAAQIDESEEEjFRcTJBYYEiUpET/8QAFwEBAQEBAAAAAAAAAAAAAAAAAAEEA//EABYRAQEBAAAAAAAAAAAAAAAAAAARAf/aAAwDAQACEQMRAD8A+oAdmUAABxmma04nU7BRxe00rvW2but/af8AXm59yFaIzUnzwp3Rre40xgVsGbHlmnE8w0xMWjceAAAAAAAAAAAeXvFI3Ms2TJN59Q76iOYlITQBQAAdUyTTevDkBsie6ImPuJ4bbp+1EUAAAAAAABHqPNUV+o+mvygJoAoAAAAv0/i3yqngj+G/yoigAAAAAAAM2TL3xrWuXBMdszE/YVAAAAAAFcWTUxTXC7LjjeSvy1IuAAAAAAAAOMmKL871LNMamY9NjPnjV9+w1MBUAAHtK99tPFunrxNvYO8eOKfmXYIoAAAAAAAA4y0768eY5dkTE+JBjHeeIjJw4VAAHtKze2oa4iIiIjxCPT61ZaJifExKLgAAAAAAAAABM6iZ9Me5idxxK2bJGu2P2iJpM7ncgKAACvT/AFTH4SdY79lt63ANQ8raLRuJ29RQAAAARnqPVXFstrffUfgKvbJWnmefUI3yzbiOITBKAKAAAAAAEceFa55j6uUgGqt628S6Y3dc14jzv5QrSIf97eoeC1MBUAAAAAAAAAAAAAAAAf/Z',
-            id: 3,
-            followed: false,
-            fullName: 'Olga',
-            location: {city: 'Moscow', country: 'Russia'},
-            status: 'I am student',
-          },
-          {
-            photoURL: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXwBFRcXHhoeOyEhO3xTRlN8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fP/AABEIAIIAggMBIgACEQEDEQH/xAAZAAEBAQEBAQAAAAAAAAAAAAAAAwQCAQb/xAAmEAEAAgIBBAEEAwEAAAAAAAAAAQIDESEEEjFRcTJBYYEiUpET/8QAFwEBAQEBAAAAAAAAAAAAAAAAAAEEA//EABYRAQEBAAAAAAAAAAAAAAAAAAARAf/aAAwDAQACEQMRAD8A+oAdmUAABxmma04nU7BRxe00rvW2but/af8AXm59yFaIzUnzwp3Rre40xgVsGbHlmnE8w0xMWjceAAAAAAAAAAAeXvFI3Ms2TJN59Q76iOYlITQBQAAdUyTTevDkBsie6ImPuJ4bbp+1EUAAAAAAABHqPNUV+o+mvygJoAoAAAAv0/i3yqngj+G/yoigAAAAAAAM2TL3xrWuXBMdszE/YVAAAAAAFcWTUxTXC7LjjeSvy1IuAAAAAAAAOMmKL871LNMamY9NjPnjV9+w1MBUAAHtK99tPFunrxNvYO8eOKfmXYIoAAAAAAAA4y0768eY5dkTE+JBjHeeIjJw4VAAHtKze2oa4iIiIjxCPT61ZaJifExKLgAAAAAAAAABM6iZ9Me5idxxK2bJGu2P2iJpM7ncgKAACvT/AFTH4SdY79lt63ANQ8raLRuJ29RQAAAARnqPVXFstrffUfgKvbJWnmefUI3yzbiOITBKAKAAAAAAEceFa55j6uUgGqt628S6Y3dc14jzv5QrSIf97eoeC1MBUAAAAAAAAAAAAAAAAf/Z',
-            id: 4,
-            followed: false,
-            fullName: 'Artem',
-            location: {city: 'Berlin', country: 'German'},
-            status: 'I am student',
-          },
-          {
-            photoURL: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXwBFRcXHhoeOyEhO3xTRlN8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fP/AABEIAIIAggMBIgACEQEDEQH/xAAZAAEBAQEBAQAAAAAAAAAAAAAAAwQCAQb/xAAmEAEAAgIBBAEEAwEAAAAAAAAAAQIDESEEEjFRcTJBYYEiUpET/8QAFwEBAQEBAAAAAAAAAAAAAAAAAAEEA//EABYRAQEBAAAAAAAAAAAAAAAAAAARAf/aAAwDAQACEQMRAD8A+oAdmUAABxmma04nU7BRxe00rvW2but/af8AXm59yFaIzUnzwp3Rre40xgVsGbHlmnE8w0xMWjceAAAAAAAAAAAeXvFI3Ms2TJN59Q76iOYlITQBQAAdUyTTevDkBsie6ImPuJ4bbp+1EUAAAAAAABHqPNUV+o+mvygJoAoAAAAv0/i3yqngj+G/yoigAAAAAAAM2TL3xrWuXBMdszE/YVAAAAAAFcWTUxTXC7LjjeSvy1IuAAAAAAAAOMmKL871LNMamY9NjPnjV9+w1MBUAAHtK99tPFunrxNvYO8eOKfmXYIoAAAAAAAA4y0768eY5dkTE+JBjHeeIjJw4VAAHtKze2oa4iIiIjxCPT61ZaJifExKLgAAAAAAAAABM6iZ9Me5idxxK2bJGu2P2iJpM7ncgKAACvT/AFTH4SdY79lt63ANQ8raLRuJ29RQAAAARnqPVXFstrffUfgKvbJWnmefUI3yzbiOITBKAKAAAAAAEceFa55j6uUgGqt628S6Y3dc14jzv5QrSIf97eoeC1MBUAAAAAAAAAAAAAAAAf/Z',
-            id: 5,
-            followed: true,
-            fullName: 'Vladimir',
-            location: {city: 'Ankara', country: 'Turkey'},
-            status: 'I am student',
-          }],
-    );
+class FindUsers extends React.Component {
+  componentDidMount() {
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+        .then((response) => {
+          this.props.setUsers(response.data.items);
+          this.props.setTotalUsersCount(response.data.totalCount);
+        });
   }
+  onPageChanged = (pageNumber) => {
+    this.props.setCurrentPage(pageNumber);
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+        .then((response) => {
+          this.props.setUsers(
+              response.data.items,
+          );
+        });
+  };
 
-  return <div>
-    {
-      props.users.map((u) => <div key={u.id} className={classes.item}>
+  render() {
+    let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
+    const pages = [];
+    pagesCount = 30;
+    for (let i=1; i<=pagesCount; i++) {
+      pages.push(i);
+    }
+    return (
+      <div>
         <div>
-          <img alt='ava' src={u.photoURL}/>
-        </div>
-        <div>
-          {u.followed ?
-                            <button onClick={() => {
-                              props.unfollow(u.id);
-                            }}>
-                                Unfollow
-                            </button> :
-                            <button onClick={() => {
-                              props.follow(u.id);
-                            }}>
-                                Follow
-                            </button>
+          {pages.map( (p) => {
+            if (this.props.currentPage === p) {
+              return <span key={p}
+                className={classes.selectedPage}
+                onClick={()=>{
+                  this.onPageChanged(p);
+                }}> {p} </span>;
+            } else {
+              return <span key={p}
+                className={classes.normalPage} onClick={ ()=>{
+                  this.onPageChanged(p);
+                }}> {p} </span>;
+            }
+          },
+          )
           }
         </div>
-        <div>{u.fullName}</div>
-        <div>{u.status}</div>
-        <div>{u.location.country}</div>
-        <div>{u.location.city}</div>
-      </div>,
-      )
-    }
-  </div>;
-};
+        {
+          this.props.users.map((u) => <div key={u.id} className={classes.item}>
+            <div>
+              <img alt="ava" src={u.photos.small !=null ? u.photos.small : userPhoto }/>
+            </div>
+            <div>
+              {u.followed ?
+                <button onClick={() => {
+                  this.props.unfollow(u.id);
+                }}>
+                  Unfollow
+                </button> :
+                <button onClick={() => {
+                  this.props.follow(u.id);
+                }}>
+                  Follow
+                </button>
+              }
+            </div>
+            <div>{u.name}</div>
+            <div>{u.status}</div>
+            <div>{'u.location.country'}</div>
+            <div>{'u.location.city'}</div>
+          </div>,
+          )
+        }
+      </div>);
+  }
+}
 export default FindUsers;
