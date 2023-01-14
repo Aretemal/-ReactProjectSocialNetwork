@@ -1,4 +1,5 @@
 import React from 'react';
+import {NavLink} from 'react-router-dom';
 import userPhoto from '../../assets/images/ava (FindUsers) .jpg';
 import classes from './FindUsers.module.css';
 
@@ -31,7 +32,9 @@ const FindUsers =(props)=>{
     {
       props.users.map((u) => <div key={u.id} className={classes.item}>
         <div>
-          <img alt="ava" src={u.photos.small !=null ? u.photos.small : userPhoto }/>
+          <NavLink to={'/profile/'+ u.id}>
+            <img alt="ava" src={u.photos.small !=null ? u.photos.small : userPhoto }/>
+          </NavLink>
         </div>
         <div>
           {u.followed ?

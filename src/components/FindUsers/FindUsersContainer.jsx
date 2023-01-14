@@ -5,10 +5,10 @@ import axios from 'axios';
 import React from 'react';
 import {connect} from 'react-redux';
 import {
-  followAC,
-  setCurrentPageAC, setTotalUsersCountAC,
-  setUsersAC, toggleIsFetchingAC,
-  unfollowAC,
+  follow,
+  setCurrentPage, setTotalUsersCount,
+  setUsers, toggleIsFetching,
+  unfollow,
 } from '../../redux/FindUsers-reducer.js';
 import FindUsers from './FintUsers.jsx';
 class FindUsersContainer extends React.Component {
@@ -58,28 +58,12 @@ const mapStateToProps = (state) => {
     isFetching: state.findUsersPage.isFetching,
   };
 };
-const mapDispatchToProps = (dispatch) => {
-  return {
-    follow: (userId)=>{
-      dispatch(followAC(userId));
-    },
-    unfollow: (userId)=>{
-      dispatch(unfollowAC(userId));
-    },
-    setUsers: (users)=>{
-      dispatch(setUsersAC(users));
-    },
-    setCurrentPage: (pageNumber)=>{
-      dispatch(setCurrentPageAC(pageNumber));
-    },
-    setTotalUsersCount: (totalCount)=>{
-      dispatch(setTotalUsersCountAC(totalCount));
-    },
-    toggleIsFetching: (isFetching)=>{
-      dispatch(toggleIsFetchingAC(isFetching));
-    },
-  };
-};
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(FindUsersContainer);
+export default connect(mapStateToProps, {
+  follow,
+  unfollow,
+  setUsers,
+  setCurrentPage,
+  setTotalUsersCount,
+  toggleIsFetching,
+})(FindUsersContainer);
