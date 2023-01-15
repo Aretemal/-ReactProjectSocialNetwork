@@ -1,13 +1,13 @@
 import './App.css';
 import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import DialogsContainer from './components/Dialogs/DialogsContainer.jsx';
 import FindUsersContainer from './components/FindUsers/FindUsersContainer.jsx';
 import HeaderContainer from './components/Header/HeaderContainer.jsx';
 import Navbar from './components/Navbar/Navbar.jsx';
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import ProfileContainer from './components/Profile/ProfileContainer.jsx';
 
-function App(props) {
+function App() {
   return (
     <BrowserRouter>
       <div className='app-wrapper'>
