@@ -2,9 +2,9 @@ import React from 'react';
 import classes from './MyPosts.module.css';
 import Post from './Posts/Post.jsx';
 
-const MyPosts = (props) => {
+function MyPosts(props) {
   const postsElements = props.posts
-      .map((post) => <Post key ={post.likeCount} message={post.message} likesCount={post.likeCount}/>);
+    .map((post) => <Post key={post.likeCount} message={post.message} likesCount={post.likeCount} />);
 
   const newPostElement = React.createRef();
   const onAddPost = () => {
@@ -14,23 +14,26 @@ const MyPosts = (props) => {
     const text = newPostElement.current.value;
     props.updateNewPostText(text);
   };
-  return (<div>
-    <div className={classes.postsBlock}>
-            My post
-    </div>
-    <div className={classes.AddPost}>
-      <div>
-        <textarea onChange={onPostChange}
-          ref={newPostElement}
-          value={props.newPostText}/>
+  return (
+    <div>
+      <div className={classes.postsBlock}>
+        My post
       </div>
-      <div>
-        <button onClick={onAddPost}> Add</button>
+      <div className={classes.AddPost}>
+        <div>
+          <textarea
+            onChange={onPostChange}
+            ref={newPostElement}
+            value={props.newPostText} />
+        </div>
+        <div>
+          <button onClick={onAddPost}> Add</button>
+        </div>
+      </div>
+      <div className={classes.posts}>
+        {postsElements}
       </div>
     </div>
-    <div className={classes.posts}>
-      {postsElements}
-    </div>
-  </div>);
-};
+  );
+}
 export default MyPosts;

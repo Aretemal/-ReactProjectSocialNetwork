@@ -19,4 +19,4 @@ export const authReducer = (state = initialState, action) => {
       return state;
   }
 };
-export const setAuthUserData = (userId, email, login) => ({type: SET_AUTH_USERS_DATA, data: {userId, email, login}});
+export const setAuthUserData = (userId, email, login) => ({ type: SET_AUTH_USERS_DATA, data: { userId, email, login } });
