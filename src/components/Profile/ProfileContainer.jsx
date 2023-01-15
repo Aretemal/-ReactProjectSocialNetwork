@@ -11,21 +11,23 @@ import Profile from './Profile.jsx';
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
-    let { userId } = this.props.router.params;
+    const { router } = this.props;
+    let { userId } = router.params;
     if (!userId) {
       userId = 2;
     }
     axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
       .then((response) => {
         console.log(response.data);
-        this.props.setUserProfile(response.data);
+        setUserProfile(response.data);
       });
   }
 
   render() {
+    const { profile } = this.props;
     return (
       <div>
-        <Profile {...this.props} profile={this.props.profile} />
+        <Profile {...this.props} profile={profile} />
       </div>
     );
   }

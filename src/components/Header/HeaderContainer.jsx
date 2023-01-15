@@ -12,7 +12,7 @@ class HeaderContainer extends React.Component {
       .then((response) => {
         if (response.data.resultCode === 0) {
           const { id, email, login } = response.data.data;
-          this.props.setAuthUserData(id, email, login);
+          setAuthUserData(id, email, login);
         }
       });
   }

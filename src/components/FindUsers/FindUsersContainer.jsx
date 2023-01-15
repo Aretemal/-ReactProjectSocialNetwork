@@ -14,40 +14,43 @@ import FindUsers from './FintUsers.jsx';
 
 class FindUsersContainer extends React.Component {
   componentDidMount() {
-    this.props.toggleIsFetching(true);
+    toggleIsFetching(true);
     axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
       .then((response) => {
-        this.props.toggleIsFetching(false);
-        this.props.setUsers(response.data.items);
-        this.props.setTotalUsersCount(response.data.totalCount);
+        toggleIsFetching(false);
+        setUsers(response.data.items);
+        setTotalUsersCount(response.data.totalCount);
       });
   }
 
   onPageChanged = (pageNumber) => {
-    this.props.setCurrentPage(pageNumber);
-    this.props.toggleIsFetching(true);
+    setCurrentPage(pageNumber);
+    toggleIsFetching(true);
     axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
       .then((response) => {
-        this.props.toggleIsFetching(false);
-        this.props.setUsers(
+        toggleIsFetching(false);
+        setUsers(
           response.data.items,
         );
       });
   };
 
   render() {
+    const {
+      isFetching, currentPage, pageSize, totalUsersCount, onPageChanged, users,
+    } = this.props;
     return (
       <>
-        {this.props.isFetching ? <Preloader />
+        {isFetching ? <Preloader />
           : (
             <FindUsers
-              totalUsersCount={this.props.totalUsersCount}
-              pageSize={this.props.pageSize}
-              currentPage={this.props.currentPage}
-              onPageChanged={this.onPageChanged}
-              users={this.props.users}
-              unfollow={this.props.unfollow}
-              follow={this.props.follow}
+              totalUsersCount={totalUsersCount}
+              pageSize={pageSize}
+              currentPage={currentPage}
+              onPageChanged={onPageChanged}
+              users={users}
+              unfollow={unfollow}
+              follow={follow}
             />
           )}
       </>

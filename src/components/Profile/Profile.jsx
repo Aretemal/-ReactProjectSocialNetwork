@@ -2,11 +2,10 @@ import React from 'react';
 import MyPostsContainer from './MyPosts/MyPostsContainer.jsx';
 import ProfileInfo from './ProfileInfo/ProfileInfo.jsx';
 
-function Profile(props) {
-  window.b = props.profile;
+function Profile({ profile }) {
   return (
     <div>
-      <ProfileInfo profile={props.profile} />
+      <ProfileInfo profile={profile} />
       <MyPostsContainer />
     </div>
   );
