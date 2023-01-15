@@ -11,19 +11,22 @@ function App() {
   return (
     <BrowserRouter>
       <div className='app-wrapper'>
-        <HeaderContainer/>
-        <Navbar/>
+        <HeaderContainer />
+        <Navbar />
         <div className='app-wrapper-content'>
           <Routes>
-            <Route path="/dialogs"
+            <Route
+              path="/dialogs"
               element={<DialogsContainer />}
             />
-            <Route path='/profile/:userId'
+            <Route
+              path='/profile/:userId'
               // ?
               element={<ProfileContainer />}
             />
-            <Route path='/users'
-              element={<FindUsersContainer/>}
+            <Route
+              path='/users'
+              element={<FindUsersContainer />}
             />
           </Routes>
         </div>

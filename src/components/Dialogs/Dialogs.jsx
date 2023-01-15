@@ -3,11 +3,11 @@ import classes from './Dialogs.module.css';
 import Message from './Message/Message.jsx';
 import DialogItem from './DialogItem/DialogItem.jsx';
 
-const Dialogs = (props) => {
+function Dialogs(props) {
   const dialogsElements = props.dialogs
-    .map((dialog) => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id}/>);
+    .map((dialog) => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id} />);
   const messagesElements = props.messages
-    .map((message) => <Message key='1' message={message.message}/>);
+    .map((message) => <Message key='1' message={message.message} />);
 
   const newMessageElement = React.createRef();
 
@@ -29,9 +29,11 @@ const Dialogs = (props) => {
           {messagesElements}
         </div>
         <div>
-          <textarea onChange={onMessageChange}
+          <textarea
+            onChange={onMessageChange}
             ref={newMessageElement}
-            value={props.newMessageText}/>
+            value={props.newMessageText}
+          />
         </div>
         <div>
           <button onClick={onAddMessage}>Add</button>
@@ -39,6 +41,6 @@ const Dialogs = (props) => {
       </div>
     </div>
   );
-};
+}
 
 export default Dialogs;

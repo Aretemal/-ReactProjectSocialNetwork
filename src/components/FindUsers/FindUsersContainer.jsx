@@ -36,19 +36,22 @@ class FindUsersContainer extends React.Component {
   };
 
   render() {
-    return <>
-      {this.props.isFetching ? <Preloader/>
-        : <FindUsers
-        totalUsersCount={this.props.totalUsersCount}
-        pageSize={this.props.pageSize}
-        currentPage={this.props.currentPage}
-        onPageChanged={this.onPageChanged}
-        users={this.props.users}
-        unfollow={this.props.unfollow}
-        follow={this.props.follow}
-      />
-      }
-    </>;
+    return (
+      <>
+        {this.props.isFetching ? <Preloader />
+          : (
+            <FindUsers
+              totalUsersCount={this.props.totalUsersCount}
+              pageSize={this.props.pageSize}
+              currentPage={this.props.currentPage}
+              onPageChanged={this.onPageChanged}
+              users={this.props.users}
+              unfollow={this.props.unfollow}
+              follow={this.props.follow}
+            />
+          )}
+      </>
+    );
   }
 }
 const mapStateToProps = (state) => ({
