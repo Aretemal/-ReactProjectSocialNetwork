@@ -1,11 +1,11 @@
-import './App.css';
-import React from 'react';
-import DialogsContainer from './components/Dialogs/DialogsContainer.jsx';
-import FindUsersContainer from './components/FindUsers/FindUsersContainer.jsx';
-import Header from './components/Header/Header.jsx';
-import Navbar from './components/Navbar/Navbar.jsx';
-import Profile from './components/Profile/Profile.jsx';
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import './App.css'
+import React from 'react'
+import DialogsContainer from './components/Dialogs/DialogsContainer.jsx'
+import FindUsersContainer from './components/FindUsers/FindUsersContainer.jsx'
+import Header from './components/Header/Header.jsx'
+import Navbar from './components/Navbar/Navbar.jsx'
+import Profile from './components/Profile/Profile.jsx'
+import {BrowserRouter, Route, Routes} from 'react-router-dom'
 
 function App(props) {
   return (
@@ -28,7 +28,7 @@ function App(props) {
         </div>
       </div>
     </BrowserRouter>
-  );
+  )
 }
 
-export default App;
+export default App

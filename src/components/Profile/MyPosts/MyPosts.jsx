@@ -1,19 +1,19 @@
-import React from 'react';
-import classes from './MyPosts.module.css';
-import Post from './Posts/Post.jsx';
+import React from 'react'
+import classes from './MyPosts.module.css'
+import Post from './Posts/Post.jsx'
 
 const MyPosts = (props) => {
   const postsElements = props.posts
-      .map((post) => <Post key ={post.likeCount} message={post.message} likesCount={post.likeCount}/>);
+      .map((post) => <Post key ={post.likeCount} message={post.message} likesCount={post.likeCount}/>)
 
-  const newPostElement = React.createRef();
+  const newPostElement = React.createRef()
   const onAddPost = () => {
-    props.addPost();
-  };
+    props.addPost()
+  }
   const onPostChange = () => {
-    const text = newPostElement.current.value;
-    props.updateNewPostText(text);
-  };
+    const text = newPostElement.current.value
+    props.updateNewPostText(text)
+  }
   return (<div>
     <div className={classes.postsBlock}>
             My post
@@ -31,6 +31,6 @@ const MyPosts = (props) => {
     <div className={classes.posts}>
       {postsElements}
     </div>
-  </div>);
-};
-export default MyPosts;
+  </div>)
+}
+export default MyPosts

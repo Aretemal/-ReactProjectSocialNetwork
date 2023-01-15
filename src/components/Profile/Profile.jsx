@@ -1,6 +1,6 @@
-import React from 'react';
-import MyPostsContainer from './MyPosts/MyPostsContainer.jsx';
-import ProfileInfo from './ProfileInfo/ProfileInfo.jsx';
+import React from 'react'
+import MyPostsContainer from './MyPosts/MyPostsContainer.jsx'
+import ProfileInfo from './ProfileInfo/ProfileInfo.jsx'
 
 const Profile = (props) => {
   return (
@@ -8,6 +8,6 @@ const Profile = (props) => {
       <ProfileInfo/>
       <MyPostsContainer />
     </div>
-  );
-};
-export default Profile;
+  )
+}
+export default Profile

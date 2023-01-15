@@ -1,6 +1,6 @@
-import {dialogsReducer} from './Dialogs-reducer.js';
-import {profileReducer} from './Profile-reducer.js';
-import {sidebarReducer} from './Sidebar-reducer.js';
+import {dialogsReducer} from './Dialogs-reducer.js'
+import {profileReducer} from './Profile-reducer.js'
+import {sidebarReducer} from './Sidebar-reducer.js'
 
 const store = {
   _state: {
@@ -35,19 +35,19 @@ const store = {
   },
 
   getState() {
-    return this._state;
+    return this._state
   },
   subscribe(observer) {
-    this._callSubscriber = observer;
+    this._callSubscriber = observer
   },
 
   dispatch(action) {
-    this.getState().profilePage = profileReducer(this.getState().profilePage, action);
-    this.getState().dialogsPage = dialogsReducer(this.getState().dialogsPage, action);
-    this.getState().sidebar = sidebarReducer(this.getState().sidebar, action);
-    this._callSubscriber(this.getState());
+    this.getState().profilePage = profileReducer(this.getState().profilePage, action)
+    this.getState().dialogsPage = dialogsReducer(this.getState().dialogsPage, action)
+    this.getState().sidebar = sidebarReducer(this.getState().sidebar, action)
+    this._callSubscriber(this.getState())
   },
-};
+}
 
-window.store = store;
-export default store;
+window.store = store
+export default store

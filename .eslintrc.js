@@ -21,5 +21,6 @@ module.exports = {
     'max-len': 'off',
     'linebreak-style': 0,
     'require-jsdoc': 0,
+    'semi': [2, 'never'], // Отвечает за точки с запятой
   },
-};
+}

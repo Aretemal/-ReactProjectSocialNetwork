@@ -1,25 +1,25 @@
-import classes from './Dialogs.module.css';
-import {Message} from './Message/Message.jsx';
-import DialogItem from './DialogItem/DialogItem.jsx';
-import React from 'react';
+import classes from './Dialogs.module.css'
+import {Message} from './Message/Message.jsx'
+import DialogItem from './DialogItem/DialogItem.jsx'
+import React from 'react'
 
 const Dialogs = (props) => {
   const dialogsElements = props.dialogs
       .map((dialog) =>
-        <DialogItem key={dialog.id} name={dialog.name} id={dialog.id}/>);
+        <DialogItem key={dialog.id} name={dialog.name} id={dialog.id}/>)
   const messagesElements = props.messages
       .map((message) =>
-        <Message key='1' message={message.message}/>);
+        <Message key='1' message={message.message}/>)
 
-  const newMessageElement = React.createRef();
+  const newMessageElement = React.createRef()
 
   const onAddMessage = () => {
-    props.addMessage();
-  };
+    props.addMessage()
+  }
   const onMessageChange = () => {
-    const text = newMessageElement.current.value;
-    props.messageChange(text);
-  };
+    const text = newMessageElement.current.value
+    props.messageChange(text)
+  }
 
   return (
     <div className={classes.dialogs}>
@@ -40,7 +40,7 @@ const Dialogs = (props) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Dialogs;
+export default Dialogs

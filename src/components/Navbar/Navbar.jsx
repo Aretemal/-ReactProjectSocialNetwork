@@ -1,6 +1,6 @@
-import React from 'react';
-import classes from './Navbar.module.css';
-import {NavLink} from 'react-router-dom';
+import React from 'react'
+import classes from './Navbar.module.css'
+import {NavLink} from 'react-router-dom'
 
 const Navbar = () => {
   return <nav className={classes.nav}>
@@ -27,6 +27,6 @@ const Navbar = () => {
       <NavLink to="/users" className={classes.item}>Find users
       </NavLink>
     </div>
-  </nav>;
-};
-export default Navbar;
+  </nav>
+}
+export default Navbar
