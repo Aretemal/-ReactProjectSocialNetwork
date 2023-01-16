@@ -3,8 +3,10 @@ import { NavLink } from 'react-router-dom';
 import userPhoto from '../../assets/images/ava (FindUsers) .jpg';
 import classes from './FindUsers.module.css';
 
-function FindUsers(props) {
-  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+function FindUsers({
+  totalUsersCount, pageSize, currentPage, onPageChanged, users, unfollow, follow,
+}) {
+  let pagesCount = Math.ceil(totalUsersCount / pageSize);
   const pages = [];
   pagesCount = 30;
   for (let i = 1; i <= pagesCount; i++) {
@@ -14,13 +16,13 @@ function FindUsers(props) {
     <div>
       <div>
         {pages.map((p) => {
-          if (props.currentPage === p) {
+          if (currentPage === p) {
             return (
               <span
                 key={p}
                 className={classes.selectedPage}
                 onClick={() => {
-                  props.onPageChanged(p);
+                  onPageChanged(p);
                 }}
               >
                 {p}
@@ -32,7 +34,7 @@ function FindUsers(props) {
               key={p}
               className={classes.normalPage}
               onClick={() => {
-                props.onPageChanged(p);
+                onPageChanged(p);
               }}
             >
               {p}
@@ -41,7 +43,7 @@ function FindUsers(props) {
         })}
       </div>
       {
-      props.users.map((u) => (
+      users.map((u) => (
         <div key={u.id} className={classes.item}>
           <div>
             <NavLink to={`/profile/${u.id}`}>
@@ -52,14 +54,14 @@ function FindUsers(props) {
             {u.followed
               ? (
                 <button onClick={() => {
-                  props.unfollow(u.id);
+                  unfollow(u.id);
                 }}>
                   Unfollow
                 </button>
               )
               : (
                 <button onClick={() => {
-                  props.follow(u.id);
+                  follow(u.id);
                 }}
                 >
                   Follow
