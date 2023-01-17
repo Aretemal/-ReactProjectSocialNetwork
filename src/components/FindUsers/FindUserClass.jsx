@@ -1,7 +1,7 @@
-import axios from 'axios';
 import React from 'react';
+import usersAPI from '../../api/api';
 import Preloader from '../common/Preloader/Preloader.jsx';
-import FindUsers from './FintUsers.jsx';
+import FindUsers from './FindUsers.jsx';
 
 class FindUsersContainer extends React.Component {
   componentDidMount() {
@@ -9,12 +9,11 @@ class FindUsersContainer extends React.Component {
       currentPage, pageSize, toggleIsFetching, setUsers, setTotalUsersCount,
     } = this.props;
     toggleIsFetching(true);
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${pageSize}`)
-      .then((response) => {
-        toggleIsFetching(false);
-        setUsers(response.data.items);
-        setTotalUsersCount(response.data.totalCount);
-      });
+    usersAPI.getUsers(currentPage, pageSize).then((response) => {
+      toggleIsFetching(false);
+      setUsers(response.data.items);
+      setTotalUsersCount(response.data.totalCount);
+    });
   }
 
   onPageChanged = (pageNumber) => {
@@ -23,7 +22,7 @@ class FindUsersContainer extends React.Component {
     } = this.props;
     setCurrentPage(pageNumber);
     toggleIsFetching(true);
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${pageSize}`)
+    usersAPI.getUsers(pageNumber, pageSize)
       .then((response) => {
         toggleIsFetching(false);
         setUsers(
@@ -34,7 +33,7 @@ class FindUsersContainer extends React.Component {
 
   render() {
     const {
-      follow, unfollow, isFetching, currentPage, pageSize, totalUsersCount, users,
+      follow, unfollow, followingInProgress, toggleIsFollowingProgress, isFetching, currentPage, pageSize, totalUsersCount, users,
     } = this.props;
     return (
       <>
@@ -48,6 +47,8 @@ class FindUsersContainer extends React.Component {
               users={users}
               unfollow={unfollow}
               follow={follow}
+              toggleIsFollowingProgress={toggleIsFollowingProgress}
+              followingInProgress={followingInProgress}
             />
           )}
       </>

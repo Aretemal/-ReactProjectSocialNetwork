@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {
   follow,
   setCurrentPage, setTotalUsersCount,
-  setUsers, toggleIsFetching,
+  setUsers, toggleIsFetching, toggleIsFollowingProgress,
   unfollow,
 } from '../../redux/FindUsers-reducer';
 import FindUsersContainer from './FindUserClass.jsx';
@@ -14,6 +14,7 @@ const mapStateToProps = (state) => ({
   totalUsersCount: state.findUsersPage.totalUsersCount,
   currentPage: state.findUsersPage.currentPage,
   isFetching: state.findUsersPage.isFetching,
+  followingInProgress: state.findUsersPage.followingInProgress,
 });
 
 export default connect(mapStateToProps, {
@@ -23,4 +24,5 @@ export default connect(mapStateToProps, {
   setCurrentPage,
   setTotalUsersCount,
   toggleIsFetching,
+  toggleIsFollowingProgress,
 })(FindUsersContainer);
