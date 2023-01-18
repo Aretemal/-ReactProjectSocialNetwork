@@ -1,11 +1,10 @@
-import axios from 'axios';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import userPhoto from '../../assets/images/ava (FindUsers) .jpg';
 import classes from './FindUsers.module.css';
 
 function FindUsers({
-  totalUsersCount, followingInProgress, toggleIsFollowingProgress, pageSize, currentPage, onPageChanged, users, unfollow, follow,
+  totalUsersCount, followingInProgress, pageSize, currentPage, onPageChanged, users, unfollow, follow,
 }) {
   let pagesCount = Math.ceil(totalUsersCount / pageSize);
   const pages = [];
@@ -57,19 +56,7 @@ function FindUsers({
                 <button
                   disabled={followingInProgress.some((id) => id === u.id)}
                   onClick={() => {
-                    toggleIsFollowingProgress(true, u.id);
-                    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-                      withCredentials: true,
-                      headers: {
-                        'API-KEY': '4cea6ad3-6ebd-4af9-90c6-94d117110aca',
-                      },
-                    })
-                      .then((response) => {
-                        if (!response.data.resultCode) {
-                          unfollow(u.id);
-                        }
-                        toggleIsFollowingProgress(false, u.id);
-                      });
+                    unfollow(u.id);
                   }}>
                   Unfollow
                 </button>
@@ -77,21 +64,7 @@ function FindUsers({
               : (
                 <button
                   disabled={followingInProgress.some((id) => id === u.id)}
-                  onClick={() => {
-                    toggleIsFollowingProgress(true, u.id);
-                    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
-                      withCredentials: true,
-                      headers: {
-                        'API-KEY': '4cea6ad3-6ebd-4af9-90c6-94d117110aca',
-                      },
-                    })
-                      .then((response) => {
-                        if (!response.data.resultCode) {
-                          follow(u.id);
-                        }
-                        toggleIsFollowingProgress(false, u.id);
-                      });
-                  }}
+                  onClick={() => { follow(u.id); }}
                 >
                   Follow
                 </button>

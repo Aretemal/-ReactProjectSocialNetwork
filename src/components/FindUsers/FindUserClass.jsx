@@ -1,39 +1,25 @@
 import React from 'react';
-import usersAPI from '../../api/api';
 import Preloader from '../common/Preloader/Preloader.jsx';
 import FindUsers from './FindUsers.jsx';
 
 class FindUsersContainer extends React.Component {
   componentDidMount() {
     const {
-      currentPage, pageSize, toggleIsFetching, setUsers, setTotalUsersCount,
+      currentPage, pageSize, getUsers,
     } = this.props;
-    toggleIsFetching(true);
-    usersAPI.getUsers(currentPage, pageSize).then((response) => {
-      toggleIsFetching(false);
-      setUsers(response.data.items);
-      setTotalUsersCount(response.data.totalCount);
-    });
+    getUsers(currentPage, pageSize);
   }
 
   onPageChanged = (pageNumber) => {
     const {
-      pageSize, toggleIsFetching, setUsers, setCurrentPage,
+      pageSize, getUsers,
     } = this.props;
-    setCurrentPage(pageNumber);
-    toggleIsFetching(true);
-    usersAPI.getUsers(pageNumber, pageSize)
-      .then((response) => {
-        toggleIsFetching(false);
-        setUsers(
-          response.data.items,
-        );
-      });
+    getUsers(pageNumber, pageSize);
   };
 
   render() {
     const {
-      follow, unfollow, followingInProgress, toggleIsFollowingProgress, isFetching, currentPage, pageSize, totalUsersCount, users,
+      follow, unfollow, followingInProgress, isFetching, currentPage, pageSize, totalUsersCount, users,
     } = this.props;
     return (
       <>
@@ -47,7 +33,6 @@ class FindUsersContainer extends React.Component {
               users={users}
               unfollow={unfollow}
               follow={follow}
-              toggleIsFollowingProgress={toggleIsFollowingProgress}
               followingInProgress={followingInProgress}
             />
           )}
