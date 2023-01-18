@@ -5,7 +5,7 @@ import {
   setCurrentPage, toggleIsFollowingProgress,
   unfollow,
 } from '../../redux/FindUsers-reducer';
-import FindUsersContainer from './FindUserClass.jsx';
+import FindUsersContainer from './FindUserContainer.jsx';
 
 const mapStateToProps = (state) => ({
   users: state.findUsersPage.users,

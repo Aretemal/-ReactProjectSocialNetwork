@@ -2,11 +2,11 @@ import './App.css';
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import DialogsContainer from './components/Dialogs/DialogsContainer.jsx';
-import FindUsersContainer from './components/FindUsers/FindUsersContainer.jsx';
-import HeaderContainer from './components/Header/HeaderContainer.jsx';
+import FindUsersContainer from './components/FindUsers/FindUsersConnect.jsx';
+import HeaderContainer from './components/Header/HeaderConnect.jsx';
 import Login from './components/Login/Login.jsx';
 import Navbar from './components/Navbar/Navbar.jsx';
-import ProfileContainer from './components/Profile/ProfileContainer.jsx';
+import ProfileContainer from './components/Profile/ProfileConnnect.jsx';
 
 function App() {
   return (
