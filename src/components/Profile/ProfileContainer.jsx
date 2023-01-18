@@ -5,7 +5,7 @@ import {
   useNavigate,
   useParams,
 } from 'react-router-dom';
-import { setUserProfile } from '../../redux/Profile-reducer';
+import { getUserProfile } from '../../redux/Profile-reducer';
 import ProfileContainer from './ProfileClass.jsx';
 
 const mapStateToProps = (state) => ({
@@ -26,4 +26,4 @@ function withRouter(Component) {
   }
   return ComponentWithRouterProp;
 }
-export default connect(mapStateToProps, { setUserProfile })(withRouter(ProfileContainer));
+export default connect(mapStateToProps, { getUserProfile })(withRouter(ProfileContainer));
