@@ -18,7 +18,8 @@ function FindUsers({
         {pages.map((p) => {
           if (currentPage === p) {
             return (
-              <span
+              <button
+                type='submit'
                 key={p}
                 className={classes.selectedPage}
                 onClick={() => {
@@ -26,11 +27,12 @@ function FindUsers({
                 }}
               >
                 {p}
-              </span>
+              </button>
             );
           }
           return (
-            <span
+            <button
+              type='submit'
               key={p}
               className={classes.normalPage}
               onClick={() => {
@@ -38,7 +40,7 @@ function FindUsers({
               }}
             >
               {p}
-            </span>
+            </button>
           );
         })}
       </div>
@@ -54,15 +56,18 @@ function FindUsers({
             {u.followed
               ? (
                 <button
+                  type='submit'
                   disabled={followingInProgress.some((id) => id === u.id)}
                   onClick={() => {
                     unfollow(u.id);
-                  }}>
+                  }}
+                >
                   Unfollow
                 </button>
               )
               : (
                 <button
+                  type='submit'
                   disabled={followingInProgress.some((id) => id === u.id)}
                   onClick={() => { follow(u.id); }}
                 >

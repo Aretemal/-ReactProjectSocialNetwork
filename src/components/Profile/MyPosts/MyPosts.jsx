@@ -26,10 +26,11 @@ function MyPosts({
           <textarea
             onChange={onPostChange}
             ref={newPostElement}
-            value={newPostText} />
+            value={newPostText}
+          />
         </div>
         <div>
-          <button onClick={onAddPost}> Add</button>
+          <button type='submit' onClick={onAddPost}> Add</button>
         </div>
       </div>
       <div className={classes.posts}>
