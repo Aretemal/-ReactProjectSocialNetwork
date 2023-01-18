@@ -38,5 +38,7 @@ module.exports = {
     'react/jsx-filename-extension': 0,
     'class-methods-use-this': 0,
     'react/no-unused-class-component-methods': 0,
+    'import/prefer-default-export': 0,
+    'no-debugger': 0,
   },
 };

@@ -4,7 +4,7 @@ import userPhoto from '../../assets/images/ava (FindUsers) .jpg';
 import classes from './FindUsers.module.css';
 
 function FindUsers({
-  totalUsersCount, pageSize, currentPage, onPageChanged, users, unfollow, follow,
+  totalUsersCount, followingInProgress, pageSize, currentPage, onPageChanged, users, unfollow, follow,
 }) {
   let pagesCount = Math.ceil(totalUsersCount / pageSize);
   const pages = [];
@@ -53,16 +53,18 @@ function FindUsers({
           <div>
             {u.followed
               ? (
-                <button onClick={() => {
-                  unfollow(u.id);
-                }}>
+                <button
+                  disabled={followingInProgress.some((id) => id === u.id)}
+                  onClick={() => {
+                    unfollow(u.id);
+                  }}>
                   Unfollow
                 </button>
               )
               : (
-                <button onClick={() => {
-                  follow(u.id);
-                }}
+                <button
+                  disabled={followingInProgress.some((id) => id === u.id)}
+                  onClick={() => { follow(u.id); }}
                 >
                   Follow
                 </button>

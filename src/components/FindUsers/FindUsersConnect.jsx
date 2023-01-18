@@ -1,12 +1,11 @@
 //  import React from 'react';
 import { connect } from 'react-redux';
 import {
-  follow,
-  setCurrentPage, setTotalUsersCount,
-  setUsers, toggleIsFetching,
+  follow, getUsers,
+  setCurrentPage, toggleIsFollowingProgress,
   unfollow,
 } from '../../redux/FindUsers-reducer';
-import FindUsersContainer from './FindUserClass.jsx';
+import FindUsersContainer from './FindUserContainer.jsx';
 
 const mapStateToProps = (state) => ({
   users: state.findUsersPage.users,
@@ -14,13 +13,13 @@ const mapStateToProps = (state) => ({
   totalUsersCount: state.findUsersPage.totalUsersCount,
   currentPage: state.findUsersPage.currentPage,
   isFetching: state.findUsersPage.isFetching,
+  followingInProgress: state.findUsersPage.followingInProgress,
 });
 
 export default connect(mapStateToProps, {
   follow,
   unfollow,
-  setUsers,
   setCurrentPage,
-  setTotalUsersCount,
-  toggleIsFetching,
+  toggleIsFollowingProgress,
+  getUsers,
 })(FindUsersContainer);
