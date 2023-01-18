@@ -10,6 +10,7 @@ import ProfileContainer from './ProfileClass.jsx';
 
 const mapStateToProps = (state) => ({
   profile: state.profilePage.profile,
+  isAuth: state.auth.isAuth,
 });
 
 function withRouter(Component) {

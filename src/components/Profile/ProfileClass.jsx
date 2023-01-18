@@ -1,4 +1,5 @@
 import React from 'react';
+import { Navigate } from 'react-router-dom';
 import Profile from './Profile.jsx';
 
 class ProfileContainer extends React.Component {
@@ -12,7 +13,8 @@ class ProfileContainer extends React.Component {
   }
 
   render() {
-    const { profile } = this.props;
+    const { profile, isAuth } = this.props;
+    if (!isAuth) return <Navigate to='/login' />;
     return (
       <div>
         <Profile profile={profile} />
