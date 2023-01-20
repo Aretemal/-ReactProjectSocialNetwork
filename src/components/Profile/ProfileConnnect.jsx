@@ -5,12 +5,13 @@ import {
   useNavigate,
   useParams,
 } from 'react-router-dom';
+import { compose } from 'redux';
+import { withAuthRedirect } from '../../hoc/WithAuthRedirect.jsx';
 import { getUserProfile } from '../../redux/Profile-reducer';
 import ProfileContainer from './ProfileContainer.jsx';
 
 const mapStateToProps = (state) => ({
   profile: state.profilePage.profile,
-  isAuth: state.auth.isAuth,
 });
 
 function withRouter(Component) {
@@ -27,4 +28,8 @@ function withRouter(Component) {
   }
   return ComponentWithRouterProp;
 }
-export default connect(mapStateToProps, { getUserProfile })(withRouter(ProfileContainer));
+export default compose(
+  connect(mapStateToProps, { getUserProfile }),
+  withRouter,
+  withAuthRedirect,
+)(ProfileContainer);

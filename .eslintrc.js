@@ -32,5 +32,7 @@ module.exports = {
     'class-methods-use-this': 0,
     'import/prefer-default-export': 0,
     'no-debugger': 0,
+    // Исправить
+    'react/prefer-stateless-function': 0,
   },
 };
