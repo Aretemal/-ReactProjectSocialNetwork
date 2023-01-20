@@ -22,7 +22,7 @@ class FindUsersContainer extends React.Component {
       follow, unfollow, followingInProgress, isFetching, currentPage, pageSize, totalUsersCount, users,
     } = this.props;
     return (
-      <>
+      <div>
         {isFetching ? <Preloader />
           : (
             <FindUsers
@@ -36,7 +36,7 @@ class FindUsersContainer extends React.Component {
               followingInProgress={followingInProgress}
             />
           )}
-      </>
+      </div>
     );
   }
 }

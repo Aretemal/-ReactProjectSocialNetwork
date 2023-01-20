@@ -41,7 +41,7 @@ function Dialogs({
           />
         </div>
         <div>
-          <button onClick={onAddMessage}>Add</button>
+          <button type='submit' onClick={onAddMessage}>Add</button>
         </div>
       </div>
     </div>
