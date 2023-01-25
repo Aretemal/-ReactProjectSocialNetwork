@@ -6,7 +6,7 @@ function Navbar() {
   return (
     <nav className={classes.nav}>
       <div>
-        <NavLink to="/profile" className={classes.item}>
+        <NavLink to="/profile/27297" className={classes.item}>
           Profile
         </NavLink>
       </div>

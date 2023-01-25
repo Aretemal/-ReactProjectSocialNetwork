@@ -4,20 +4,25 @@ import Profile from './Profile.jsx';
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
-    const { router, getUserProfile } = this.props;
+    const {
+      router, getUserProfile, getStatus,
+    } = this.props;
     let { userId } = router.params;
     if (!userId) {
-      userId = 2;
+      userId = 27297;
     }
     getUserProfile(userId);
+    getStatus(userId);
   }
 
   render() {
-    const { profile, isAuth } = this.props;
+    const {
+      profile, isAuth, status, updateStatus,
+    } = this.props;
     if (!isAuth) return <Navigate to='/login' />;
     return (
       <div>
-        <Profile profile={profile} />
+        <Profile profile={profile} status={status} updateStatus={updateStatus} />
       </div>
     );
   }

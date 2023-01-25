@@ -22,7 +22,6 @@ function App() {
             />
             <Route
               path='/profile/:userId'
-              // ?
               element={<ProfileContainer />}
             />
             <Route

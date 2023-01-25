@@ -6,9 +6,8 @@ import classes from './FindUsers.module.css';
 function FindUsers({
   totalUsersCount, followingInProgress, pageSize, currentPage, onPageChanged, users, unfollow, follow,
 }) {
-  let pagesCount = Math.ceil(totalUsersCount / pageSize);
+  const pagesCount = Math.ceil(totalUsersCount / pageSize);
   const pages = [];
-  pagesCount = 30;
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
   }

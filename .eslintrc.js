@@ -28,11 +28,14 @@ module.exports = {
     'no-plusplus': [2, { allowForLoopAfterthoughts: true }],
     'default-param-last': 0,
     'jsx-a11y/click-events-have-key-events': 0,
-    'react/jsx-props-no-spreading': 0,
     'class-methods-use-this': 0,
     'import/prefer-default-export': 0,
+    'jsx-a11y/no-autofocus': 0,
     'no-debugger': 0,
     // Исправить
+    'react/jsx-props-no-spreading': 0,
     'react/prefer-stateless-function': 0,
+    'jsx-a11y/no-static-element-interactions': 0,
+    'react/state-in-constructor': 0,
   },
 };

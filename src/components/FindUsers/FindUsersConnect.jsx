@@ -17,12 +17,12 @@ const mapStateToProps = (state) => ({
   followingInProgress: state.findUsersPage.followingInProgress,
 });
 export default compose(
-  withAuthRedirect,
   connect(mapStateToProps, {
     follow,
     unfollow,
     setCurrentPage,
     toggleIsFollowingProgress,
     getUsers,
-  })(FindUsersContainer),
-);
+  }),
+  withAuthRedirect,
+)(FindUsersContainer);

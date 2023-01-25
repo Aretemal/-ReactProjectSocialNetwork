@@ -10,7 +10,7 @@ export const withAuthRedirect = (Component) => {
     render() {
       const { isAuth } = this.props;
       if (!isAuth) return <Navigate to='/login' />;
-      return <Component {...this.props} />;
+      return <Component {...this.props} />; // eslint-disable-line react/jsx-props-no-spreading
     }
   }
   const ConnectedAuthRedirectComponent = connect(mapStateToPropsForRedirect)(RedirectComponent);
