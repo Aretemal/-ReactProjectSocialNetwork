@@ -6,6 +6,13 @@ class ProfileStatus extends React.Component {
     status: this.props.status, // eslint-disable-line react/destructuring-assignment
   };
 
+  componentDidUpdate(prevProps) {
+    const { status } = this.props;
+    if (prevProps.status !== status) {
+      this.setState({ status });
+    }
+  }
+
   activateEditMode = () => {
     this.setState({
       editMode: true,

@@ -4,6 +4,7 @@ import {
   legacy_createStore as createStore,
 } from 'redux';
 import thunkMiddleware from 'redux-thunk';
+import { reducer as formReducer } from 'redux-form';
 import { authReducer } from './auth-reducer';
 import { dialogsReducer } from './Dialogs-reducer';
 import { findUsersReducer } from './FindUsers-reducer';
@@ -16,6 +17,7 @@ const reducers = combineReducers({
   sidebar: sidebarReducer,
   findUsersPage: findUsersReducer,
   auth: authReducer,
+  form: formReducer,
 });
 const store = createStore(reducers, applyMiddleware(thunkMiddleware));
 
