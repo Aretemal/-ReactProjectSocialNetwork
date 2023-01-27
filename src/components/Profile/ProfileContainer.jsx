@@ -5,11 +5,11 @@ import Profile from './Profile.jsx';
 class ProfileContainer extends React.Component {
   componentDidMount() {
     const {
-      router, getUserProfile, getStatus,
+      router, getUserProfile, getStatus, authorizedUserId,
     } = this.props;
     let { userId } = router.params;
     if (!userId) {
-      userId = 27297;
+      userId = authorizedUserId;
     }
     getUserProfile(userId);
     getStatus(userId);

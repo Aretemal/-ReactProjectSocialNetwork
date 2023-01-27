@@ -17,6 +17,8 @@ import ProfileContainer from './ProfileContainer.jsx';
 const mapStateToProps = (state) => ({
   profile: state.profilePage.profile,
   status: state.profilePage.status,
+  authorizedUserId: state.auth.userId,
+  isAuth: state.auth.isAuth,
 });
 
 function withRouter(Component) {
