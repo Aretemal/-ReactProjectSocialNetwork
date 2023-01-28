@@ -5,11 +5,19 @@ import {
   useNavigate,
   useParams,
 } from 'react-router-dom';
-import { getUserProfile } from '../../redux/Profile-reducer';
+import { compose } from 'redux';
+import { withAuthRedirect } from '../../hoc/WithAuthRedirect.jsx';
+import {
+  getStatus,
+  getUserProfile,
+  updateStatus,
+} from '../../redux/Profile-reducer';
 import ProfileContainer from './ProfileContainer.jsx';
 
 const mapStateToProps = (state) => ({
   profile: state.profilePage.profile,
+  status: state.profilePage.status,
+  authorizedUserId: state.auth.userId,
   isAuth: state.auth.isAuth,
 });
 
@@ -27,4 +35,8 @@ function withRouter(Component) {
   }
   return ComponentWithRouterProp;
 }
-export default connect(mapStateToProps, { getUserProfile })(withRouter(ProfileContainer));
+export default compose(
+  connect(mapStateToProps, { getUserProfile, getStatus, updateStatus }),
+  withRouter,
+  withAuthRedirect,
+)(ProfileContainer);
