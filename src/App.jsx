@@ -1,42 +1,33 @@
 import './App.css';
-import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import DialogsContainer from './components/Dialogs/DialogsContainer.jsx';
-import FindUsersContainer from './components/FindUsers/FindUsersConnect.jsx';
-import HeaderContainer from './components/Header/HeaderConnect.jsx';
-import Login from './components/Login/LoginContainer.jsx';
-import Navbar from './components/Navbar/Navbar.jsx';
-import ProfileContainer from './components/Profile/ProfileConnnect.jsx';
+import { connect } from 'react-redux';
+/* import {
+  useLocation,
+  useNavigate, useParams,
+} from 'react-router-dom';
+*/
+import { compose } from 'redux';
+import { App } from './AppConnect.jsx';
+import { initializeApp } from './redux/app-reducer';
 
-function App() {
-  return (
-    <BrowserRouter>
-      <div className='app-wrapper'>
-        <HeaderContainer />
-        <Navbar />
-        <div className='app-wrapper-content'>
-          <Routes>
-            <Route
-              path="/dialogs"
-              element={<DialogsContainer />}
-            />
-            <Route
-              path='/profile/:userId'
-              element={<ProfileContainer />}
-            />
-            <Route
-              path='/users'
-              element={<FindUsersContainer />}
-            />
-            <Route
-              path='/login'
-              element={<Login />}
-            />
-          </Routes>
-        </div>
-      </div>
-    </BrowserRouter>
-  );
+/* function withRouter(Component) {
+  function ComponentWithRouterProp(props) {
+    const location = useLocation();
+    const navigate = useNavigate();
+    const params = useParams();
+    return (
+      <Component
+        {...props}
+        router={{ location, navigate, params }}
+      />
+    );
+  }
+  return ComponentWithRouterProp;
 }
-
-export default App;
+*/
+const mapStateToProps = (state) => ({
+  initialized: state.app.initialized,
+});
+export default compose(
+  connect(mapStateToProps, { initializeApp }),
+  // withRouter,
+)(App);
