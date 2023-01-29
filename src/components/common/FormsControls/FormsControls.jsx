@@ -23,7 +23,7 @@ export function Textarea(props) {
     input, meta, child, ...restProps
   } = props;
   return (
-    <FormControl {...props}><textarea {...input} {...restProps} /></FormControl>
+    <FormControl {...props}><textarea {...input} {...restProps} /></FormControl> // eslint-disable-line react/jsx-props-no-spreading
   );
 }
 export function Input(props) {
@@ -31,6 +31,6 @@ export function Input(props) {
     input, meta, child, ...restProps
   } = props;
   return (
-    <FormControl {...props}><input {...input} {...restProps} /></FormControl>
+    <FormControl {...props}><input {...input} {...restProps} /></FormControl> // eslint-disable-line react/jsx-props-no-spreading
   );
 }

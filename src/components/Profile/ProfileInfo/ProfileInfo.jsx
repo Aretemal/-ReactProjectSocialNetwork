@@ -1,7 +1,7 @@
 import React from 'react';
 import Preloader from '../../common/Preloader/Preloader.jsx';
 import classes from './ProfileInfo.module.css';
-import ProfileStatus from './ProfileStatus/ProfileStatus.jsx';
+import ProfileStatusWithHooks from './ProfileStatus/ProfileStatusWithHooks.jsx';
 
 function ProfileInfo({ profile, status, updateStatus }) {
   if (!profile) {
@@ -19,7 +19,7 @@ function ProfileInfo({ profile, status, updateStatus }) {
       </div>
       <div className={classes.descriptionBlock}>
         <h3> Artem </h3>
-        <ProfileStatus status={status} updateStatus={updateStatus} />
+        <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut cumque dolorem ipsa omnis perspiciatis quibusdam quisquam ratione similique, ullam vitae? Consequatur modi perspiciatis quibusdam sint voluptates. Aperiam exercitationem neque numquam quo quod. Architecto excepturi in maiores suscipit tempora. Aliquam animi aut autem beatae consequatur dolorem doloribus ducimus esse et eum exercitationem facilis fugiat impedit laudantium maiores neque nihil numquam quasi qui, quos repellat sapiente similique, suscipit tempore ut veniam voluptatum. Alias amet placeat quae soluta velit? Ab ad, blanditiis culpa cumque eveniet impedit, itaque, laboriosam libero maxime minima necessitatibus nisi nostrum perferendis quam ratione sint soluta? Dicta error nemo quam!</p>
       </div>
     </div>
