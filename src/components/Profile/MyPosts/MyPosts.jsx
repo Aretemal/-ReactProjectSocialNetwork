@@ -28,9 +28,9 @@ function AddNewPostForm({ handleSubmit }) {
   );
 }
 const AddNewPostFormRedux = reduxForm({ form: 'ProfileAddNewPostForm' })(AddNewPostForm);
-function MyPosts({
+const MyPosts = React.memo(({ // eslint-disable-line react/display-name
   posts, addPost,
-}) {
+}) => {
   const postsElements = posts
     .map((post) => <Post key={post.likeCount} message={post.message} likesCount={post.likeCount} />);
 
@@ -50,5 +50,5 @@ function MyPosts({
       </div>
     </div>
   );
-}
+});
 export default MyPosts;
