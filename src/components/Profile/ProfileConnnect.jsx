@@ -28,7 +28,7 @@ function withRouter(Component) {
     const params = useParams();
     return (
       <Component
-        {...props}
+        {...props} // eslint-disable-line react/jsx-props-no-spreading
         router={{ location, navigate, params }}
       />
     );
