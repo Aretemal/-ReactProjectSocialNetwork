@@ -6,7 +6,6 @@ import {
   useParams,
 } from 'react-router-dom';
 import { compose } from 'redux';
-import { withAuthRedirect } from '../../hoc/WithAuthRedirect.jsx';
 import {
   getStatus,
   getUserProfile,
@@ -18,7 +17,6 @@ const mapStateToProps = (state) => ({
   profile: state.profilePage.profile,
   status: state.profilePage.status,
   authorizedUserId: state.auth.userId,
-  isAuth: state.auth.isAuth,
 });
 
 function withRouter(Component) {
@@ -38,5 +36,4 @@ function withRouter(Component) {
 export default compose(
   connect(mapStateToProps, { getUserProfile, getStatus, updateStatus }),
   withRouter,
-  withAuthRedirect,
 )(ProfileContainer);

@@ -8,7 +8,8 @@ import Preloader from './components/common/Preloader/Preloader.jsx';
 import DialogsContainer from './components/Dialogs/DialogsContainer.jsx';
 import FindUsersContainer from './components/FindUsers/FindUsersConnect.jsx';
 import HeaderContainer from './components/Header/HeaderConnect.jsx';
-import { Login } from './components/Login/Login.jsx';
+import Login from './components/Login/LoginContainer.jsx';
+import Registration from './components/Registration/RegistrationContainer.jsx';
 import Navbar from './components/Navbar/Navbar.jsx';
 import ProfileContainer from './components/Profile/ProfileConnnect.jsx';
 
@@ -45,6 +46,10 @@ export class App extends React.Component {
               <Route
                 path='/login'
                 element={<Login />}
+              />
+              <Route
+                path='/registration'
+                element={<Registration />}
               />
             </Routes>
           </div>

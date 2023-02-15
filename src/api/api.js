@@ -8,6 +8,10 @@ const instance = axios.create({
     'API-KEY': '4cea6ad3-6ebd-4af9-90c6-94d117110aca',
   },
 });
+const MyInstance = axios.create({
+  baseURL: 'http://localhost:5000/api/',
+  headers: {},
+});
 export const profileAPI = {
   getProfile(userId) {
     return instance.get(`profile/${userId}`);
@@ -39,11 +43,13 @@ const usersAPI = {
 };
 
 export const authAPI = {
-  me() {
-    return instance.get('auth/me');
+  registration(userName, password, firstName, lastName, email) {
+    return MyInstance.post('registration', {
+      userName, password, firstName, lastName, email,
+    });
   },
-  login(email, password, rememberMe = false) {
-    return instance.post('auth/login', { email, password, rememberMe });
+  login(login, password) {
+    return MyInstance.post('login', { login, password });
   },
   logout() {
     return instance.delete('auth/login');

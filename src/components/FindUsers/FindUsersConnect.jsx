@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { withAuthRedirect } from '../../hoc/WithAuthRedirect.jsx';
 import {
   follow, requestUsers,
   setCurrentPage, toggleIsFollowingProgress,
@@ -30,5 +29,4 @@ export default compose(
     toggleIsFollowingProgress,
     requestUsers,
   }),
-  withAuthRedirect,
 )(FindUsersContainer);
