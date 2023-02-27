@@ -36,7 +36,7 @@ export class App extends React.Component {
                 element={<DialogsContainer />}
               />
               <Route
-                path='/profile/:userId'
+                path='/profile'
                 element={<ProfileContainer />}
               />
               <Route

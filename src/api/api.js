@@ -8,23 +8,34 @@ const instance = axios.create({
     'API-KEY': '4cea6ad3-6ebd-4af9-90c6-94d117110aca',
   },
 });
-const MyInstance = axios.create({
+const baseInstance = axios.create({
   baseURL: 'http://localhost:5000/api/',
   headers: {},
 });
+const makeInstanceWithToken = (token) => axios.create({
+  baseURL: 'http://localhost:5000/api/',
+  headers: { Authorization: token },
+});
 export const profileAPI = {
+  getInfoAuthUser(token) {
+    return makeInstanceWithToken(token).get('profile/user');
+  },
   getProfile(userId) {
     return instance.get(`profile/${userId}`);
   },
-  getStatus(userId) {
-    return instance.get(`profile/status/${userId}`);
+  updateStatus(status, token) {
+    return makeInstanceWithToken(token).put('profile/status', { status });
   },
-  updateStatus(status) {
-    return instance.put('profile/status', { status });
+  getAllPosts(token) {
+    return makeInstanceWithToken(token).get('profile/posts');
+  },
+  addPost(newMessageText, token) {
+    console.log(newMessageText);
+    return makeInstanceWithToken(token).post('profile/posts', { newMessageText });
   },
 };
 
-const usersAPI = {
+export const usersAPI = {
   getUsers(currentPage, pageSize) {
     return instance.get(
       `users?page=${currentPage}&count=${pageSize}`,
@@ -44,15 +55,14 @@ const usersAPI = {
 
 export const authAPI = {
   registration(userName, password, firstName, lastName, email) {
-    return MyInstance.post('registration', {
+    return baseInstance.post('registration', {
       userName, password, firstName, lastName, email,
     });
   },
   login(login, password) {
-    return MyInstance.post('login', { login, password });
+    return baseInstance.post('login', { login, password });
   },
   logout() {
     return instance.delete('auth/login');
   },
 };
-export default usersAPI;

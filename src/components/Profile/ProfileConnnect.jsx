@@ -7,16 +7,15 @@ import {
 } from 'react-router-dom';
 import { compose } from 'redux';
 import {
-  getStatus,
+  getInfoAuthUser,
   getUserProfile,
   updateStatus,
 } from '../../redux/Profile-reducer';
 import ProfileContainer from './ProfileContainer.jsx';
 
 const mapStateToProps = (state) => ({
-  profile: state.profilePage.profile,
-  status: state.profilePage.status,
-  authorizedUserId: state.auth.userId,
+  infoAuthUser: state.profilePage.infoAuthUser,
+  token: state.auth.token,
 });
 
 function withRouter(Component) {
@@ -34,6 +33,8 @@ function withRouter(Component) {
   return ComponentWithRouterProp;
 }
 export default compose(
-  connect(mapStateToProps, { getUserProfile, getStatus, updateStatus }),
+  connect(mapStateToProps, {
+    getUserProfile, updateStatus, getInfoAuthUser,
+  }),
   withRouter,
 )(ProfileContainer);

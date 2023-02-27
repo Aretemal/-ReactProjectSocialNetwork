@@ -4,26 +4,18 @@ import Profile from './Profile.jsx';
 class ProfileContainer extends React.Component {
   componentDidMount() {
     const {
-      router, getUserProfile, getStatus, authorizedUserId, history,
+      getInfoAuthUser, token,
     } = this.props;
-    let { userId } = router.params;
-    if (!userId) {
-      userId = authorizedUserId;
-      if (!userId) {
-        userId = history.push('/login');
-      }
-    }
-    getUserProfile(userId);
-    getStatus(userId);
+    getInfoAuthUser(token);
   }
 
   render() {
     const {
-      profile, status, updateStatus,
+      infoAuthUser, updateStatus, token,
     } = this.props;
     return (
       <div>
-        <Profile profile={profile} status={status} updateStatus={updateStatus} />
+        <Profile infoAuthUser={infoAuthUser} updateStatus={updateStatus} token={token} />
       </div>
     );
   }

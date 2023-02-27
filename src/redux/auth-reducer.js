@@ -1,26 +1,26 @@
 import { authAPI } from '../api/api';
 
-const SET_AUTH_USERS_DATA = 'SET-AUTH-USERS-DATA';
 const SET_TOKEN = 'SET-TOKEN';
+const DELETE_TOKEN = 'DELETE-TOKEN';
 
 const initialState = {
-  usersId: null,
-  email: null,
-  login: null,
+  isAuth: false,
   token: null,
 };
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_AUTH_USERS_DATA: {
-      return {
-        ...state,
-        ...action.payload,
-      };
-    }
     case SET_TOKEN: {
       return {
         ...state,
-        ...action.token,
+        token: action.token,
+        isAuth: true,
+      };
+    }
+    case DELETE_TOKEN: {
+      return {
+        ...state,
+        token: null,
+        isAuth: false,
       };
     }
     default:
@@ -29,13 +29,10 @@ export const authReducer = (state = initialState, action) => {
 };
 export const setToken = (token) => ({
   type: SET_TOKEN,
-  token,
+  token: `Bearer ${token}`,
 });
-export const setAuthUserData = (userId, email, login, isAuth) => ({
-  type: SET_AUTH_USERS_DATA,
-  payload: {
-    userId, email, login, isAuth,
-  },
+export const logout = () => ({
+  type: DELETE_TOKEN,
 });
 export const login = (userName, password) => (dispatch) => {
   authAPI.login(userName, password)
@@ -45,12 +42,4 @@ export const login = (userName, password) => (dispatch) => {
 };
 export const registration = (userName, password, firstName, lastName, email) => () => {
   authAPI.registration(userName, password, firstName, lastName, email);
-};
-export const logout = () => (dispatch) => {
-  authAPI.logout()
-    .then((response) => {
-      if (response.data.resultCode === 0) {
-        dispatch(setAuthUserData(null, null, null, false));
-      }
-    });
 };
