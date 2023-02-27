@@ -1,19 +1,26 @@
-import usersAPI, { profileAPI } from '../api/api';
+import { profileAPI, usersAPI } from '../api/api';
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
+const SET_ALL_POST = 'SET-ALL-POST';
 const SET_STATUS = 'SET-STATUS';
+const DELETE_POST = 'DELETE-POST';
+const SET_USER_INFO = 'SET-USER-INFO';
+
 const initialState = {
-  posts: [
-    { id: 1, message: 'Hi, how are you?', likeCount: 10 },
-    { id: 2, message: 'You', likeCount: 11 },
-    { id: 3, message: 'Hi!!!!!!!', likeCount: 1120 },
-  ],
+  posts: [],
   profile: null,
   status: ' ',
+  infoAuthUser: null,
 };
 export const profileReducer = (state = initialState, action) => {
   switch (action.type) {
+    case SET_USER_INFO: {
+      return {
+        ...state,
+        infoAuthUser: action.infoAuthUser,
+      };
+    }
     case ADD_POST: {
       return {
         ...state,
@@ -26,10 +33,22 @@ export const profileReducer = (state = initialState, action) => {
         profile: action.profile,
       };
     }
+    case SET_ALL_POST: {
+      return {
+        ...state,
+        posts: action.posts,
+      };
+    }
     case SET_STATUS: {
       return {
         ...state,
         status: action.status,
+      };
+    }
+    case DELETE_POST: {
+      return {
+        ...state,
+        posts: state.posts.filter((p) => p.id !== action.postId),
       };
     }
     default:
@@ -37,26 +56,39 @@ export const profileReducer = (state = initialState, action) => {
   }
 };
 
-export const addPostActionCreator = (newPostText) => ({ type: ADD_POST, newPostText });
+export const setNewPost = (newPostText) => ({ type: ADD_POST, newPostText });
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile });
+export const setAllPosts = (posts) => ({ type: SET_ALL_POST, posts });
 export const setStatus = (status) => ({ type: SET_STATUS, status });
+export const setInfoAuthUser = (infoAuthUser) => ({ type: SET_USER_INFO, infoAuthUser });
+export const deletePost = (postId) => ({ type: DELETE_POST, postId });
+export const getInfoAuthUser = (token) => (dispatch) => {
+  profileAPI.getInfoAuthUser(token)
+    .then((response) => {
+      dispatch(setInfoAuthUser(response.data));
+    });
+};
+export const addPost = (newMessageText, token) => (dispatch) => {
+  profileAPI.addPost(newMessageText, token)
+    .then(() => {
+      dispatch(setNewPost(newMessageText));
+    });
+};
+export const getAllPosts = (token) => (dispatch) => {
+  profileAPI.getAllPosts(token)
+    .then((response) => {
+      dispatch(setAllPosts(response.data));
+    });
+};
 export const getUserProfile = (userId) => (dispatch) => {
   usersAPI.getProfile(userId)
     .then((response) => {
       dispatch(setUserProfile(response.data));
     });
 };
-export const getStatus = (userId) => (dispatch) => {
-  profileAPI.getStatus(userId)
-    .then((response) => {
-      dispatch(setStatus(response.data));
-    });
-};
-export const updateStatus = (status) => (dispatch) => {
-  profileAPI.updateStatus(status)
-    .then((response) => {
-      if (response.data.resultCode === 0) {
-        dispatch(setStatus(status));
-      }
+export const updateStatus = (status, token) => (dispatch) => {
+  profileAPI.updateStatus(status, token)
+    .then(() => {
+      dispatch(setStatus(status));
     });
 };

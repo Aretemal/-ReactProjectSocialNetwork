@@ -18,6 +18,9 @@ function Header({ isAuth, login, logout }) {
               Login
             </NavLink>
           )}
+        <NavLink to='/registration'>
+          Registration
+        </NavLink>
       </div>
     </div>
   );

@@ -1,49 +1,41 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
-import {
-  maxLengthCreator,
-  required,
-} from '../../../utils/validators/validators';
-import { Textarea } from '../../common/FormsControls/FormsControls.jsx';
+import { Formik, Form, Field } from 'formik';
 import classes from './MyPosts.module.css';
 import Post from './Posts/Post.jsx';
 
-const maxLength30 = maxLengthCreator(30);
-function AddNewPostForm({ handleSubmit }) {
-  return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <Field
-          type="text"
-          name="newPostText"
-          component={Textarea}
-          placeholder='Enter new post'
-          validate={[required, maxLength30]}
-        />
-      </div>
-      <div>
-        <button type='submit'>Add</button>
-      </div>
-    </form>
-  );
-}
-const AddNewPostFormRedux = reduxForm({ form: 'ProfileAddNewPostForm' })(AddNewPostForm);
 const MyPosts = React.memo(({ // eslint-disable-line react/display-name
-  posts, addPost,
+  posts, addPost, getAllPosts, token,
 }) => {
   const postsElements = posts
-    .map((post) => <Post key={post.likeCount} message={post.message} likesCount={post.likeCount} />);
+    .map((post) => <Post key={post.id} message={post.content} />);
 
-  const onAddPost = (e) => {
-    addPost(e.newPostText);
-  };
+  getAllPosts(token);
   return (
     <div>
       <div className={classes.postsBlock}>
         My post
       </div>
       <div className={classes.AddPost}>
-        <AddNewPostFormRedux onSubmit={onAddPost} />
+        <Formik
+          initialValues={{
+            newMessageText: '',
+          }}
+          onSubmit={(values) => {
+            addPost(values.newMessageText, token);
+          }}
+        >
+          {() => (
+            <Form>
+              <Field
+                name="newMessageText"
+                type="text"
+              />
+              <button type="submit">
+                Add Post
+              </button>
+            </Form>
+          )}
+        </Formik>
       </div>
       <div className={classes.posts}>
         {postsElements}

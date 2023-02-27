@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-function ProfileStatusWithHooks({ status, updateStatus }) {
+function ProfileStatusWithHooks({ status, updateStatus, token }) {
   const [editMode, setEditMode] = useState(false);
   const [newStatus, setStatus] = useState(status);
   useEffect(() => {
@@ -11,7 +11,7 @@ function ProfileStatusWithHooks({ status, updateStatus }) {
   };
   const deactivateEditMode = () => {
     setEditMode(false);
-    updateStatus(newStatus);
+    updateStatus(newStatus, token);
   };
   const onStatusChange = (e) => {
     setStatus(e.currentTarget.value);
@@ -22,7 +22,7 @@ function ProfileStatusWithHooks({ status, updateStatus }) {
         && (
         <div>
           <span onClick={activateMode}>
-            { status }
+            { newStatus }
           </span>
         </div>
         )}

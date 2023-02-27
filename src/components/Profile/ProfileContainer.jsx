@@ -1,31 +1,21 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
 import Profile from './Profile.jsx';
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
     const {
-      router, getUserProfile, getStatus, authorizedUserId, history,
+      getInfoAuthUser, token,
     } = this.props;
-    let { userId } = router.params;
-    if (!userId) {
-      userId = authorizedUserId;
-      if (!userId) {
-        userId = history.push('/login');
-      }
-    }
-    getUserProfile(userId);
-    getStatus(userId);
+    getInfoAuthUser(token);
   }
 
   render() {
     const {
-      profile, isAuth, status, updateStatus,
+      infoAuthUser, updateStatus, token,
     } = this.props;
-    if (!isAuth) return <Navigate to='/login' />;
     return (
       <div>
-        <Profile profile={profile} status={status} updateStatus={updateStatus} />
+        <Profile infoAuthUser={infoAuthUser} updateStatus={updateStatus} token={token} />
       </div>
     );
   }

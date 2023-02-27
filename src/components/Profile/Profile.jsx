@@ -2,10 +2,10 @@ import React from 'react';
 import MyPostsContainer from './MyPosts/MyPostsContainer.jsx';
 import ProfileInfo from './ProfileInfo/ProfileInfo.jsx';
 
-function Profile({ profile, status, updateStatus }) {
+function Profile({ infoAuthUser, updateStatus, token }) {
   return (
     <div>
-      <ProfileInfo profile={profile} status={status} updateStatus={updateStatus} />
+      <ProfileInfo infoAuthUser={infoAuthUser} updateStatus={updateStatus} token={token} />
       <MyPostsContainer />
     </div>
   );
