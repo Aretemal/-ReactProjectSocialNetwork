@@ -65,7 +65,7 @@ export const deletePost = (postId) => ({ type: DELETE_POST, postId });
 export const getInfoAuthUser = (token) => (dispatch) => {
   profileAPI.getInfoAuthUser(token)
     .then((response) => {
-      dispatch(setInfoAuthUser(response.data));
+      dispatch(setInfoAuthUser(response.data.data.attributes.attributes));
     });
 };
 export const addPost = (newMessageText, token) => (dispatch) => {
@@ -77,13 +77,13 @@ export const addPost = (newMessageText, token) => (dispatch) => {
 export const getAllPosts = (token) => (dispatch) => {
   profileAPI.getAllPosts(token)
     .then((response) => {
-      dispatch(setAllPosts(response.data));
+      dispatch(setAllPosts(response.data.data.attributes.attributes));
     });
 };
 export const getUserProfile = (userId) => (dispatch) => {
   usersAPI.getProfile(userId)
     .then((response) => {
-      dispatch(setUserProfile(response.data));
+      dispatch(setUserProfile(response.data.data.attributes.attributes));
     });
 };
 export const updateStatus = (status, token) => (dispatch) => {

@@ -37,7 +37,7 @@ export const logout = () => ({
 export const login = (userName, password) => (dispatch) => {
   authAPI.login(userName, password)
     .then((response) => {
-      dispatch(setToken(response.data.token));
+      dispatch(setToken(response.data.data.attributes.attributes.token));
     });
 };
 export const registration = (userName, password, firstName, lastName, email) => () => {
