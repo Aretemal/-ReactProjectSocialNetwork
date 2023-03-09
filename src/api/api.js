@@ -9,11 +9,11 @@ const instance = axios.create({
   },
 });
 const baseInstance = axios.create({
-  baseURL: 'http://localhost:5000/api/',
+  baseURL: process.env.REACT_APP_BASE_URL,
   headers: {},
 });
 const makeInstanceWithToken = (token) => axios.create({
-  baseURL: 'http://localhost:5000/api/',
+  baseURL: process.env.REACT_APP_BASE_URL,
   headers: { Authorization: token },
 });
 export const profileAPI = {
@@ -30,7 +30,6 @@ export const profileAPI = {
     return makeInstanceWithToken(token).get('profile/posts');
   },
   addPost(newMessageText, token) {
-    console.log(newMessageText);
     return makeInstanceWithToken(token).post('profile/posts', { newMessageText });
   },
 };
