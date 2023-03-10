@@ -1,17 +1,19 @@
 .app-wrapper-content{
-  background-color: white ;
   grid-area: profile;
+  border-radius: 0 0 10px 10px;
+  min-height: 600px;
+  background-color: #bc4639;
 }
 .app-wrapper{
   display: grid;
+  padding-top: 30px;
   margin: 0 auto;
   grid-template-areas:
-  "header"
-  "nav"
-  "profile";
-  width: 1200px;
-  grid-template-rows:  80px 70px 10fr;
-  grid-template-columns:10fr;
+  "nav header"
+  "nav profile";
+  width: 1400px;
+  grid-template-rows: 80px 600px;
+  grid-template-columns: 200px 1200px;
   /*grid-gap:10px;*/
   color:white;
   font-size: 18px;

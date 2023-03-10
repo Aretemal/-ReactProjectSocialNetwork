@@ -1,3 +1,71 @@
-.item{
-    color: #808080;
+.registration{
+    height: 400px;
+
+}
+.formik{
+    padding-left: 450px;
+    padding-top: 120px;
+}
+.name{
+    color: black;
+}
+.itemField{
+    display:flex;
+    align-items:center;
+}
+.field{
+    width: 200px;
+    font-size: 20px;
+    padding: 6px 0 4px 10px;
+    border: 1px solid #DAAD89;
+    background: #DAAD86;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+.UserIcon{
+    width: 30px;
+    padding-bottom: 10px;
+    margin-right: 5px;
+}
+.LockIcon{
+    width: 30px;
+    padding-bottom: 10px;
+    padding-right: 5px;
+    margin-right: 2px;
+}
+.but{
+    margin-top: 5px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    border-radius: 5px;
+    background-color: #bc4639;
+    display:flex;
+    align-items:center;
+    height: 40px;
+    width: 90px;
+    margin-right: 50px;
+    justify-content:center;
+    text-decoration:none;
+    color: black;
+    font-size: 20px;
+}
+.but:hover{
+    background-color: #DAAD86;
+    color: white;
+    border: none;
+}
+.EmailIcon{
+    width: 35px;
+    padding-bottom: 10px;
+    padding-right: 5px;
+    margin-right: -1px;
+}
+.NameIcon{
+    width: 35px;
+    padding-bottom: 10px;
+    padding-right: 3px;
+    margin-right: 0px;
+}
+.reds{
+    margin-left: 10px;
 }

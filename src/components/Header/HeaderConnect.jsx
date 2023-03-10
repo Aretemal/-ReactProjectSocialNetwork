@@ -4,6 +4,5 @@ import Header from './Header.jsx';
 
 const mapStateToProps = (state) => ({
   isAuth: state.auth.isAuth,
-  login: state.auth.login,
 });
 export default connect(mapStateToProps, { logout })(Header);

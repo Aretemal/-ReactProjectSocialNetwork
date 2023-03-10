@@ -1,35 +1,9 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import { Field, reduxForm } from 'redux-form';
-import {
-  maxLengthCreator,
-  required,
-} from '../../utils/validators/validators';
-import { Textarea } from '../common/FormsControls/FormsControls.jsx';
+import { Formik, Form, Field } from 'formik';
 import classes from './Dialogs.module.css';
 import Message from './Message/Message.jsx';
 import DialogItem from './DialogItem/DialogItem.jsx';
-
-const maxLength100 = maxLengthCreator(100);
-function AddMessageForm({ handleSubmit }) {
-  return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <Field
-          type="text"
-          component={Textarea}
-          name="newMessageBody"
-          placeholder='Enter your message'
-          validate={[required, maxLength100]}
-        />
-      </div>
-      <div>
-        <button type='submit'>Add</button>
-      </div>
-    </form>
-  );
-}
-const AddMessageFormRedux = reduxForm({ form: 'dialogAddMessageForm' })(AddMessageForm);
 
 function Dialogs({
   dialogs, messages, addMessage, isAuth,
@@ -41,8 +15,8 @@ function Dialogs({
 
   if (!isAuth) return <Navigate to='/login' />;
 
-  const addNewMessage = (e) => {
-    addMessage(e.newMessageBody);
+  const addNewMessage = (newMessageBody) => {
+    addMessage(newMessageBody);
   };
 
   return (
@@ -54,7 +28,23 @@ function Dialogs({
         <div className={classes.messages}>
           {messagesElements}
         </div>
-        <AddMessageFormRedux onSubmit={addNewMessage} />
+        <Formik
+          initialValues={{ newMessageBody: '' }}
+          onSubmit={(values) => {
+            addNewMessage(values.newMessageBody);
+          }}
+        >
+          {() => (
+            <Form>
+              <Field
+                name="newMessageBody"
+              />
+              <button type="submit">
+                Send
+              </button>
+            </Form>
+          )}
+        </Formik>
       </div>
     </div>
   );

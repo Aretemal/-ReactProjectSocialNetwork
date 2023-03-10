@@ -3,7 +3,7 @@ import {
   addPost,
   getAllPosts,
 } from '../../../redux/Profile-reducer';
-import MyPosts from './MyPosts.jsx';
+import MyPostsConnect from './MyPostsConnect.jsx';
 
 const mapStateToProps = (state) => ({
   posts: state.profilePage.posts,
@@ -11,5 +11,5 @@ const mapStateToProps = (state) => ({
   token: state.auth.token,
 });
 
-const MyPostsContainer = connect(mapStateToProps, { getAllPosts, addPost })(MyPosts);
+const MyPostsContainer = connect(mapStateToProps, { getAllPosts, addPost })(MyPostsConnect);
 export default MyPostsContainer;

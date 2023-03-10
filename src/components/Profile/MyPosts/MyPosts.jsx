@@ -4,12 +4,10 @@ import classes from './MyPosts.module.css';
 import Post from './Posts/Post.jsx';
 
 const MyPosts = React.memo(({ // eslint-disable-line react/display-name
-  posts, addPost, getAllPosts, token,
+  posts, addNewPost,
 }) => {
   const postsElements = posts
     .map((post) => <Post key={post.id} message={post.content} />);
-
-  getAllPosts(token);
   return (
     <div>
       <div className={classes.postsBlock}>
@@ -21,7 +19,7 @@ const MyPosts = React.memo(({ // eslint-disable-line react/display-name
             newMessageText: '',
           }}
           onSubmit={(values) => {
-            addPost(values.newMessageText, token);
+            addNewPost(values.newMessageText);
           }}
         >
           {() => (
