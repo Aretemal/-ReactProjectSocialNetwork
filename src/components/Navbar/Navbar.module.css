@@ -1,12 +1,25 @@
 .nav{
+    border-radius: 10px;
     grid-area: nav;
-    padding: 20px 30px 10px;
-    display: flex;
-    justify-content:space-between;
-    background: #66e0d6;
+    padding-left: 20px;
+    padding-top: 30px;
+    display: block;
+    background: #f3e0dc;
+    width: 170px;
+    height: 600px;
 }
 .item{
-    color:white;
+    padding-left: 15px;
+    color: #383838;
     text-decoration:none;
     font-size: 20px;
+}
+.icon{
+    width: 30px;
+    height: 30px;
+}
+.navLink{
+    padding-bottom: 10px;
+    display:flex;
+    align-items:center;
 }

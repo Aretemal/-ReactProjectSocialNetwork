@@ -12,6 +12,7 @@ const initialState = {
   profile: null,
   status: ' ',
   infoAuthUser: null,
+  login: null,
 };
 export const profileReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -31,6 +32,7 @@ export const profileReducer = (state = initialState, action) => {
       return {
         ...state,
         profile: action.profile,
+        login: action.profile.login,
       };
     }
     case SET_ALL_POST: {
