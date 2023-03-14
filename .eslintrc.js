@@ -24,6 +24,7 @@ module.exports = {
   rules: {
     'react/prop-types': 0,
     'max-len': 'off',
+    'linebreak-style': ['error', 'unix'],
     'no-plusplus': [2, { allowForLoopAfterthoughts: true }],
     'default-param-last': 0,
     'jsx-a11y/click-events-have-key-events': 0,

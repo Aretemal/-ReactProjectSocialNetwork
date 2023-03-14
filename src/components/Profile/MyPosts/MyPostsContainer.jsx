@@ -9,6 +9,7 @@ const mapStateToProps = (state) => ({
   posts: state.profilePage.posts,
   newPostText: state.profilePage.newPostText,
   token: state.auth.token,
+  ava: state.profilePage.ava,
 });
 
 const MyPostsContainer = connect(mapStateToProps, { getAllPosts, addPost })(MyPostsConnect);

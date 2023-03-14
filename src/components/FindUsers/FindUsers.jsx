@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import userPhoto from '../../assets/images/ava (FindUsers) .jpg';
+import DefaultAva from '../../assets/images/DefaultAva.webp';
 import classes from './FindUsers.module.css';
 
 function FindUsers({
@@ -48,7 +48,7 @@ function FindUsers({
         <div key={u.id} className={classes.item}>
           <div>
             <NavLink to={`/profile/${u.id}`}>
-              <img alt="ava" src={u.photos.small != null ? u.photos.small : userPhoto} />
+              <img alt="ava" src={u.photos.small != null ? u.photos.small : DefaultAva} />
             </NavLink>
           </div>
           <div>

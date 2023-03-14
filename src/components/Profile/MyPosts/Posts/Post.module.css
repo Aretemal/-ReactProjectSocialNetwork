@@ -2,16 +2,23 @@
     margin:0px 50px 20px;
     display: grid;
     grid-template-areas:"ava info";
-    width: 400px;
+    width: 600px;
+    min-height: 100px;
     color: #808080;
+    background-color: #efdac0;
     grid-template-columns: 25% 75%;
+    border-radius: 10px;
 }
 .item img{
+    margin-top: 15px;
+    margin-left: 20px;
     width: 70px;
     height: 70px;
     border-radius: 20%;
     grid-area: ava;
 }
 .description{
+    margin-top: 15px;
     grid-area: info;
+    color: black;
 }

@@ -13,6 +13,7 @@ const initialState = {
   status: ' ',
   infoAuthUser: null,
   login: null,
+  ava: null,
 };
 export const profileReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -20,19 +21,20 @@ export const profileReducer = (state = initialState, action) => {
       return {
         ...state,
         infoAuthUser: action.infoAuthUser,
+        ava: action.infoAuthUser.ava,
+        login: action.infoAuthUser.login,
       };
     }
     case ADD_POST: {
       return {
         ...state,
-        posts: [...state.posts, { id: state.posts.length + 1, message: action.newPostText, likeCount: 0 }],
+        posts: [...state.posts, { id: state.posts.length + 1, content: action.newPostText, likeCount: 0 }],
       };
     }
     case SET_USER_PROFILE: {
       return {
         ...state,
         profile: action.profile,
-        login: action.profile.login,
       };
     }
     case SET_ALL_POST: {

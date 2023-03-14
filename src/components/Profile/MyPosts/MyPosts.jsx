@@ -1,19 +1,17 @@
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
-import classes from './MyPosts.module.css';
+import styles from './MyPosts.module.css';
 import Post from './Posts/Post.jsx';
+import SendMessageIcon from '../../../assets/images/icons/SendMessageIconn.png';
 
 const MyPosts = React.memo(({ // eslint-disable-line react/display-name
-  posts, addNewPost,
+  posts, addNewPost, ava,
 }) => {
   const postsElements = posts
-    .map((post) => <Post key={post.id} message={post.content} />);
+    .map((post) => <Post key={post.id} message={post.content} ava={ava} />);
   return (
-    <div>
-      <div className={classes.postsBlock}>
-        My post
-      </div>
-      <div className={classes.AddPost}>
+    <div className={styles.container}>
+      <div className={styles.AddPost}>
         <Formik
           initialValues={{
             newMessageText: '',
@@ -25,17 +23,26 @@ const MyPosts = React.memo(({ // eslint-disable-line react/display-name
           {() => (
             <Form>
               <Field
+                className={styles.field}
                 name="newMessageText"
                 type="text"
+                placeholder="Enter text ..."
               />
-              <button type="submit">
-                Add Post
+              <button
+                className={styles.but}
+                type="submit"
+              >
+                <img
+                  className={styles.SendMessageIcon}
+                  src={SendMessageIcon}
+                  alt="SendMessageIcon"
+                />
               </button>
             </Form>
           )}
         </Formik>
       </div>
-      <div className={classes.posts}>
+      <div className={styles.posts}>
         {postsElements}
       </div>
     </div>
