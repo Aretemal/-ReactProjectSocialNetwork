@@ -15,9 +15,9 @@ class MyPostConnect extends React.Component {
   };
 
   render() {
-    const { posts } = this.props;
+    const { posts, ava } = this.props;
     return (
-      <MyPosts addNewPost={this.addNewPost} posts={posts} />
+      <MyPosts addNewPost={this.addNewPost} posts={posts} ava={ava} />
     );
   }
 }

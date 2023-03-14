@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import styles from './ProfileStatus.module.css';
+import StatusIcon from '../../../../assets/images/icons/StatusIcon.png';
 
 function ProfileStatusWithHooks({ status, updateStatus, token }) {
   const [editMode, setEditMode] = useState(false);
@@ -17,18 +19,25 @@ function ProfileStatusWithHooks({ status, updateStatus, token }) {
     setStatus(e.currentTarget.value);
   };
   return (
-    <div>
+    <div className={styles.container}>
+      <div onClick={activateMode}>
+        <img className={styles.StatusIcon} src={StatusIcon} alt="StatusIcon" />
+      </div>
       { !editMode
         && (
-        <div>
-          <span onClick={activateMode}>
+          <div className={styles.status} onClick={activateMode}>
             { newStatus }
-          </span>
-        </div>
+          </div>
         )}
       { editMode && (
       <div>
-        <input onChange={onStatusChange} autoFocus onBlur={deactivateEditMode} value={newStatus} />
+        <textarea
+          className={styles.inputStatus}
+          onChange={onStatusChange}
+          autoFocus
+          onBlur={deactivateEditMode}
+          value={newStatus}
+        />
       </div>
       )}
     </div>

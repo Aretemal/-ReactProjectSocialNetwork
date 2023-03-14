@@ -1,19 +1,28 @@
 .descriptionBlock{
-    padding: 30px 40px;
+    padding-left: 50px;
+    padding-top: 25px;
     grid-area: info;
 }
 .ava{
-    width: 250px;
-    height: 250px;
-    padding: 20px;
-    border-radius:50%;
+    width: 400px;
+    height: 400px;
+    margin-left: 50px;
+    margin-top: 50px;
     grid-area: ava;
 }
 .container{
     display: grid;
-    grid-template-areas:"ava info";
-    width: 1200px;
+    grid-area: profInfo;
+    grid-template-areas:"ava" "info";
+    grid-template-columns: 500px;
+    grid-template-rows: 450px 400px;
     color: #808080;
-    grid-template-columns: 25% 75%;
+    background-color: #fbeec1;
 }
+.name{
+    display: block;
+    font-size: 30px;
+    color: black;
+}
+
 

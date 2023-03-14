@@ -1,6 +1,33 @@
-.postsBlock{
-    padding: 10px
-}
 .AddPost{
     margin:0px 50px 20px;
+}
+.container{
+    grid-area: posts;
+    background-color: #daad86;
+}
+.field{
+    color: black;
+    margin-top: 20px;
+    width: 590px;
+    height: 90px;
+    font-size: 20px;
+    padding: 6px 0 4px 10px;
+    border: none;
+    background: #a9a9a9;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+.but{
+    border-radius: 50%;
+    margin-left: 550px;
+    width: 10px;
+    height: 10px;
+    border: none;
+    background-color: #daad86;
+}
+.SendMessageIcon{
+    width: 30px;
+    padding-bottom: 10px;
+    padding-right: 5px;
+    margin-right: 2px;
 }
