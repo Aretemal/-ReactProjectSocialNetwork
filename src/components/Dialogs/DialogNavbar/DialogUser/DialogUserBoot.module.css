@@ -1,0 +1,17 @@
+.container{
+    height: 100px;
+    -webkit-transition: background-color 0.5s;
+}
+.ava{
+    margin-left: 10px;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+}
+.container:hover{
+    background-color: #FBE8A6;
+}
+.containerActive{
+    height: 100px;
+    background-color: #FBE8A6;
+}

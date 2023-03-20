@@ -22,6 +22,7 @@ module.exports = {
     'react','jest'
   ],
   rules: {
+    'react/jsx-props-no-spreading': 0,
     'react/prop-types': 0,
     'max-len': 'off',
     'linebreak-style': ['error', 'unix'],
@@ -34,5 +35,6 @@ module.exports = {
     'jsx-a11y/no-autofocus': 0,
     'jsx-a11y/no-static-element-interactions': 0,
     'no-debugger': 0,
+    'import/extensions': 0,
   },
 };

@@ -1,33 +1,25 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
+// import { Navigate } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
-import classes from './Dialogs.module.css';
-import Message from './Message/Message.jsx';
-import DialogItem from './DialogItem/DialogItem.jsx';
+import * as connectNameForClasses from 'classnames';
+import { DialogsNavbarBoot } from './DialogNavbar/DialogsNavbarBoot.jsx';
+import styles from './Dialogs.module.css';
+import { MessagesBoot } from './Messages/MessagesBoot.jsx';
 
 function Dialogs({
-  dialogs, messages, addMessage, isAuth,
+  dialogs, messages, addMessage, activeId,
 }) {
-  const dialogsElements = dialogs
-    .map((dialog) => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id} />);
-  const messagesElements = messages
-    .map((message) => <Message key='1' message={message.message} />);
-
-  if (!isAuth) return <Navigate to='/login' />;
+  // if (!isAuth) return <Navigate to='/login' />;
 
   const addNewMessage = (newMessageBody) => {
     addMessage(newMessageBody);
   };
 
   return (
-    <div className={classes.dialogs}>
-      <div className={classes.dialogsItem}>
-        {dialogsElements}
-      </div>
-      <div>
-        <div className={classes.messages}>
-          {messagesElements}
-        </div>
+    <div className={styles.container}>
+      <DialogsNavbarBoot items={dialogs} activeId={activeId} className={styles.dialogs} />
+      <div className={styles.messages}>
+        <MessagesBoot items={messages} className={styles.messages} />
         <Formik
           initialValues={{ newMessageBody: '' }}
           onSubmit={(values) => {
@@ -35,11 +27,16 @@ function Dialogs({
           }}
         >
           {() => (
-            <Form>
+            <Form className={styles.form}>
               <Field
+                as="textarea"
+                className={styles.field}
                 name="newMessageBody"
               />
-              <button type="submit">
+              <button
+                className={connectNameForClasses('btn', styles.ButtonBoot)}
+                type='submit'
+              >
                 Send
               </button>
             </Form>

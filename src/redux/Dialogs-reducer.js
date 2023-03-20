@@ -2,11 +2,11 @@ const ADD_MESSAGE = 'ADD-MESSAGE';
 
 const initialState = {
   messages: [
-    { id: 1, message: 'Hi' },
-    { id: 2, message: 'How is your React' },
-    { id: 3, message: 'Yo' },
-    { id: 4, message: 'Yo' },
-    { id: 5, message: 'Yo' },
+    { id: 1, message: 'Hi', sender: 'I' },
+    { id: 2, message: 'How is your React', sender: 'I' },
+    { id: 3, message: 'Yo', sender: 2 },
+    { id: 4, message: 'Yo', sender: 2 },
+    { id: 5, message: 'Yo', sender: 'I' },
   ],
   dialogs: [
     { id: 1, name: 'Dima' },
@@ -15,6 +15,7 @@ const initialState = {
     { id: 4, name: 'Ivan' },
     { id: 5, name: 'Oleg' },
   ],
+  activeId: 2,
 };
 export const dialogsReducer = (state = initialState, action) => {
   switch (action.type) {

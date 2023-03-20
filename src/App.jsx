@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 */
 import { compose } from 'redux';
 import { App } from './AppConnect.jsx';
-import { initializeApp } from './redux/app-reducer';
+import { initializeApp } from './redux/app-reducer.js';
 
 /* function withRouter(Component) {
   function ComponentWithRouterProp(props) {
