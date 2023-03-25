@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import * as connectNameForClasses from 'classnames';
+import connectNameForClasses from 'classnames';
 import styles from './DialogUserBoot.module.css';
 import DefaultAva from '../../../../assets/images/DefaultAva.webp';
 

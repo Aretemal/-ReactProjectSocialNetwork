@@ -1,4 +1,5 @@
 import React from 'react';
+import Preloader from '../common/Preloader/Preloader.jsx';
 import Profile from './Profile.jsx';
 
 class ProfileContainer extends React.Component {
@@ -11,11 +12,12 @@ class ProfileContainer extends React.Component {
 
   render() {
     const {
-      infoAuthUser, updateStatus, token,
+      infoAuthUser, updateStatus, token, isFetching,
     } = this.props;
     return (
       <div>
-        <Profile infoAuthUser={infoAuthUser} updateStatus={updateStatus} token={token} />
+        {isFetching ? <Preloader />
+          : <Profile infoAuthUser={infoAuthUser} updateStatus={updateStatus} token={token} />}
       </div>
     );
   }

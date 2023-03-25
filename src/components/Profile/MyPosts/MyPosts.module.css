@@ -3,7 +3,7 @@
 }
 .container{
     grid-area: posts;
-    background-color: #daad86;
+    background-color: #bc4639;
 }
 .field{
     color: black;
@@ -23,7 +23,7 @@
     width: 10px;
     height: 10px;
     border: none;
-    background-color: #daad86;
+    background-color: #bc4639;
 }
 .SendMessageIcon{
     width: 30px;

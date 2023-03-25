@@ -33,22 +33,22 @@ export const profileAPI = {
     return makeInstanceWithToken(token).post('profile/posts', { newMessageText });
   },
 };
-
 export const usersAPI = {
-  getUsers(currentPage, pageSize) {
-    return instance.get(
-      `users?page=${currentPage}&count=${pageSize}`,
+  getUsers(currentPage, pageSize, token) {
+    return makeInstanceWithToken(token).get(
+      `/users?page=${currentPage}&count=${pageSize}`,
     );
   },
+};
+export const followAPI = {
   follow(userId) {
-    return instance.post(`follow/${userId}`);
+    return makeInstanceWithToken.post(`follow/${userId}`);
+  },
+  approve(userId) {
+    return makeInstanceWithToken.put(`follow/${userId}`);
   },
   unfollow(userId) {
-    return instance.delete(`follow/${userId}`);
-  },
-  getProfile(userId) {
-    console.warn('Obsolete method, Please use profileAPI');
-    return profileAPI.getProfile(userId);
+    return makeInstanceWithToken.delete(`follow/${userId}`);
   },
 };
 

@@ -5,21 +5,22 @@ import FindUsers from './FindUsers.jsx';
 class FindUsersContainer extends React.Component {
   componentDidMount() {
     const {
-      currentPage, pageSize, requestUsers,
+      currentPage, pageSize, requestUsers, token,
     } = this.props;
-    requestUsers(currentPage, pageSize);
+    requestUsers(currentPage, pageSize, token);
   }
 
   onPageChanged = (pageNumber) => {
     const {
-      pageSize, requestUsers,
+      pageSize, requestUsers, token,
     } = this.props;
-    requestUsers(pageNumber, pageSize);
+    requestUsers(pageNumber, pageSize, token);
   };
 
   render() {
     const {
-      follow, unfollow, followingInProgress, isFetching, currentPage, pageSize, totalUsersCount, users,
+      follow, unfollow, followingInProgress, isFetching, currentPage, pageSize,
+      totalUsersCount, users,
     } = this.props;
     return (
       <div>

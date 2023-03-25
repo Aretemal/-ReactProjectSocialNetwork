@@ -1,13 +1,11 @@
-.item {
-    text-decoration: none;
-    color: #808080;
+.container{
+    width: 100%;
+    height: 100%;
+    background-color: #bc4639;
 }
-.photoUser{}
-.normalPage{
-    color: #808080;
+.pagination{
+    margin-left: 450px;
 }
-.selectedPage {
-    font-weight:bold;
-    color: #808080;
-}
+
+
 

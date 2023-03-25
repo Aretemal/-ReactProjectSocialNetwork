@@ -1,11 +1,6 @@
-import React from 'react';
 import { connect } from 'react-redux';
-import {
-  useLocation,
-  useNavigate,
-  useParams,
-} from 'react-router-dom';
 import { compose } from 'redux';
+import { withAuthRedirect } from '../../hoc/WithAuthRedirect.jsx';
 import {
   getInfoAuthUser,
   getUserProfile,
@@ -16,25 +11,9 @@ import ProfileContainer from './ProfileContainer.jsx';
 const mapStateToProps = (state) => ({
   infoAuthUser: state.profilePage.infoAuthUser,
   token: state.auth.token,
+  isFetching: state.profilePage.isFetching,
 });
-
-function withRouter(Component) {
-  function ComponentWithRouterProp(props) {
-    const location = useLocation();
-    const navigate = useNavigate();
-    const params = useParams();
-    return (
-      <Component
-        {...props} // eslint-disable-line react/jsx-props-no-spreading
-        router={{ location, navigate, params }}
-      />
-    );
-  }
-  return ComponentWithRouterProp;
-}
-export default compose(
-  connect(mapStateToProps, {
-    getUserProfile, updateStatus, getInfoAuthUser,
-  }),
-  withRouter,
-)(ProfileContainer);
+const ProfileWithRedirect = withAuthRedirect(ProfileContainer);
+export default compose(connect(mapStateToProps, {
+  getUserProfile, updateStatus, getInfoAuthUser,
+}))(ProfileWithRedirect);

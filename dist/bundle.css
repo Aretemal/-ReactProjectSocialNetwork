@@ -1,0 +1,448 @@
+/* src/index.css */
+body {
+  margin: 0;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Roboto",
+    "Oxygen",
+    "Ubuntu",
+    "Cantarell",
+    "Fira Sans",
+    "Droid Sans",
+    "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+code {
+  font-family:
+    source-code-pro,
+    Menlo,
+    Monaco,
+    Consolas,
+    "Courier New",
+    monospace;
+}
+
+/* src/App.css */
+.app-wrapper-content {
+  grid-area: profile;
+  border-radius: 0 0 10px 10px;
+  min-height: 600px;
+  background-color: #bc4639;
+}
+.app-wrapper {
+  display: grid;
+  padding-top: 30px;
+  margin: 0 auto;
+  grid-template-areas: "nav header" "nav profile";
+  width: 1400px;
+  grid-template-rows: 80px 600px;
+  grid-template-columns: 200px 1200px;
+  color: white;
+  font-size: 18px;
+}
+
+/* src/components/common/Preloader/Preloader.module.css */
+.preloader {
+  padding-left: 200px;
+}
+
+/* src/components/Dialogs/Dialogs.module.css */
+.dialogs {
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+  text-decoration: none;
+}
+.dialogsItem {
+  text-decoration: none;
+  color: #808080;
+}
+.dialog {
+  color: #808080;
+  text-decoration: none;
+  padding: 10px;
+}
+.messages {
+  color: #808080;
+}
+.message {
+  padding: 10px;
+}
+
+/* src/components/FindUsers/FindUsers.module.css */
+.item {
+  text-decoration: none;
+  color: #808080;
+}
+.photoUser {
+}
+.normalPage {
+  color: #808080;
+}
+.selectedPage {
+  font-weight: bold;
+  color: #808080;
+}
+
+/* src/components/Header/Header.module.css */
+.header {
+  grid-area: header;
+  background-color: #ececec;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 10px 10px 0 0;
+}
+.block {
+  display: flex;
+  align-items: center;
+  color: #808080;
+  justify-content: flex-end;
+  margin-right: 50px;
+}
+.logo {
+  margin-left: 10px;
+  border-radius: 40px;
+  height: 60px;
+  display: block;
+}
+.login {
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  width: 90px;
+  margin-right: 50px;
+  justify-content: center;
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+}
+.login:hover {
+  background-color: #707070;
+  color: white;
+}
+.logout {
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  width: 90px;
+  margin-right: 50px;
+  justify-content: center;
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+}
+.logout:hover {
+  background-color: #707070;
+  color: white;
+}
+.registration {
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  width: 120px;
+  justify-content: center;
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+}
+.registration:hover {
+  background-color: #707070;
+  color: white;
+}
+
+/* src/components/Login/Login.module.css */
+.login {
+  height: 400px;
+}
+.formik {
+  padding-left: 450px;
+  padding-top: 120px;
+}
+.name {
+  color: black;
+}
+.item {
+  color: black;
+}
+.itemField {
+  display: flex;
+  align-items: center;
+}
+.field {
+  width: 200px;
+  font-size: 20px;
+  padding: 6px 0 4px 10px;
+  border: 1px solid #DAAD89;
+  background: #DAAD86;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+.UserIcon {
+  width: 30px;
+  padding-bottom: 10px;
+  margin-right: 5px;
+}
+.LockIcon {
+  width: 30px;
+  padding-bottom: 10px;
+  padding-right: 5px;
+  margin-right: 2px;
+}
+.but {
+  margin-top: 5px;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  border-radius: 5px;
+  background-color: #bc4639;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  width: 90px;
+  margin-right: 50px;
+  justify-content: center;
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+}
+.but:hover {
+  background-color: #DAAD86;
+  color: white;
+  border: none;
+}
+
+/* src/components/Registration/Registration.module.css */
+.registration {
+  height: 400px;
+}
+.formik {
+  padding-left: 450px;
+  padding-top: 120px;
+}
+.name {
+  color: black;
+}
+.itemField {
+  display: flex;
+  align-items: center;
+}
+.field {
+  width: 200px;
+  font-size: 20px;
+  padding: 6px 0 4px 10px;
+  border: 1px solid #DAAD89;
+  background: #DAAD86;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+.UserIcon {
+  width: 30px;
+  padding-bottom: 10px;
+  margin-right: 5px;
+}
+.LockIcon {
+  width: 30px;
+  padding-bottom: 10px;
+  padding-right: 5px;
+  margin-right: 2px;
+}
+.but {
+  margin-top: 5px;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  border-radius: 5px;
+  background-color: #bc4639;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  width: 90px;
+  margin-right: 50px;
+  justify-content: center;
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+}
+.but:hover {
+  background-color: #DAAD86;
+  color: white;
+  border: none;
+}
+.EmailIcon {
+  width: 35px;
+  padding-bottom: 10px;
+  padding-right: 5px;
+  margin-right: -1px;
+}
+.NameIcon {
+  width: 35px;
+  padding-bottom: 10px;
+  padding-right: 3px;
+  margin-right: 0px;
+}
+.reds {
+  margin-left: 10px;
+}
+
+/* src/components/Navbar/Navbar.module.css */
+.nav {
+  border-radius: 10px;
+  grid-area: nav;
+  padding-left: 20px;
+  padding-top: 30px;
+  display: block;
+  background: #f3e0dc;
+  width: 170px;
+  height: 600px;
+}
+.item {
+  padding-left: 15px;
+  color: #383838;
+  text-decoration: none;
+  font-size: 20px;
+}
+.icon {
+  width: 30px;
+  height: 30px;
+}
+.navLink {
+  padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+/* src/components/Profile/MyPosts/MyPosts.module.css */
+.AddPost {
+  margin: 0px 50px 20px;
+}
+.container {
+  grid-area: posts;
+  background-color: #daad86;
+}
+.field {
+  color: black;
+  margin-top: 20px;
+  width: 590px;
+  height: 90px;
+  font-size: 20px;
+  padding: 6px 0 4px 10px;
+  border: none;
+  background: #a9a9a9;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+.but {
+  border-radius: 50%;
+  margin-left: 550px;
+  width: 10px;
+  height: 10px;
+  border: none;
+  background-color: #daad86;
+}
+.SendMessageIcon {
+  width: 30px;
+  padding-bottom: 10px;
+  padding-right: 5px;
+  margin-right: 2px;
+}
+
+/* src/components/Profile/MyPosts/Posts/Post.module.css */
+.item {
+  margin: 0px 50px 20px;
+  display: grid;
+  grid-template-areas: "ava info";
+  width: 600px;
+  min-height: 100px;
+  color: #808080;
+  background-color: #efdac0;
+  grid-template-columns: 25% 75%;
+  border-radius: 10px;
+}
+.item img {
+  margin-top: 15px;
+  margin-left: 20px;
+  width: 70px;
+  height: 70px;
+  border-radius: 20%;
+  grid-area: ava;
+}
+.description {
+  margin-top: 15px;
+  grid-area: info;
+  color: black;
+}
+
+/* src/components/Profile/ProfileInfo/ProfileInfo.module.css */
+.descriptionBlock {
+  padding-left: 50px;
+  padding-top: 25px;
+  grid-area: info;
+}
+.ava {
+  width: 400px;
+  height: 400px;
+  margin-left: 50px;
+  margin-top: 50px;
+  grid-area: ava;
+}
+.container {
+  display: grid;
+  grid-area: profInfo;
+  grid-template-areas: "ava" "info";
+  grid-template-columns: 500px;
+  grid-template-rows: 450px 400px;
+  color: #808080;
+  background-color: #fbeec1;
+}
+.name {
+  display: block;
+  font-size: 30px;
+  color: black;
+}
+
+/* src/components/Profile/ProfileInfo/ProfileStatus/ProfileStatus.module.css */
+.container {
+  margin-top: 20px;
+  color: #808080;
+  margin-left: -4px;
+  width: 400px;
+  background-color: #fbeec1;
+  display: flex;
+  align-items: center;
+}
+.StatusIcon {
+  width: 40px;
+  height: 40px;
+}
+.status {
+  margin-left: 10px;
+  font-size: 20px;
+  color: #282828;
+}
+.inputStatus {
+  border: none;
+  width: 200px;
+  font-size: 20px;
+  background: #DAAD86;
+  border-radius: 8px;
+}
+
+/* src/components/Profile/Profile.module.css */
+.profile {
+  display: grid;
+  grid-template-areas: "profInfo posts";
+  grid-template-columns: 500px;
+}
+/*# sourceMappingURL=bundle.css.map */

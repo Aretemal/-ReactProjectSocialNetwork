@@ -1,33 +1,51 @@
+import React from 'react';
 import './App.css';
-import { connect } from 'react-redux';
-/* import {
-  useLocation,
-  useNavigate, useParams,
+import {
+  BrowserRouter,
+  Route,
+  Routes,
 } from 'react-router-dom';
-*/
-import { compose } from 'redux';
-import { App } from './AppConnect.jsx';
-import { initializeApp } from './redux/app-reducer.js';
+import DialogsContainer from './components/Dialogs/DialogsContainer.jsx';
+import FindUsersContainer from './components/FindUsers/FindUsersConnect.jsx';
+import HeaderContainer from './components/Header/HeaderConnect.jsx';
+import Login from './components/Login/LoginContainer.jsx';
+import Registration from './components/Registration/RegistrationContainer.jsx';
+import Navbar from './components/Navbar/Navbar.jsx';
+import ProfileContainer from './components/Profile/ProfileConnnect.jsx';
 
-/* function withRouter(Component) {
-  function ComponentWithRouterProp(props) {
-    const location = useLocation();
-    const navigate = useNavigate();
-    const params = useParams();
+export class App extends React.Component {
+  render() {
     return (
-      <Component
-        {...props}
-        router={{ location, navigate, params }}
-      />
+      <BrowserRouter>
+        <div className='app-wrapper'>
+          <HeaderContainer />
+          <Navbar />
+          <div className='app-wrapper-content'>
+            <Routes>
+              <Route
+                path="/dialogs"
+                element={<DialogsContainer />}
+              />
+              <Route
+                path='/profile'
+                element={<ProfileContainer />}
+              />
+              <Route
+                path='/users'
+                element={<FindUsersContainer />}
+              />
+              <Route
+                path='/login'
+                element={<Login />}
+              />
+              <Route
+                path='/registration'
+                element={<Registration />}
+              />
+            </Routes>
+          </div>
+        </div>
+      </BrowserRouter>
     );
   }
-  return ComponentWithRouterProp;
 }
-*/
-const mapStateToProps = (state) => ({
-  initialized: state.app.initialized,
-});
-export default compose(
-  connect(mapStateToProps, { initializeApp }),
-  // withRouter,
-)(App);
