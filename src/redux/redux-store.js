@@ -4,7 +4,6 @@ import {
   legacy_createStore as createStore,
 } from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import { appReducer } from './app-reducer.js';
 import { authReducer } from './auth-reducer.js';
 import { dialogsReducer } from './Dialogs-reducer.js';
 import { findUsersReducer } from './FindUsers-reducer.js';
@@ -17,7 +16,6 @@ const reducers = combineReducers({
   sidebar: sidebarReducer,
   findUsersPage: findUsersReducer,
   auth: authReducer,
-  app: appReducer,
 });
 const store = createStore(reducers, applyMiddleware(thunkMiddleware));
 

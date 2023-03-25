@@ -1,4 +1,4 @@
-import { profileAPI, usersAPI } from '../api/api';
+import { profileAPI, usersAPI } from '../api/api.js';
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
@@ -6,6 +6,7 @@ const SET_ALL_POST = 'SET-ALL-POST';
 const SET_STATUS = 'SET-STATUS';
 const DELETE_POST = 'DELETE-POST';
 const SET_USER_INFO = 'SET-USER-INFO';
+const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING';
 
 const initialState = {
   posts: [],
@@ -14,6 +15,7 @@ const initialState = {
   infoAuthUser: null,
   login: null,
   ava: null,
+  isFetching: true,
 };
 export const profileReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -55,6 +57,11 @@ export const profileReducer = (state = initialState, action) => {
         posts: state.posts.filter((p) => p.id !== action.postId),
       };
     }
+    case TOGGLE_IS_FETCHING: {
+      return {
+        ...state, isFetching: action.isFetching,
+      };
+    }
     default:
       return state;
   }
@@ -66,28 +73,33 @@ export const setAllPosts = (posts) => ({ type: SET_ALL_POST, posts });
 export const setStatus = (status) => ({ type: SET_STATUS, status });
 export const setInfoAuthUser = (infoAuthUser) => ({ type: SET_USER_INFO, infoAuthUser });
 export const deletePost = (postId) => ({ type: DELETE_POST, postId });
+export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
 export const getInfoAuthUser = (token) => (dispatch) => {
+  dispatch(toggleIsFetching(true));
   profileAPI.getInfoAuthUser(token)
     .then((response) => {
-      dispatch(setInfoAuthUser(response.data.data.attributes.attributes));
+      dispatch(toggleIsFetching(false));
+      dispatch(setInfoAuthUser(response.data.data.attributes));
     });
 };
 export const addPost = (newMessageText, token) => (dispatch) => {
+  dispatch(toggleIsFetching(true));
   profileAPI.addPost(newMessageText, token)
     .then(() => {
+      dispatch(toggleIsFetching(false));
       dispatch(setNewPost(newMessageText));
     });
 };
 export const getAllPosts = (token) => (dispatch) => {
   profileAPI.getAllPosts(token)
     .then((response) => {
-      dispatch(setAllPosts(response.data.data.attributes.attributes));
+      dispatch(setAllPosts(response.data.data.attributes));
     });
 };
 export const getUserProfile = (userId) => (dispatch) => {
   usersAPI.getProfile(userId)
     .then((response) => {
-      dispatch(setUserProfile(response.data.data.attributes.attributes));
+      dispatch(setUserProfile(response.data.data.attributes));
     });
 };
 export const updateStatus = (status, token) => (dispatch) => {

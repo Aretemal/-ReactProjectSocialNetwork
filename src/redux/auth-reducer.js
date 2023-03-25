@@ -1,4 +1,4 @@
-import { authAPI } from '../api/api';
+import { authAPI } from '../api/api.js';
 
 const SET_TOKEN = 'SET-TOKEN';
 const DELETE_TOKEN = 'DELETE-TOKEN';
@@ -37,7 +37,7 @@ export const logout = () => ({
 export const login = (userName, password) => (dispatch) => {
   authAPI.login(userName, password)
     .then((response) => {
-      dispatch(setToken(response.data.data.attributes.attributes.token));
+      dispatch(setToken(response.data.data.attributes.token));
     });
 };
 export const registration = (userName, password, firstName, lastName, email) => () => {
