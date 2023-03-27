@@ -8,7 +8,7 @@ const MyPosts = React.memo(({ // eslint-disable-line react/display-name
   posts, addNewPost, ava,
 }) => {
   const postsElements = posts
-    .map((post) => <Post key={post.id} message={post.content} ava={ava} />);
+    .map((post) => <Post key={post.id} message={post.attributes.content} ava={ava} />);
   return (
     <div className={styles.container}>
       <div className={styles.AddPost}>
