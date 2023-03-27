@@ -86,8 +86,8 @@ export const requestUsers = (currentPage, pageSize, token) => (dispatch) => {
   dispatch(setCurrentPage(currentPage));
   usersAPI.getUsers(currentPage, pageSize, token).then((response) => {
     dispatch(toggleIsFetching(false));
-    dispatch(setUsers(response.data.data.attributes.users));
-    dispatch(setTotalUsersCount(response.data.data.attributes.countOfUsers));
+    dispatch(setUsers(response.data.data));
+    dispatch(setTotalUsersCount(response.data.meta.countOfUsers));
   });
 };
 export const follow = (userId) => (dispatch) => {

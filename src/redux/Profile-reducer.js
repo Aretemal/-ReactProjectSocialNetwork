@@ -93,7 +93,7 @@ export const addPost = (newMessageText, token) => (dispatch) => {
 export const getAllPosts = (token) => (dispatch) => {
   profileAPI.getAllPosts(token)
     .then((response) => {
-      dispatch(setAllPosts(response.data.data.attributes));
+      dispatch(setAllPosts(response.data.data));
     });
 };
 export const getUserProfile = (userId) => (dispatch) => {
@@ -104,7 +104,7 @@ export const getUserProfile = (userId) => (dispatch) => {
 };
 export const updateStatus = (status, token) => (dispatch) => {
   profileAPI.updateStatus(status, token)
-    .then(() => {
-      dispatch(setStatus(status));
+    .then((response) => {
+      dispatch(setStatus(response.data.data.attributes.status));
     });
 };

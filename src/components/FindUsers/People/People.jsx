@@ -10,7 +10,7 @@ export function People({
       key={user.id}
       follow={follow}
       unfollow={unfollow}
-      user={user}
+      user={user.attributes}
       followingInProgress={followingInProgress}
     />
   ));
