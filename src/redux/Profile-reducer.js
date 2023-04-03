@@ -30,7 +30,7 @@ export const profileReducer = (state = initialState, action) => {
     case ADD_POST: {
       return {
         ...state,
-        posts: [...state.posts, { id: state.posts.length + 1, content: action.newPostText, likeCount: 0 }],
+        posts: [...state.posts, action.newPost],
       };
     }
     case SET_USER_PROFILE: {
@@ -67,7 +67,7 @@ export const profileReducer = (state = initialState, action) => {
   }
 };
 
-export const setNewPost = (newPostText) => ({ type: ADD_POST, newPostText });
+export const setNewPost = (newPost) => ({ type: ADD_POST, newPost });
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile });
 export const setAllPosts = (posts) => ({ type: SET_ALL_POST, posts });
 export const setStatus = (status) => ({ type: SET_STATUS, status });
@@ -85,9 +85,9 @@ export const getInfoAuthUser = (token) => (dispatch) => {
 export const addPost = (newMessageText, token) => (dispatch) => {
   dispatch(toggleIsFetching(true));
   profileAPI.addPost(newMessageText, token)
-    .then(() => {
+    .then((response) => {
       dispatch(toggleIsFetching(false));
-      dispatch(setNewPost(newMessageText));
+      dispatch(setNewPost(response.data.data));
     });
 };
 export const getAllPosts = (token) => (dispatch) => {

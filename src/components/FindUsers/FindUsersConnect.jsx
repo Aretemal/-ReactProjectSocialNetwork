@@ -4,7 +4,7 @@ import { withAuthRedirect } from '../../hoc/WithAuthRedirect.jsx';
 import {
   follow, requestUsers,
   setCurrentPage, toggleIsFollowingProgress,
-  unfollow,
+  unfollow, approve,
 } from '../../redux/FindUsers-reducer';
 import FindUsersContainer from './FindUserContainer.jsx';
 
@@ -16,11 +16,13 @@ const mapStateToProps = (state) => ({
   isFetching: state.findUsersPage.isFetching,
   followingInProgress: state.findUsersPage.followingInProgress,
   token: state.auth.token,
+  userId: state.profilePage.profile.userId,
 });
 const FindUsersWithRedirect = withAuthRedirect(FindUsersContainer);
 export default compose(
   connect(mapStateToProps, {
     follow,
+    approve,
     unfollow,
     setCurrentPage,
     toggleIsFollowingProgress,

@@ -41,14 +41,14 @@ export const usersAPI = {
   },
 };
 export const followAPI = {
-  follow(userId) {
-    return makeInstanceWithToken.post(`follow/${userId}`);
+  follow(id, token) {
+    return makeInstanceWithToken(token).post('follow', { id });
   },
-  approve(userId) {
-    return makeInstanceWithToken.put(`follow/${userId}`);
+  approve(id, token) {
+    return makeInstanceWithToken(token).put('approve', { id });
   },
-  unfollow(userId) {
-    return makeInstanceWithToken.delete(`follow/${userId}`);
+  unfollow(id, token) {
+    return makeInstanceWithToken(token).put('unfollow', { id });
   },
 };
 
