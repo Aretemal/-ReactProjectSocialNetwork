@@ -1,12 +1,19 @@
 .nav{
+    margin-top: 30px;
     border-radius: 10px;
     grid-area: nav;
     padding-left: 20px;
     padding-top: 30px;
     display: block;
-    background: #f3e0dc;
+    background: white;
     width: 170px;
     height: 600px;
+}
+.ava{
+    width: 125px;
+    border-left: 7px;
+    height: 125px;
+    border-radius: 50%;
 }
 .item{
     padding-left: 15px;
@@ -19,7 +26,7 @@
     height: 30px;
 }
 .navLink{
-    padding-bottom: 10px;
+    padding-top: 10px;
     display:flex;
     align-items:center;
 }

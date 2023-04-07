@@ -13,7 +13,7 @@ export function People({
       follow={follow}
       unfollow={unfollow}
       approve={approve}
-      user={user.attributes}
+      user={user}
       followingInProgress={followingInProgress}
     />
   ));

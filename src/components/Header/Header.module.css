@@ -1,11 +1,10 @@
 .header{
     grid-area: header;
-    background-color: #ececec;
-    height: 80px;
+    background-color: white;
+    width: 100%;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    border-radius: 10px 10px 0 0;
 }
 .block{
     display:flex;

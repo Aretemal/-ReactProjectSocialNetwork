@@ -16,6 +16,17 @@ const makeInstanceWithToken = (token) => axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
   headers: { Authorization: token },
 });
+export const dialogAPI = {
+  sendMessage(token, id, message) {
+    return makeInstanceWithToken(token).post(`dialog/message/${id}`, { message });
+  },
+  getAllMessage(token, id) {
+    return makeInstanceWithToken(token).get(`dialog/messages/${id}`);
+  },
+  getAllDialogs(token) {
+    return makeInstanceWithToken(token).get('dialog/companion');
+  },
+};
 export const profileAPI = {
   getInfoAuthUser(token) {
     return makeInstanceWithToken(token).get('profile/user');

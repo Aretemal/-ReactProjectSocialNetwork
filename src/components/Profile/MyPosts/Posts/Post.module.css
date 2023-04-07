@@ -3,9 +3,9 @@
     display: grid;
     grid-template-areas:"ava info";
     width: 600px;
+    border: 1px solid #e8e8e8;
     min-height: 100px;
-    color: #808080;
-    background-color: #efdac0;
+    background-color: white;
     grid-template-columns: 25% 75%;
     border-radius: 10px;
 }

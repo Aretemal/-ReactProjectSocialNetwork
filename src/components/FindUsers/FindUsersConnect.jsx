@@ -16,7 +16,7 @@ const mapStateToProps = (state) => ({
   isFetching: state.findUsersPage.isFetching,
   followingInProgress: state.findUsersPage.followingInProgress,
   token: state.auth.token,
-  userId: state.profilePage.profile.userId,
+  id: state.profilePage.authId,
 });
 const FindUsersWithRedirect = withAuthRedirect(FindUsersContainer);
 export default compose(

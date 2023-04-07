@@ -7,11 +7,12 @@ import FindUsersIcon from '../../assets/images/icons/FindUsersIcon.png';
 import MusicIcon from '../../assets/images/icons/MusicIcon.png';
 import NewsIcon from '../../assets/images/icons/NewsIcon.png';
 import MessagesIcon from '../../assets/images/icons/MessagesIcon.png';
+import DefaultAva from '../../assets/images/DefaultAva.webp';
 
 function Navbar() {
   return (
     <nav className={styles.nav}>
-      <div />
+      <img alt="ava" className={styles.ava} src={DefaultAva} />
       <div className={styles.navLink}>
         <img className={styles.icon} src={ProfileIcon} alt="ProfileIcon" />
         <NavLink to="/profile" className={styles.item}>

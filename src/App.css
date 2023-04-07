@@ -2,21 +2,18 @@
   grid-area: profile;
   border-radius: 0 0 10px 10px;
   min-height: 600px;
-  background-color: #bc4639;
 }
 .app-wrapper{
   display: grid;
-  padding-top: 30px;
   margin: 0 auto;
   grid-template-areas:
-  "nav header"
+  "header header"
   "nav profile";
   width: 1400px;
-  grid-template-rows: 80px 600px;
+  grid-template-rows: 70px 600px;
   grid-template-columns: 200px 1200px;
   /*grid-gap:10px;*/
-  color:white;
+  color:#cccccc;
   font-size: 18px;
 }
-
 

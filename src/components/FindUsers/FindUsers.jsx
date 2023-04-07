@@ -5,14 +5,14 @@ import { People } from './People/People.jsx';
 import styles from './FindUsers.module.css';
 
 function FindUsers({
-  totalUsersCount, followingInProgress, pageSize, currentPage, onPageChanged, users, unfollow, follow, token, approve, userId,
+  totalUsersCount, followingInProgress, pageSize, currentPage, onPageChanged, users, unfollow, follow, token, approve, id,
 }) {
   const pagesCount = Math.ceil(totalUsersCount / pageSize);
   return (
     <div className={classnames(styles.container, 'd-flex align-items-start flex-column mb-4')}>
       <div className="mb-auto p-2">
         <People
-          userId={userId}
+          userId={id}
           token={token}
           approve={approve}
           followingInProgress={followingInProgress}

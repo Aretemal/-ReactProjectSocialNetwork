@@ -2,7 +2,7 @@ import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import styles from './MyPosts.module.css';
 import Post from './Posts/Post.jsx';
-import SendMessageIcon from '../../../assets/images/icons/SendMessageIconn.png';
+import SendIcon from '../../../assets/images/icons/SendIcon.png';
 
 const MyPosts = React.memo(({ // eslint-disable-line react/display-name
   posts, addNewPost, ava,
@@ -11,7 +11,7 @@ const MyPosts = React.memo(({ // eslint-disable-line react/display-name
     .map((post) => <Post key={post.id} message={post.attributes.content} ava={ava} />);
   return (
     <div className={styles.container}>
-      <div className={styles.AddPost}>
+      <div>
         <Formik
           initialValues={{
             newMessageText: '',
@@ -21,7 +21,7 @@ const MyPosts = React.memo(({ // eslint-disable-line react/display-name
           }}
         >
           {() => (
-            <Form>
+            <Form className={styles.AddPost}>
               <Field
                 className={styles.field}
                 name="newMessageText"
@@ -34,8 +34,8 @@ const MyPosts = React.memo(({ // eslint-disable-line react/display-name
               >
                 <img
                   className={styles.SendMessageIcon}
-                  src={SendMessageIcon}
-                  alt="SendMessageIcon"
+                  src={SendIcon}
+                  alt="SendIcon"
                 />
               </button>
             </Form>
