@@ -23,7 +23,7 @@ export const findUsersReducer = (state = initialState, action) => {
       return {
         ...state,
         users: state.users.map((u) => {
-          if (u.id === action.userId) {
+          if (u.id === action.id) {
             return { ...u, followed: 'unfollow' };
           }
           return u;
@@ -34,7 +34,7 @@ export const findUsersReducer = (state = initialState, action) => {
       return {
         ...state,
         users: state.users.map((u) => {
-          if (u.id === action.userId) {
+          if (u.id === action.id) {
             return { ...u, followed: 'unfollow' };
           }
           return u;
@@ -45,7 +45,7 @@ export const findUsersReducer = (state = initialState, action) => {
       return {
         ...state,
         users: state.users.map((u) => {
-          if (u.id === action.userId) {
+          if (u.id === action.id) {
             return { ...u, followed: 'approve' };
           }
           return u;
@@ -76,8 +76,8 @@ export const findUsersReducer = (state = initialState, action) => {
       return {
         ...state,
         followingInProgress: action.isFetching
-          ? [...state.followingInProgress, action.userId]
-          : state.followingInProgress.filter((id) => id !== action.userId),
+          ? [...state.followingInProgress, action.id]
+          : state.followingInProgress.filter((id) => id !== action.id),
       };
     }
     default:
@@ -85,14 +85,14 @@ export const findUsersReducer = (state = initialState, action) => {
   }
 };
 
-export const followSuccess = (userId) => ({ type: FOLLOW, userId });
-export const approveSuccess = (userId) => ({ type: APPROVE, userId });
-export const unfollowSuccess = (userId) => ({ type: UNFOLLOW, userId });
+export const followSuccess = (id) => ({ type: FOLLOW, id });
+export const approveSuccess = (id) => ({ type: APPROVE, id });
+export const unfollowSuccess = (id) => ({ type: UNFOLLOW, id });
 export const setUsers = (users) => ({ type: SET_USERS, users });
 export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage });
 export const setTotalUsersCount = (totalUsersCount) => ({ type: SET_TOTAL_USERS_COUNT, totalUsersCount });
 export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
-export const toggleIsFollowingProgress = (isFetching, userId) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId });
+export const toggleIsFollowingProgress = (isFetching, id) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, id });
 
 export const requestUsers = (currentPage, pageSize, token) => (dispatch) => {
   dispatch(toggleIsFetching(true));
@@ -103,27 +103,27 @@ export const requestUsers = (currentPage, pageSize, token) => (dispatch) => {
     dispatch(setTotalUsersCount(response.data.meta.countOfUsers));
   });
 };
-export const follow = (userId, token) => (dispatch) => {
-  dispatch(toggleIsFollowingProgress(true, userId));
-  followAPI.follow(userId, token)
+export const follow = (id, token) => (dispatch) => {
+  dispatch(toggleIsFollowingProgress(true, id));
+  followAPI.follow(id, token)
     .then(() => {
-      dispatch(followSuccess(userId));
-      dispatch(toggleIsFollowingProgress(false, userId));
+      dispatch(followSuccess(id));
+      dispatch(toggleIsFollowingProgress(false, id));
     });
 };
-export const approve = (userId, token) => (dispatch) => {
-  dispatch(toggleIsFollowingProgress(true, userId));
-  followAPI.approve(userId, token)
+export const approve = (id, token) => (dispatch) => {
+  dispatch(toggleIsFollowingProgress(true, id));
+  followAPI.approve(id, token)
     .then(() => {
-      dispatch(approveSuccess(userId));
-      dispatch(toggleIsFollowingProgress(false, userId));
+      dispatch(approveSuccess(id));
+      dispatch(toggleIsFollowingProgress(false, id));
     });
 };
-export const unfollow = (userId, token) => (dispatch) => {
-  dispatch(toggleIsFollowingProgress(true, userId));
-  followAPI.unfollow(userId, token)
+export const unfollow = (id, token) => (dispatch) => {
+  dispatch(toggleIsFollowingProgress(true, id));
+  followAPI.unfollow(id, token)
     .then(() => {
-      dispatch(unfollowSuccess(userId));
-      dispatch(toggleIsFollowingProgress(false, userId));
+      dispatch(unfollowSuccess(id));
+      dispatch(toggleIsFollowingProgress(false, id));
     });
 };

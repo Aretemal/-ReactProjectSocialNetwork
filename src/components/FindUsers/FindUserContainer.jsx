@@ -20,14 +20,14 @@ class FindUsersContainer extends React.Component {
   render() {
     const {
       follow, unfollow, followingInProgress, isFetching, currentPage, pageSize,
-      totalUsersCount, users, approve, token, userId,
+      totalUsersCount, users, approve, token, id,
     } = this.props;
     return (
       <div>
         {isFetching ? <Preloader />
           : (
             <FindUsers
-              userId={userId}
+              id={id}
               token={token}
               totalUsersCount={totalUsersCount}
               pageSize={pageSize}

@@ -1,33 +1,35 @@
 .AddPost{
     margin:0px 50px 20px;
+    display: flex;
 }
 .container{
     grid-area: posts;
-    background-color: #bc4639;
+    background-color: white;
 }
 .field{
+    outline:none;
     color: black;
     margin-top: 20px;
     width: 590px;
     height: 90px;
     font-size: 20px;
     padding: 6px 0 4px 10px;
-    border: none;
-    background: #a9a9a9;
+    border: 1px solid #e8e8e8;
+    background: white;
     border-radius: 8px;
     margin-bottom: 10px;
 }
 .but{
     border-radius: 50%;
-    margin-left: 550px;
+    margin-top: 40px;
     width: 10px;
     height: 10px;
     border: none;
-    background-color: #bc4639;
+    background-color: white;
 }
 .SendMessageIcon{
-    width: 30px;
-    padding-bottom: 10px;
+    width: 50px;
+    padding-bottom: 70px;
     padding-right: 5px;
     margin-right: 2px;
 }

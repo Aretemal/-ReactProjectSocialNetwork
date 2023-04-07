@@ -9,28 +9,30 @@ function ProfileInfo({ infoAuthUser, updateStatus, token }) {
     return <Preloader />;
   }
   return (
-    <div className={styles.container}>
-      <div>
-        {infoAuthUser.ava ? (
-          <img
-            className={styles.ava}
-            src={infoAuthUser.ava}
-            alt="Ava?"
-          />
-        ) : (
-          <img
-            className={styles.ava}
-            src={DefaultAva}
-            alt="Ava?"
-          />
-        )}
+    <div>
+      <div className={styles.container}>
+        <div className={styles.containerAva}>
+          {infoAuthUser.ava ? (
+            <img
+              className={styles.ava}
+              src={infoAuthUser.ava}
+              alt="Ava?"
+            />
+          ) : (
+            <img
+              className={styles.ava}
+              src={DefaultAva}
+              alt="Ava?"
+            />
+          )}
 
-      </div>
-      <div className={styles.descriptionBlock}>
-        <span className={styles.name}>
-          {`${infoAuthUser.firstName} ${infoAuthUser.lastName}`}
-        </span>
-        <ProfileStatusWithHooks status={infoAuthUser.status} updateStatus={updateStatus} token={token} />
+        </div>
+        <div className={styles.descriptionBlock}>
+          <span className={styles.name}>
+            {`${infoAuthUser.firstName} ${infoAuthUser.lastName}`}
+          </span>
+          <ProfileStatusWithHooks status={infoAuthUser.status} updateStatus={updateStatus} token={token} />
+        </div>
       </div>
     </div>
   );

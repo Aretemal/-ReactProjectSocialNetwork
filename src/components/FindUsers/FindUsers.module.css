@@ -1,7 +1,9 @@
 .container{
     width: 100%;
     height: 100%;
-    background-color: #bc4639;
+    background-color: white;
+    margin-top: 30px;
+    border-radius: 10px 10px 0 0;
 }
 .pagination{
     margin-left: 450px;

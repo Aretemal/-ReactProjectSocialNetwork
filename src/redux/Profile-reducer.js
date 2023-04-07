@@ -11,6 +11,7 @@ const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING';
 const initialState = {
   posts: [],
   profile: null,
+  authId: null,
   status: ' ',
   infoAuthUser: null,
   login: null,
@@ -25,6 +26,7 @@ export const profileReducer = (state = initialState, action) => {
         infoAuthUser: action.infoAuthUser,
         ava: action.infoAuthUser.ava,
         login: action.infoAuthUser.login,
+        authId: action.id,
       };
     }
     case ADD_POST: {
@@ -36,6 +38,7 @@ export const profileReducer = (state = initialState, action) => {
     case SET_USER_PROFILE: {
       return {
         ...state,
+        authId: action.id,
         profile: action.profile,
       };
     }
@@ -68,10 +71,10 @@ export const profileReducer = (state = initialState, action) => {
 };
 
 export const setNewPost = (newPost) => ({ type: ADD_POST, newPost });
-export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile });
+export const setUserProfile = (profile, id) => ({ type: SET_USER_PROFILE, profile, id });
 export const setAllPosts = (posts) => ({ type: SET_ALL_POST, posts });
 export const setStatus = (status) => ({ type: SET_STATUS, status });
-export const setInfoAuthUser = (infoAuthUser) => ({ type: SET_USER_INFO, infoAuthUser });
+export const setInfoAuthUser = (infoAuthUser, id) => ({ type: SET_USER_INFO, infoAuthUser, id });
 export const deletePost = (postId) => ({ type: DELETE_POST, postId });
 export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
 export const getInfoAuthUser = (token) => (dispatch) => {
@@ -79,7 +82,7 @@ export const getInfoAuthUser = (token) => (dispatch) => {
   profileAPI.getInfoAuthUser(token)
     .then((response) => {
       dispatch(toggleIsFetching(false));
-      dispatch(setInfoAuthUser(response.data.data.attributes));
+      dispatch(setInfoAuthUser(response.data.data.attributes, response.data.data.id));
     });
 };
 export const addPost = (newMessageText, token) => (dispatch) => {

@@ -6,6 +6,7 @@ import styles from './Profile.module.css';
 function Profile({ infoAuthUser, updateStatus, token }) {
   return (
     <div className={styles.profile}>
+      <div className={styles.block} />
       <ProfileInfo infoAuthUser={infoAuthUser} updateStatus={updateStatus} token={token} />
       <MyPostsContainer />
     </div>

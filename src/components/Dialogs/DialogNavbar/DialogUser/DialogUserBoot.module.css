@@ -1,5 +1,6 @@
 .container{
     height: 100px;
+    margin-bottom: 10px;
     -webkit-transition: background-color 0.5s;
 }
 .ava{
@@ -9,9 +10,5 @@
     height: 70px;
 }
 .container:hover{
-    background-color: #FBE8A6;
-}
-.containerActive{
-    height: 100px;
-    background-color: #FBE8A6;
+    background-color: #e8e8e8;
 }
