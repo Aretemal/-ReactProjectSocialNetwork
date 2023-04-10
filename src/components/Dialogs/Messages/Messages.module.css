@@ -11,6 +11,12 @@
     border-radius: 15px;
     margin-bottom: 10px;
 }
+.error{
+     color: red;
+     font-size: 20px;
+     margin-top: -9px;
+     margin-left: 10px;
+ }
 .messages{
     width: 99%;
     display: grid;

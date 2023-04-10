@@ -1,5 +1,5 @@
 .registration{
-    height: 480px;
+    height: 500px;
     background-color: white;
 }
 .block{
@@ -13,6 +13,12 @@
 .formik{
     padding-left: 450px;
     padding-top: 100px;
+}
+.error{
+    color: red;
+    font-size: 20px;
+    margin-top: -9px;
+    margin-left: 10px;
 }
 .name{
     color: black;
@@ -70,7 +76,4 @@
     padding-bottom: 10px;
     padding-right: 3px;
     margin-right: 0px;
-}
-.reds{
-    margin-left: 10px;
 }
