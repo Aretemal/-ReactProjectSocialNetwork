@@ -2,9 +2,17 @@
 import { Field, Form, Formik } from 'formik';
 import React from 'react';
 import * as connectNameForClasses from 'classnames';
+import * as Yup from 'yup';
 import styles from './Messages.module.css';
 import { MessageBoot } from './Message/MessageBoot.jsx';
 import SendIcon from '../../../assets/images/icons/SendIcon.png';
+
+const MessageSchema = Yup.object().shape({
+  newMessageBody: Yup.string()
+    .min(4, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Required'),
+});
 
 class Messages extends React.Component {
   componentDidMount() {
@@ -41,15 +49,20 @@ class Messages extends React.Component {
           onSubmit={(values) => {
             sendMessage(token, activeId, values.newMessageBody);
           }}
+          validationSchema={MessageSchema}
         >
-          {() => (
+          {({ errors, touched }) => (
             <Form className={styles.form}>
               <Field
                 as="textarea"
                 className={styles.field}
                 name="newMessageBody"
               />
+              {errors.newMessageBody && touched.newMessageBody ? (
+                <div className={styles.error}>{errors.newMessageBody}</div>
+              ) : null}
               <button
+                disabled={errors.newMessageBody && touched.newMessageBody}
                 className={styles.ButtonBoot}
                 type='submit'
               >
