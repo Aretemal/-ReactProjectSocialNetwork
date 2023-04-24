@@ -1,37 +1,45 @@
-.descriptionBlock{
-    padding-left: 50px;
-    padding-top: 25px;
-    grid-area: info;
-    background-color: white;
+.container{
+    grid-area: profInfo;
+    width: 1100px;
+    height: 300px;
+    border-radius: 15px;
+    background-color: #bee5ec;
+    display: flex;
+    align-items: flex-end;
 }
-.containerAva{
-    border-radius: 50%;
-    width: 290px;
-    height: 290px;
-    margin-left: 120px;
-    margin-top: -130px;
+.side{
+    background-color: #fbfcfc;
+    width: 1100px;
+    height: 150px;
+    grid-template-areas:"ava info";
+    border-radius: 15px;
+}
+.description{
+    margin-top: -80px;
+    margin-left: 320px;
+    grid-area: info;
+}
+.ava-container{
+    margin-top: -10%;
+    margin-left: 8%;
+    width: 200px;
+    height: 200px;
+    min-width: 200px;
+    min-height: 200px;
     grid-area: ava;
-    background-color: white;
+    display: block;
+    background-color: #fbfcfc;
+    border-radius: 50%;
 }
 .ava{
-    margin-left:10px;
-    margin-top:10px;
-    width: 270px;
-    height: 270px;
+    margin: 10px;
+    width: 180px;
+    height: 180px;
     border-radius: 50%;
-}
-.container{
-    display: grid;
-    grid-area: profInfo;
-    grid-template-areas:"ava info";
-    grid-template-columns: 500px;
-    color: #808080;
-    background-color: white;
 }
 .name{
     display: block;
-    font-size: 30px;
+    font-size: 37px;
     color: black;
 }
-
 

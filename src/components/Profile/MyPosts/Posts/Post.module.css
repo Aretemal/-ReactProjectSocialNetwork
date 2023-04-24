@@ -1,24 +1,40 @@
 .item{
-    margin:0px 50px 20px;
+    padding-top: 10px;
+    padding-left: 20px;
+    margin-bottom: 10px;
     display: grid;
-    grid-template-areas:"ava info";
-    width: 600px;
-    border: 1px solid #e8e8e8;
-    min-height: 100px;
-    background-color: white;
-    grid-template-columns: 25% 75%;
+    grid-template-areas:
+            "ava name"
+            "ava date"
+            "info info";
+    grid-template-columns: 85px 500px 65px;
+    grid-template-rows: 25px 30px 60px;
+    width: 650px;
+    min-height: 120px;
     border-radius: 10px;
+    background-color: #fbfcfc;
+}
+.points{
+    margin-left: 550px;
+    grid-area: points;
+    width: 30px;
+    height: 30px;
+}
+.date{
+    color: #808080;
+    grid-area: date;
 }
 .item img{
-    margin-top: 15px;
-    margin-left: 20px;
-    width: 70px;
-    height: 70px;
-    border-radius: 20%;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
     grid-area: ava;
 }
 .description{
     margin-top: 15px;
     grid-area: info;
     color: black;
+}
+.name{
+    grid-area: name;
 }

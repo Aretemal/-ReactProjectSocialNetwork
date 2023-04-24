@@ -1,13 +1,12 @@
 import React from 'react';
 import MyPostsContainer from './MyPosts/MyPostsContainer.jsx';
-import ProfileInfo from './ProfileInfo/ProfileInfo.jsx';
 import styles from './Profile.module.css';
+import ProfileInfoContainer from './ProfileInfo/ProfileInfoContainer.jsx';
 
-function Profile({ infoAuthUser, updateStatus, token }) {
+function Profile() {
   return (
-    <div className={styles.profile}>
-      <div className={styles.block} />
-      <ProfileInfo infoAuthUser={infoAuthUser} updateStatus={updateStatus} token={token} />
+    <div className={styles.container}>
+      <ProfileInfoContainer />
       <MyPostsContainer />
     </div>
   );

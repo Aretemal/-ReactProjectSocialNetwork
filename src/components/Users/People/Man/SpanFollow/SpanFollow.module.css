@@ -1,0 +1,6 @@
+.connection{
+    color: #00BFFF;
+}
+.connection:hover{
+    text-decoration: underline;
+}

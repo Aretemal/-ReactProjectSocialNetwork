@@ -1,8 +1,18 @@
-import { connect } from 'react-redux';
-import { login } from '../../redux/auth-reducer';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { authentication } from '../../store/slices/authSlice.js';
 import { Login } from './Login.jsx';
 
-const mapStateToProps = (state) => ({
-  isAuth: state.auth.isAuth,
-});
-export default connect(mapStateToProps, { login })(Login);
+function LoginContainer() {
+  const { isAuth } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  const onAuthentication = (data) => {
+    dispatch(authentication(data));
+  };
+
+  return (
+    <Login isAuth={isAuth} onAuthentication={onAuthentication} />
+  );
+}
+export default LoginContainer;

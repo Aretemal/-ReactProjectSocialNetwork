@@ -1,7 +1,11 @@
 .container{
     height: 100px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     -webkit-transition: background-color 0.5s;
+    background-color: #fbfcfc;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
 }
 .ava{
     margin-left: 10px;

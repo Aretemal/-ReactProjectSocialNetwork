@@ -1,25 +1,22 @@
-import React from 'react';
-import Preloader from '../common/Preloader/Preloader.jsx';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { withAuthRedirect } from '../../hoc/WithAuthRedirect.jsx';
+import { getAllPosts } from '../../store/slices/postSlice.js';
+import { getProfile } from '../../store/slices/profileSlice.js';
 import Profile from './Profile.jsx';
 
-class ProfileContainer extends React.Component {
-  componentDidMount() {
-    const {
-      getInfoAuthUser, token,
-    } = this.props;
-    getInfoAuthUser(token);
-  }
+function ProfileContainer() {
+  const { token } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
-  render() {
-    const {
-      infoAuthUser, updateStatus, token, isFetching,
-    } = this.props;
-    return (
-      <div>
-        {isFetching ? <Preloader />
-          : <Profile infoAuthUser={infoAuthUser} updateStatus={updateStatus} token={token} />}
-      </div>
-    );
-  }
+  useEffect(() => {
+    dispatch(getProfile(token));
+    dispatch(getAllPosts(token));
+  }, [dispatch, token]);
+
+  return (
+    <Profile />
+  );
 }
-export default ProfileContainer;
+const ProfileWithRedirect = withAuthRedirect(ProfileContainer);
+export default ProfileWithRedirect;

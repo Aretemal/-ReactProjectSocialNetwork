@@ -1,21 +1,15 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import * as connectNameForClasses from 'classnames';
-import styles from './DialogNavbar.module.css';
 import { DialogUserBoot } from './DialogUser/DialogUserBoot.jsx';
+import styles from './DialogNavbar.module.css';
 
 export function DialogsNavbar({
-  dialogs, selectDialogs,
+  dialogs, onSetDialogId,
 }) {
-  const defaultStyle = 'd-flex flex-column justify-content-start align-items-start';
   return (
-    <div className={
-      connectNameForClasses(defaultStyle, styles.container)
-    }
-    >
+    <div className={styles.container}>
       {dialogs.map((item) => (
         <DialogUserBoot
-          selectDialogs={selectDialogs}
+          onSetDialogId={onSetDialogId}
           key={item.id}
           name={item.attributes.name}
           id={item.id}

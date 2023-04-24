@@ -1,16 +1,25 @@
-import { connect } from 'react-redux';
-import {
-  addPost,
-  getAllPosts,
-} from '../../../redux/Profile-reducer';
-import MyPostsConnect from './MyPostsConnect.jsx';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { addPost } from '../../../store/slices/postSlice.js';
+import MyPosts from './MyPosts.jsx';
 
-const mapStateToProps = (state) => ({
-  posts: state.profilePage.posts,
-  newPostText: state.profilePage.newPostText,
-  token: state.auth.token,
-  ava: state.profilePage.ava,
-});
+function MyPostsContainer() {
+  const { posts } = useSelector((state) => state.post);
+  const { token } = useSelector((state) => state.auth);
+  const { firstName, lastName } = useSelector((state) => state.profile.profile);
 
-const MyPostsContainer = connect(mapStateToProps, { getAllPosts, addPost })(MyPostsConnect);
+  const dispatch = useDispatch();
+  const onAddPost = (newMessageText) => {
+    dispatch(addPost({ newMessageText, token }));
+  };
+
+  return (
+    <MyPosts
+      onAddPost={onAddPost}
+      posts={posts}
+      firstName={firstName}
+      lastName={lastName}
+    />
+  );
+}
 export default MyPostsContainer;
