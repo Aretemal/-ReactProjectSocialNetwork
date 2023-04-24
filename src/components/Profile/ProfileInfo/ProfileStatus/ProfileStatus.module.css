@@ -1,27 +1,26 @@
 .container{
     margin-top: 20px;
-    color: #808080;
+    color: black;
     margin-left: -4px;
-    width: 400px;
-    background-color: white;
+    width: 360px;
     display: flex;
     align-items:center;
-}
-.StatusIcon{
-    width: 40px;
-    height: 40px;
 }
 .status{
     margin-left: 10px;
     font-size: 20px;
-    color: #282828;
 }
 .inputStatus{
     border: none;
-    width: 200px;
+    outline: none;
+    width: 360px;
+    max-width: 370px;
     font-size: 20px;
-    background: #DAAD86;
     border-radius: 8px;
+    background-color: #fbfcfc;
+}
+.spanStatus{
+    max-width: 360px;
 }
 
 

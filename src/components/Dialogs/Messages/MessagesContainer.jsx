@@ -1,23 +1,35 @@
-import { connect } from 'react-redux';
-import { compose } from 'redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { withAuthRedirect } from '../../../hoc/WithAuthRedirect.jsx';
 import {
-  getAllMessage, selectDialogs,
+  getAllMessages,
   sendMessage,
-} from '../../../redux/Dialogs-reducer.js';
+} from '../../../store/slices/dialogSlice.js';
 import Messages from './Messages.jsx';
 
-const mapStateToProps = (state) => ({
-  messages: state.dialogsPage.messages,
-  token: state.auth.token,
-  activeId: state.dialogsPage.activeId,
-  authId: state.profilePage.authId,
-});
+function MessagesContainer() {
+  const { messages, activeId } = useSelector((state) => state.dialog);
+  const { token, authId } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
-const MessagesWithRedirect = withAuthRedirect(Messages);
-export default compose(
-  connect(
-    mapStateToProps,
-    { sendMessage, getAllMessage, selectDialogs },
-  ),
-)(MessagesWithRedirect);
+  useEffect(() => {
+    dispatch(getAllMessages({ token, id: activeId }));
+  }, [dispatch]);
+
+  const onSendMessage = (message, id) => {
+    dispatch(sendMessage({ token, message, id }));
+  };
+
+  return (
+    <Messages
+      activeId={activeId}
+      messages={messages}
+      token={token}
+      authId={authId}
+      onSendMessage={onSendMessage}
+    />
+  );
+}
+
+const MessagesWithRedirect = withAuthRedirect(MessagesContainer);
+export default MessagesWithRedirect;

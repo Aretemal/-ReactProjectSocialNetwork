@@ -1,16 +1,15 @@
-import { connect } from 'react-redux';
-import { compose } from 'redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { withAuthRedirect } from '../../hoc/WithAuthRedirect.jsx';
 import Dialogs from './Dialogs.jsx';
 
-const mapStateToProps = (state) => ({
-  activeId: state.dialogsPage.activeId,
-});
+function DialogContainer() {
+  const { activeId } = useSelector((state) => state.dialog);
 
-const DialogsWithRedirect = withAuthRedirect(Dialogs);
-export default compose(
-  connect(
-    mapStateToProps,
-    {},
-  ),
-)(DialogsWithRedirect);
+  return (
+    <Dialogs activeId={activeId} />
+  );
+}
+
+const DialogsWithRedirect = withAuthRedirect(DialogContainer);
+export default DialogsWithRedirect;

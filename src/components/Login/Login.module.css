@@ -1,42 +1,63 @@
-.login{
-    height: 450px;
-    background-color: white;
+.container{
+    border-radius: 10px;
+    margin-top: 50px;
+    margin-left: 360px;
+    height: 600px;
+    width: 900px;
+    display: grid;
+    background-color: rgb(250, 250 , 250);
+    grid-template-areas: "back info";
 }
-.block{
-    margin-top: 30px;
-    height: 190px;
-    grid-area: block;
-    width: 100%;
-    border-radius: 10px 10px 0 0;
-    background: linear-gradient(90deg, rgba(52,46,153,1) 0%, rgba(50,50,214,1) 14%, rgba(0,212,255,1) 100%);
+.backgroundTree{
+    border-radius: 20px 0 0 20px;
+    grid-area: back;
+    width: 600px;
+    height: 600px;
 }
 .error{
     color: red;
-    font-size: 20px;
+    font-size: 15px;
     margin-top: -9px;
     margin-left: 10px;
 }
-.formik{
-    padding-left: 450px;
-    padding-top: 100px;
+.form{
+    margin-left: -50px;
+    margin-top: 120px;
+    grid-area: info;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
-.name{
-    color: black;
-}
 .item{
     color: #cccccc;
 }
-.itemField{
+.form-item{
     display:flex;
     align-items:center;
 }
+.or{
+    color: #808080;
+    margin-left: 90px;
+    margin-top: 2px;
+}
+.registration{
+    outline: none;
+    margin-top: 5px;
+    border-radius: 5px;
+    display:flex;
+    align-items:center;
+    border: 1px solid #808080;
+    height: 40px;
+    width: 190px;
+    justify-content:center;
+    text-decoration:none;
+    color: #808080 !important;
+    font-size: 18px;
+}
 .field{
     outline:none;
-    width: 200px;
-    font-size: 20px;
+    width: 150px;
+    font-size: 15px;
     border: 1px solid #0d6efd;
     padding: 6px 0 4px 10px;
     background: #e8e8e8;
@@ -54,7 +75,8 @@
     padding-right: 5px;
     margin-right: 2px;
 }
-.but{
+.button{
+    outline: none;
     margin-top: 10px;
     -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
@@ -64,10 +86,10 @@
     align-items:center;
     border: none;
     height: 40px;
-    width: 90px;
+    width: 190px;
     justify-content:center;
     text-decoration:none;
     color: white;
-    font-size: 20px;
+    font-size: 18px;
 }
 

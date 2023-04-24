@@ -1,37 +1,28 @@
 import React from 'react';
 import Preloader from '../../common/Preloader/Preloader.jsx';
 import styles from './ProfileInfo.module.css';
-import ProfileStatusWithHooks from './ProfileStatus/ProfileStatusWithHooks.jsx';
+import ProfileStatus from './ProfileStatus/ProfileStatus.jsx';
 import DefaultAva from '../../../assets/images/DefaultAva.webp';
 
-function ProfileInfo({ infoAuthUser, updateStatus, token }) {
-  if (!infoAuthUser) {
+function ProfileInfo({ profile, onUpdateStatus }) {
+  if (!profile) {
     return <Preloader />;
   }
   return (
-    <div>
-      <div className={styles.container}>
-        <div className={styles.containerAva}>
-          {infoAuthUser.ava ? (
-            <img
-              className={styles.ava}
-              src={infoAuthUser.ava}
-              alt="Ava?"
-            />
-          ) : (
-            <img
-              className={styles.ava}
-              src={DefaultAva}
-              alt="Ava?"
-            />
-          )}
-
+    <div className={styles.container}>
+      <div className={styles.side}>
+        <div className={styles['ava-container']}>
+          <img
+            className={styles.ava}
+            src={DefaultAva}
+            alt="Ava"
+          />
         </div>
-        <div className={styles.descriptionBlock}>
+        <div className={styles.description}>
           <span className={styles.name}>
-            {`${infoAuthUser.firstName} ${infoAuthUser.lastName}`}
+            {`${profile.firstName} ${profile.lastName}`}
           </span>
-          <ProfileStatusWithHooks status={infoAuthUser.status} updateStatus={updateStatus} token={token} />
+          <ProfileStatus status={profile.status} onUpdateStatus={onUpdateStatus} />
         </div>
       </div>
     </div>

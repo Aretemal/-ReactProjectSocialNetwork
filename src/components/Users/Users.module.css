@@ -1,0 +1,14 @@
+.container{
+    width: 800px;
+    height: 90%;
+    background-color: white;
+    margin-top: 50px;
+    margin-left: 23%;
+    border-radius: 10px;
+}
+.pagination{
+    margin-left: 270px;
+}
+
+
+
