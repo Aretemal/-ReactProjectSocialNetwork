@@ -1,15 +1,15 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { withAuthRedirect } from '../../hoc/WithAuthRedirect.jsx';
-import Dialogs from './Dialogs.jsx';
+import { withAuthRedirect } from '../../hoc/WithAuthRedirect';
+import Dialogs from './Dialogs';
+import { useAppSelector } from '../../hook/hook';
 
-function DialogContainer() {
-  const { activeId } = useSelector((state) => state.dialog);
+const DialogContainer: React.FC = () => {
+  const { activeId } = useAppSelector((state) => state.dialog);
 
   return (
     <Dialogs activeId={activeId} />
   );
-}
+};
 
 const DialogsWithRedirect = withAuthRedirect(DialogContainer);
 export default DialogsWithRedirect;

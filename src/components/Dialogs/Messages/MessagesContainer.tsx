@@ -1,22 +1,22 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { withAuthRedirect } from '../../../hoc/WithAuthRedirect.jsx';
+import { withAuthRedirect } from '../../../hoc/WithAuthRedirect';
 import {
   getAllMessages,
   sendMessage,
-} from '../../../store/slices/dialogSlice.ts';
-import Messages from './Messages.jsx';
+} from '../../../store/slices/dialogSlice';
+import Messages from './Messages';
+import { useAppDispatch, useAppSelector } from '../../../hook/hook';
 
-function MessagesContainer() {
-  const { messages, activeId } = useSelector((state) => state.dialog);
-  const { token, authId } = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
+const MessagesContainer: React.FC = () => {
+  const { messages, activeId } = useAppSelector((state) => state.dialog);
+  const { token, authId } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getAllMessages({ token, id: activeId }));
   }, [dispatch]);
 
-  const onSendMessage = (message, id) => {
+  const onSendMessage = (message: string, id: string) => {
     dispatch(sendMessage({ token, message, id }));
   };
 
@@ -24,12 +24,11 @@ function MessagesContainer() {
     <Messages
       activeId={activeId}
       messages={messages}
-      token={token}
       authId={authId}
       onSendMessage={onSendMessage}
     />
   );
-}
+};
 
 const MessagesWithRedirect = withAuthRedirect(MessagesContainer);
 export default MessagesWithRedirect;

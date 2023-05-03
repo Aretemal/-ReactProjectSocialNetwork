@@ -1,11 +1,10 @@
 import React from 'react';
 import styles from './Message.module.css';
 import DefaultAva from '../../../../assets/images/DefaultAva.webp';
+import { IMessageProps } from '../MessagesInterface';
 
-export function Message({ message, senderId, authId }) {
-  senderId = +senderId;
-  authId = +authId;
-  if (senderId === authId) {
+const Message: React.FC<IMessageProps> = ({ message, senderId, authId }) => {
+  if (+senderId === +authId) {
     return (
       <div className={styles.authSender}>
         <div
@@ -27,4 +26,6 @@ export function Message({ message, senderId, authId }) {
       </div>
     </div>
   );
-}
+};
+
+export default Message;

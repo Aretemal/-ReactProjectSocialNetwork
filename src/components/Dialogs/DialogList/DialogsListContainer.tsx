@@ -1,33 +1,33 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { withAuthRedirect } from '../../../hoc/WithAuthRedirect.jsx';
+import { withAuthRedirect } from '../../../hoc/WithAuthRedirect';
 import {
   getAllDialogs,
   setDialogId,
-} from '../../../store/slices/dialogSlice.ts';
-import { DialogsNavbar } from './DialogsNavbar.jsx';
+} from '../../../store/slices/dialogSlice';
+import DialogsList from './DialogsList';
+import { useAppDispatch, useAppSelector } from '../../../hook/hook';
 
-function DialogsNavbarContainer() {
-  const { token } = useSelector((state) => state.auth);
-  const { dialogs } = useSelector((state) => state.dialog);
-  const dispatch = useDispatch();
+const DialogsListContainer: React.FC = () => {
+  const { token } = useAppSelector((state) => state.auth);
+  const { dialogs } = useAppSelector((state) => state.dialog);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getAllDialogs(token));
   }, [dispatch, token]);
 
-  const onSetDialogId = (id) => {
+  const onSetDialogId = (id: string): void => {
     dispatch(setDialogId(id));
   };
 
   return (
-    <DialogsNavbar
+    <DialogsList
       dialogs={dialogs}
       onSetDialogId={onSetDialogId}
     />
   );
-}
+};
 
-const DialogsNavbarWithRedirect = withAuthRedirect(DialogsNavbarContainer);
+const DialogsNavbarWithRedirect = withAuthRedirect(DialogsListContainer);
 
 export default DialogsNavbarWithRedirect;

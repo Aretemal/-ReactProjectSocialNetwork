@@ -1,20 +1,21 @@
 import React from 'react';
-import { DialogUserBoot } from './DialogUser/DialogUserBoot.jsx';
-import styles from './DialogNavbar.module.css';
+import DialogUser from './DialogUser/DialogUser';
+import styles from './DialogsList.module.css';
+import { IDialogsListProps } from './DialogsListInterface';
 
-export function DialogsNavbar({
+const DialogsList : React.FC<IDialogsListProps> = ({
   dialogs, onSetDialogId,
-}) {
-  return (
-    <div className={styles.container}>
-      {dialogs.map((item) => (
-        <DialogUserBoot
-          onSetDialogId={onSetDialogId}
-          key={item.id}
-          name={item.attributes.name}
-          id={item.id}
-        />
-      ))}
-    </div>
-  );
-}
+}) => (
+  <div className={styles.container}>
+    {dialogs.map((item) => (
+      <DialogUser
+        onSetDialogId={onSetDialogId}
+        key={item.id}
+        name={item.attributes.name}
+        id={item.id}
+      />
+    ))}
+  </div>
+);
+
+export default DialogsList;
