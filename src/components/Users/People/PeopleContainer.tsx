@@ -1,20 +1,20 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { approve, follow, unfollow } from '../../../store/slices/usersSlice.ts';
-import { People } from './People.jsx';
+import { approve, follow, unfollow } from '../../../store/slices/usersSlice';
+import People from './People';
+import { useAppDispatch, useAppSelector } from '../../../hook/hook';
 
 function PeopleContainer() {
-  const { users } = useSelector((state) => state.users);
-  const { token } = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
+  const { users } = useAppSelector((state) => state.users);
+  const { token } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
 
-  const onUnfollow = (id) => {
+  const onUnfollow = (id: string) => {
     dispatch(unfollow({ id, token }));
   };
-  const onFollow = (id) => {
+  const onFollow = (id: string) => {
     dispatch(follow({ id, token }));
   };
-  const onApprove = (id) => {
+  const onApprove = (id: string) => {
     dispatch(approve({ id, token }));
   };
 

@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { withAuthRedirect } from '../../hoc/WithAuthRedirect.jsx';
-import { requestUsers } from '../../store/slices/usersSlice.ts';
-import Users from './Users.jsx';
+import { withAuthRedirect } from '../../hoc/WithAuthRedirect';
+import { requestUsers } from '../../store/slices/usersSlice';
+import Users from './Users';
+import { useAppDispatch, useAppSelector } from '../../hook/hook';
 
-function UsersContainer() {
-  const { pageSize, currentPage } = useSelector((state) => state.users);
-  const { token } = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
+const UsersContainer: React.FC = () => {
+  const { pageSize, currentPage } = useAppSelector((state) => state.users);
+  const { token } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(requestUsers({ currentPage, pageSize, token }));
@@ -16,6 +16,6 @@ function UsersContainer() {
   return (
     <Users />
   );
-}
+};
 const UsersWithRedirect = withAuthRedirect(UsersContainer);
 export default UsersWithRedirect;

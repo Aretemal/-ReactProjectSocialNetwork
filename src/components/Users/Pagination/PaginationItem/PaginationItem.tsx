@@ -1,7 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+import { IPaginationItemProps } from '../../UsersInterface';
 
-export function PaginationItem({ number, isCurrent, onPageChanged }) {
+const PaginationItem: React.FC<IPaginationItemProps> = ({ number, isCurrent, onPageChanged }) => {
   const style = `page-item ${isCurrent && 'active'}`;
   return (
     <li className={style}>
@@ -14,4 +15,6 @@ export function PaginationItem({ number, isCurrent, onPageChanged }) {
       </button>
     </li>
   );
-}
+};
+
+export default PaginationItem;
