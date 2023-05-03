@@ -1,10 +1,13 @@
 /* eslint-disable no-unused-vars */
-export interface IOnAuthentication {
+export interface IOnRegistration {
     login: string,
     password: string,
+    firstName: string,
+    lastName: string,
+    email: string,
 }
 
 export interface ILoginProps {
-    onAuthentication: (data: IOnAuthentication) => void,
+    onRegistration: (data: IOnRegistration) => void,
     isAuth: boolean,
 }

@@ -1,18 +1,19 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { registration } from '../../store/slices/authSlice.ts';
-import { Registration } from './Registration.jsx';
+import { registration } from '../../store/slices/authSlice';
+import Registration from './Registration';
+import { useAppDispatch, useAppSelector } from '../../hook/hook';
+import { IOnRegistration } from './RegistrationInterface';
 
-export function RegistrationContainer() {
-  const { isAuth } = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
+const RegistrationContainer: React.FC = () => {
+  const { isAuth } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
 
-  const onRegistration = (data) => {
+  const onRegistration = (data: IOnRegistration) => {
     dispatch(registration(data));
   };
 
   return (
     <Registration isAuth={isAuth} onRegistration={onRegistration} />
   );
-}
+};
 export default RegistrationContainer;
