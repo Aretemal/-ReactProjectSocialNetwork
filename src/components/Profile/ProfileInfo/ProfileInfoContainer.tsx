@@ -1,18 +1,18 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { updateStatus } from '../../../store/slices/profileSlice.ts';
-import ProfileInfo from './ProfileInfo.jsx';
+import { updateStatus } from '../../../store/slices/profileSlice';
+import ProfileInfo from './ProfileInfo';
+import { useAppDispatch, useAppSelector } from '../../../hook/hook';
 
-function ProfileInfoContainer() {
-  const { profile } = useSelector((state) => state.profile);
-  const { token } = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
-  const onUpdateStatus = (status) => {
+const ProfileInfoContainer: React.FC = () => {
+  const { profile } = useAppSelector((state) => state.profile);
+  const { token } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
+  const onUpdateStatus = (status: string) => {
     dispatch(updateStatus({ status, token }));
   };
 
   return (
     <ProfileInfo profile={profile} onUpdateStatus={onUpdateStatus} />
   );
-}
+};
 export default ProfileInfoContainer;

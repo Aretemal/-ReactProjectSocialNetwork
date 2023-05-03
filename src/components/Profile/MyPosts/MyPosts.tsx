@@ -1,13 +1,14 @@
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import styles from './MyPosts.module.css';
-import Post from './Posts/Post.jsx';
+import Post from './Posts/Post';
 import DefaultAva from '../../../assets/images/DefaultAva.webp';
 import SendPost from '../../../assets/images/icons/SendPost.png';
+import { IMyPostsProps } from './MyPostsInterface';
 
-function MyPosts({
+const MyPosts: React.FC<IMyPostsProps> = ({
   posts, onAddPost, firstName, lastName,
-}) {
+}) => {
   const postsElements = posts
     .map((post) => (
       <Post
@@ -57,5 +58,5 @@ function MyPosts({
       </div>
     </div>
   );
-}
+};
 export default MyPosts;

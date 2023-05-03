@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styles from './ProfileStatus.module.css';
+import { IProfileStatusProps } from '../../ProfileInterface';
 
-function ProfileStatus({ status, onUpdateStatus }) {
+const ProfileStatus: React.FC<IProfileStatusProps> = ({ status, onUpdateStatus }) => {
   const [editMode, setEditMode] = useState(false);
   const [newStatus, setStatus] = useState(status);
   useEffect(() => {
@@ -14,8 +15,8 @@ function ProfileStatus({ status, onUpdateStatus }) {
     setEditMode(false);
     onUpdateStatus(newStatus);
   };
-  const onStatusChange = (e) => {
-    setStatus(e.currentTarget.value);
+  const onStatusChange = (value: string) => {
+    setStatus(value);
   };
   return (
     <div className={styles.container}>
@@ -29,7 +30,7 @@ function ProfileStatus({ status, onUpdateStatus }) {
       <div>
         <textarea
           className={styles.inputStatus}
-          onChange={onStatusChange}
+          onChange={(e) => onStatusChange(e.currentTarget.value)}
           autoFocus
           onBlur={deactivateEditMode}
           value={newStatus}
@@ -38,5 +39,5 @@ function ProfileStatus({ status, onUpdateStatus }) {
       )}
     </div>
   );
-}
+};
 export default ProfileStatus;
