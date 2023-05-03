@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { requestUsers } from '../../../store/slices/usersSlice.js';
+import { requestUsers } from '../../../store/slices/usersSlice.ts';
 import { Pagination } from './Pagination.jsx';
 
 function PaginationContainer() {

@@ -6,7 +6,7 @@ const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
 ESBuild.build({
   outdir: path.resolve(__dirname, '..', '..', 'build'),
-  entryPoints: [path.resolve(__dirname, '..', '..', 'src', 'index.jsx')],
+  entryPoints: [path.resolve(__dirname, '..', '..', 'src', 'index.tsx')],
   entryNames: 'index',
   bundle: true,
   minify: false,

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { registration } from '../../store/slices/authSlice.js';
+import { registration } from '../../store/slices/authSlice.ts';
 import { Registration } from './Registration.jsx';
 
 export function RegistrationContainer() {

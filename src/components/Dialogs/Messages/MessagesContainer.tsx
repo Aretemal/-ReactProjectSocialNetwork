@@ -4,7 +4,7 @@ import { withAuthRedirect } from '../../../hoc/WithAuthRedirect.jsx';
 import {
   getAllMessages,
   sendMessage,
-} from '../../../store/slices/dialogSlice.js';
+} from '../../../store/slices/dialogSlice.ts';
 import Messages from './Messages.jsx';
 
 function MessagesContainer() {

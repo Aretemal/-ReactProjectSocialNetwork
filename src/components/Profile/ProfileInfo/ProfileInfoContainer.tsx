@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateStatus } from '../../../store/slices/profileSlice.js';
+import { updateStatus } from '../../../store/slices/profileSlice.ts';
 import ProfileInfo from './ProfileInfo.jsx';
 
 function ProfileInfoContainer() {

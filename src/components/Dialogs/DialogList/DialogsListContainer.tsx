@@ -4,7 +4,7 @@ import { withAuthRedirect } from '../../../hoc/WithAuthRedirect.jsx';
 import {
   getAllDialogs,
   setDialogId,
-} from '../../../store/slices/dialogSlice.js';
+} from '../../../store/slices/dialogSlice.ts';
 import { DialogsNavbar } from './DialogsNavbar.jsx';
 
 function DialogsNavbarContainer() {
