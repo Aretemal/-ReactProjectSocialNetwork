@@ -1,11 +1,12 @@
 import React from 'react';
-import DialogsNavbarContainer from './DialogNavbar/DialogsNavbarContainer.jsx';
-import MessagesContainer from './Messages/MessagesContainer.jsx';
+import DialogsNavbarContainer from './DialogList/DialogsListContainer';
+import MessagesContainer from './Messages/MessagesContainer';
+import { IDialogsProps } from './DialogsInterface';
 
-function Dialogs({ activeId }) {
+const Dialogs: React.FC<IDialogsProps> = ({ activeId }) => {
   if (activeId) {
     return <MessagesContainer />;
   }
   return <DialogsNavbarContainer />;
-}
+};
 export default Dialogs;
