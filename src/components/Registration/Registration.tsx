@@ -5,11 +5,12 @@ import LockIcon from '../../assets/images/icons/LockIcon.png';
 import UserIcon from '../../assets/images/icons/UserIcon.png';
 import EmailIcon from '../../assets/images/icons/EmailIcon.png';
 import NameIcon from '../../assets/images/icons/NameIcon.png';
-import SignupSchema from '../../utils/validators/RegistrationSchema.js';
+import SignupSchema from '../../utils/validators/RegistrationSchema';
 import styles from './Registration.module.css';
 import BackgroundLogin from '../../assets/images/BackgroundLogin.jpg';
+import { ILoginProps } from './RegistrationInterface';
 
-export function Registration({ onRegistration, isAuth }) {
+const Registration: React.FC<ILoginProps> = ({ onRegistration, isAuth }) => {
   if (isAuth) {
     return <Navigate to='/profile' />;
   }
@@ -45,8 +46,8 @@ export function Registration({ onRegistration, isAuth }) {
                 name="login"
                 placeholder='Your login'
               />
-              {errors.userName && touched.userName ? (
-                <div className={styles.error}>{errors.userName}</div>
+              {errors.login && touched.login ? (
+                <div className={styles.error}>{errors.login}</div>
               ) : null}
             </div>
             <div className={styles.itemField}>
@@ -96,8 +97,8 @@ export function Registration({ onRegistration, isAuth }) {
             </div>
             <button
               disabled={
-                (
-                  (errors.userName && touched.userName)
+                !!(
+                  (errors.login && touched.login)
                   || (errors.password && touched.password)
                   || (errors.email && touched.email)
                   || (errors.firstName && touched.firstName)
@@ -118,4 +119,6 @@ export function Registration({ onRegistration, isAuth }) {
       </Formik>
     </div>
   );
-}
+};
+
+export default Registration;
