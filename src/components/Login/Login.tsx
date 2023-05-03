@@ -1,13 +1,14 @@
 import React from 'react';
 import { Navigate, NavLink } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
-import SignInSchema from '../../utils/validators/LoginSchema.js';
+import SignInSchema from '../../utils/validators/LoginSchema';
 import styles from './Login.module.css';
 import UserIcon from '../../assets/images/icons/UserIcon.png';
 import LockIcon from '../../assets/images/icons/LockIcon.png';
 import BackgroundLogin from '../../assets/images/BackgroundLogin.jpg';
+import { ILoginProps } from './LoginInterface';
 
-export function Login({ onAuthentication, isAuth }) {
+const Login:React.FC<ILoginProps> = ({ onAuthentication, isAuth }) => {
   if (isAuth) {
     return <Navigate to='/profile' />;
   }
@@ -31,8 +32,8 @@ export function Login({ onAuthentication, isAuth }) {
                 placeholder="Your login"
                 name="login"
               />
-              {errors.userName && touched.userName ? (
-                <div className={styles.error}>{errors.userName}</div>
+              {errors.login && touched.login ? (
+                <div className={styles.error}>{errors.login}</div>
               ) : null}
             </div>
             <div className={styles['form-item']}>
@@ -49,8 +50,8 @@ export function Login({ onAuthentication, isAuth }) {
             </div>
             <button
               disabled={
-                  ((errors.userName && touched.userName)
-                    || (errors.password && touched.password))
+                  (!!(errors.login && touched.login)
+                    || !!(errors.password && touched.password))
                 }
               className={styles.button}
               type="submit"
@@ -66,4 +67,6 @@ export function Login({ onAuthentication, isAuth }) {
       </Formik>
     </div>
   );
-}
+};
+
+export default Login;

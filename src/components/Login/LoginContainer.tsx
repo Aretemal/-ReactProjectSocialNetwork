@@ -1,18 +1,19 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { authentication } from '../../store/slices/authSlice.js';
-import { Login } from './Login.jsx';
+import { useAppSelector, useAppDispatch } from '../../hook/hook';
+import { authentication } from '../../store/slices/authSlice';
+import Login from './Login';
+import { IOnAuthentication } from './LoginInterface';
 
-function LoginContainer() {
-  const { isAuth } = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
+const LoginContainer:React.FC = () => {
+  const { isAuth } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
 
-  const onAuthentication = (data) => {
+  const onAuthentication = (data:IOnAuthentication) => {
     dispatch(authentication(data));
   };
 
   return (
     <Login isAuth={isAuth} onAuthentication={onAuthentication} />
   );
-}
+};
 export default LoginContainer;
