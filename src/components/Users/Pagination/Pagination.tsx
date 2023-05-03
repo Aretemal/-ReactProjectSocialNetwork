@@ -1,9 +1,8 @@
 import React from 'react';
-import {
-  PaginationItem,
-} from './PaginationItem/PaginationItem.jsx';
+import PaginationItem from './PaginationItem/PaginationItem';
+import { IPaginationProps } from '../UsersInterface';
 
-export function Pagination({ pagesCount, currentPage, onPageChanged }) {
+const Pagination: React.FC<IPaginationProps> = ({ pagesCount, currentPage, onPageChanged }) => {
   const items = [];
   for (let i = 1; i <= pagesCount; i++) {
     items.push(<PaginationItem
@@ -28,4 +27,6 @@ export function Pagination({ pagesCount, currentPage, onPageChanged }) {
       </ul>
     </nav>
   );
-}
+};
+
+export default Pagination;

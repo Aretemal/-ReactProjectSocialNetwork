@@ -1,16 +1,16 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { requestUsers } from '../../../store/slices/usersSlice.ts';
-import { Pagination } from './Pagination.jsx';
+import { requestUsers } from '../../../store/slices/usersSlice';
+import Pagination from './Pagination';
+import { useAppDispatch, useAppSelector } from '../../../hook/hook';
 
-function PaginationContainer() {
+const PaginationContainer: React.FC = () => {
   const {
     pageSize, totalUsersCount, currentPage,
-  } = useSelector((state) => state.users);
-  const { token } = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
+  } = useAppSelector((state) => state.users);
+  const { token } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
   const pagesCount = Math.ceil(totalUsersCount / pageSize);
-  const onPageChanged = (pageNumber) => {
+  const onPageChanged = (pageNumber: number) => {
     dispatch(requestUsers({ currentPage: pageNumber, pageSize, token }));
   };
 
@@ -21,5 +21,5 @@ function PaginationContainer() {
       currentPage={currentPage}
     />
   );
-}
+};
 export default PaginationContainer;

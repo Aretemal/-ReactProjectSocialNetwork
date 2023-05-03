@@ -1,9 +1,10 @@
 import React from 'react';
-import { Man } from './Man/Man.jsx';
+import Man from './Man/Man';
+import { IPeopleProps } from '../UsersInterface';
 
-export function People({
+const People: React.FC<IPeopleProps> = ({
   users, onUnfollow, onFollow, onApprove,
-}) {
+}) => {
   const items = users.map((user) => (
     <Man
       key={user.id}
@@ -19,4 +20,6 @@ export function People({
       {items}
     </div>
   );
-}
+};
+
+export default People;

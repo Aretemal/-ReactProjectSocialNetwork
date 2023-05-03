@@ -1,14 +1,14 @@
 import React from 'react';
 import styles from './SpanFollow.module.css';
+import { ISpanFollowProps } from '../../../UsersInterface';
 
-export function SpanFollow({
+const SpanFollow: React.FC<ISpanFollowProps> = ({
   content, onApprove, onFollow, onUnfollow, userId,
-}) {
+}) => {
   if (content === 'follow') {
     return (
       <span
         className={styles.connection}
-        type='submit'
         onClick={() => {
           onFollow(userId);
         }}
@@ -20,7 +20,6 @@ export function SpanFollow({
     return (
       <span
         className={styles.connection}
-        type='submit'
         onClick={() => {
           onUnfollow(userId);
         }}
@@ -32,7 +31,6 @@ export function SpanFollow({
   return (
     <span
       className={styles.connection}
-      type='submit'
       onClick={() => {
         onApprove(userId);
       }}
@@ -40,4 +38,6 @@ export function SpanFollow({
       Approve
     </span>
   );
-}
+};
+
+export default SpanFollow;
