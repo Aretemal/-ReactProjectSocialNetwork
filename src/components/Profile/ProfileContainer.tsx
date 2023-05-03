@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { withAuthRedirect } from '../../hoc/WithAuthRedirect.jsx';
-import { getAllPosts } from '../../store/slices/postSlice.js';
-import { getProfile } from '../../store/slices/profileSlice.js';
-import Profile from './Profile.jsx';
+import { withAuthRedirect } from '../../hoc/WithAuthRedirect';
+import { getAllPosts } from '../../store/slices/postSlice';
+import { getProfile } from '../../store/slices/profileSlice';
+import Profile from './Profile';
+import { useAppDispatch, useAppSelector } from '../../hook/hook';
 
-function ProfileContainer() {
-  const { token } = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
+const ProfileContainer: React.FC = () => {
+  const { token } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getProfile(token));
@@ -17,6 +17,6 @@ function ProfileContainer() {
   return (
     <Profile />
   );
-}
+};
 const ProfileWithRedirect = withAuthRedirect(ProfileContainer);
 export default ProfileWithRedirect;

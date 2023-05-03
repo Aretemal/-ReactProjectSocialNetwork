@@ -1,15 +1,14 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { addPost } from '../../../store/slices/postSlice.js';
-import MyPosts from './MyPosts.jsx';
+import { addPost } from '../../../store/slices/postSlice';
+import MyPosts from './MyPosts';
+import { useAppDispatch, useAppSelector } from '../../../hook/hook';
 
 function MyPostsContainer() {
-  const { posts } = useSelector((state) => state.post);
-  const { token } = useSelector((state) => state.auth);
-  const { firstName, lastName } = useSelector((state) => state.profile.profile);
-
-  const dispatch = useDispatch();
-  const onAddPost = (newMessageText) => {
+  const { posts } = useAppSelector((state) => state.post);
+  const { token } = useAppSelector((state) => state.auth);
+  const { firstName, lastName } = useAppSelector((state) => state.profile.profile);
+  const dispatch = useAppDispatch();
+  const onAddPost = (newMessageText: string) => {
     dispatch(addPost({ newMessageText, token }));
   };
 

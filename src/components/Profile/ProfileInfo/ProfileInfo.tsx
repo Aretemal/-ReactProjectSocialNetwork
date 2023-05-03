@@ -1,10 +1,11 @@
 import React from 'react';
-import Preloader from '../../common/Preloader/Preloader.jsx';
+import Preloader from '../../common/Preloader/Preloader';
 import styles from './ProfileInfo.module.css';
-import ProfileStatus from './ProfileStatus/ProfileStatus.jsx';
+import ProfileStatus from './ProfileStatus/ProfileStatus';
 import DefaultAva from '../../../assets/images/DefaultAva.webp';
+import { IProfileInfoProps } from '../ProfileInterface';
 
-function ProfileInfo({ profile, onUpdateStatus }) {
+const ProfileInfo: React.FC<IProfileInfoProps> = ({ profile, onUpdateStatus }) => {
   if (!profile) {
     return <Preloader />;
   }
@@ -27,5 +28,5 @@ function ProfileInfo({ profile, onUpdateStatus }) {
       </div>
     </div>
   );
-}
+};
 export default ProfileInfo;
