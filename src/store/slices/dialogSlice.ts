@@ -1,25 +1,33 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { dialogAPI } from '../../api/api.js';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { dialogAPI } from '../../api/api';
+import {
+  IDialogItem,
+  IMessageItem,
+  IGetAllMessages,
+  ISendMessage, IDialog,
+} from './interfaces/dialogInterface';
+import { AppDispatch } from '../store';
 
-const initialState = {
+const initialState: IDialog = {
   messages: [],
   dialogs: [],
-  activeId: null,
+  activeId: '',
 };
+
 const dialogSlice = createSlice({
   name: 'dialog',
   initialState,
   reducers: {
-    addMessage: (state, action) => {
+    addMessage: (state, action: PayloadAction<IMessageItem>) => {
       state.messages.push(action.payload);
     },
-    setAllMessages: (state, action) => {
+    setAllMessages: (state, action: PayloadAction<IMessageItem[]>) => {
       state.messages = action.payload;
     },
-    setAllDialogs: (state, action) => {
+    setAllDialogs: (state, action: PayloadAction<IDialogItem[]>) => {
       state.dialogs = action.payload;
     },
-    setDialogId: (state, action) => {
+    setDialogId: (state, action: PayloadAction<string>) => {
       state.activeId = action.payload;
     },
   },
@@ -30,21 +38,21 @@ export const {
 
 export default dialogSlice.reducer;
 
-export const sendMessage = createAsyncThunk(
+export const sendMessage = createAsyncThunk<void, ISendMessage, { dispatch: AppDispatch }>(
   'dialog/sendMessage',
   async (data, { dispatch }) => {
     const response = await dialogAPI.sendMessage(data);
     dispatch(addMessage(response.data.data));
   },
 );
-export const getAllMessages = createAsyncThunk(
+export const getAllMessages = createAsyncThunk<void, IGetAllMessages, { dispatch: AppDispatch }>(
   'dialog/getAllMessage',
   async (data, { dispatch }) => {
     const response = await dialogAPI.getAllMessages(data);
     dispatch(setAllMessages(response.data.data));
   },
 );
-export const getAllDialogs = createAsyncThunk(
+export const getAllDialogs = createAsyncThunk<void, string, { dispatch: AppDispatch }>(
   'dialog/getAllDialogs',
   async (token, { dispatch }) => {
     const response = await dialogAPI.getAllDialogs(token);

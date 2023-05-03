@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { approve, follow, unfollow } from '../../../store/slices/usersSlice.js';
+import { approve, follow, unfollow } from '../../../store/slices/usersSlice.ts';
 import { People } from './People.jsx';
 
 function PeopleContainer() {
