@@ -1,5 +1,4 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import styles from './Header.module.css';
 import ProfileIcon from '../../assets/images/icons/ProfileIcon.png';
@@ -8,9 +7,10 @@ import FindUsersIcon from '../../assets/images/icons/FindUsersIcon.png';
 import MusicIcon from '../../assets/images/icons/MusicIcon.png';
 import NewsIcon from '../../assets/images/icons/NewsIcon.png';
 import MessagesIcon from '../../assets/images/icons/MessagesIcon.png';
+import { useAppSelector } from '../../hook/hook';
 
-function Header() {
-  const { isAuth } = useSelector((state) => state.auth);
+const Header:React.FC = () => {
+  const { isAuth } = useAppSelector((state) => state.auth);
   if (!isAuth) {
     return (
       <div className={styles.nav}>
@@ -35,5 +35,5 @@ function Header() {
       </div>
     );
   } return <div />;
-}
+};
 export default Header;
