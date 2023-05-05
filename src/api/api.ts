@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { IContactAPI } from './IApi';
 
 const baseInstance = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
@@ -17,6 +18,17 @@ export const dialogAPI = {
   },
   getAllDialogs(token: string) {
     return makeInstanceWithToken(token).get('dialog/companion');
+  },
+};
+export const contactAPI: IContactAPI = {
+  getFriends(token, count = 'all') {
+    return makeInstanceWithToken(token).get(`friends/${count}`);
+  },
+  getSubscribers(token, count = 'all') {
+    return makeInstanceWithToken(token).get(`subscribers/${count}`);
+  },
+  getSubscriptions(token, count = 'all') {
+    return makeInstanceWithToken(token).get(`subscriptions/${count}`);
   },
 };
 export const profileAPI = {
