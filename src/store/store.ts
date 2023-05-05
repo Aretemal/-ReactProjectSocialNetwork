@@ -5,6 +5,7 @@ import postReducer from './slices/postSlice';
 import profileReducer from './slices/profileSlice';
 import usersReducer from './slices/usersSlice';
 import dialogReducer from './slices/dialogSlice';
+import contactReducer from './slices/contactSlice';
 
 const reducers = combineReducers({
   auth: authReducer,
@@ -12,6 +13,7 @@ const reducers = combineReducers({
   profile: profileReducer,
   users: usersReducer,
   dialog: dialogReducer,
+  contact: contactReducer,
 });
 
 const store = configureStore({

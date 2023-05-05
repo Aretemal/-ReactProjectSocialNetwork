@@ -5,8 +5,8 @@
     width: 70%;
     min-height: 900px;
     grid-template-areas:
-    "profInfo"
-    "posts";
+    "profInfo profInfo"
+    "posts contact";
     grid-template-rows: 300px 400px;
 }
 

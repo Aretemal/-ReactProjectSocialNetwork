@@ -11,7 +11,7 @@ import { useAppSelector } from '../../hook/hook';
 
 const Header:React.FC = () => {
   const { isAuth } = useAppSelector((state) => state.auth);
-  if (!isAuth) {
+  if (isAuth) {
     return (
       <div className={styles.nav}>
         <NavLink to="/profile" className={styles.item}>
