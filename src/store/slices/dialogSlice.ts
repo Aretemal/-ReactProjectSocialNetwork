@@ -7,6 +7,7 @@ import {
   ISendMessage, IDialog,
 } from './interfaces/dialogInterface';
 import { AppDispatch } from '../store';
+import socket from '../../socket/socket';
 
 const initialState: IDialog = {
   messages: [],
@@ -42,6 +43,7 @@ export const sendMessage = createAsyncThunk<void, ISendMessage, { dispatch: AppD
   'dialog/sendMessage',
   async (data, { dispatch }) => {
     const response = await dialogAPI.sendMessage(data);
+    socket.emit('send message', data);
     dispatch(addMessage(response.data.data));
   },
 );
@@ -49,6 +51,8 @@ export const getAllMessages = createAsyncThunk<void, IGetAllMessages, { dispatch
   'dialog/getAllMessage',
   async (data, { dispatch }) => {
     const response = await dialogAPI.getAllMessages(data);
+    console.log('join to room');
+    socket.emit('join to room', { id: data.id });
     dispatch(setAllMessages(response.data.data));
   },
 );

@@ -14,7 +14,7 @@ const MessagesContainer: React.FC = () => {
 
   useEffect(() => {
     dispatch(getAllMessages({ token, id: activeId }));
-  }, [dispatch]);
+  }, []);
 
   const onSendMessage = (message: string, id: string) => {
     dispatch(sendMessage({ token, message, id }));
