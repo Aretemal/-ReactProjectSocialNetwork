@@ -7,7 +7,6 @@ import {
   ISendMessage, IDialog,
 } from './interfaces/dialogInterface';
 import { AppDispatch } from '../store';
-import socket from '../../socket/socket';
 
 const initialState: IDialog = {
   messages: [],
@@ -29,7 +28,11 @@ const dialogSlice = createSlice({
       state.dialogs = action.payload;
     },
     setDialogId: (state, action: PayloadAction<string>) => {
-      state.activeId = action.payload;
+      if (action.payload) {
+        state.activeId = action.payload;
+      } else {
+        state.activeId = '';
+      }
     },
   },
 });
@@ -41,18 +44,16 @@ export default dialogSlice.reducer;
 
 export const sendMessage = createAsyncThunk<void, ISendMessage, { dispatch: AppDispatch }>(
   'dialog/sendMessage',
-  async (data, { dispatch }) => {
-    const response = await dialogAPI.sendMessage(data);
-    socket.emit('send message', data);
-    dispatch(addMessage(response.data.data));
+  async (data) => {
+    const response = await dialogAPI.sendMessage({ id: data.id, token: data.token, message: data.message });
+    data.socket.emit('DIALOG:SEND_MESSAGE', { response, id: data.id });
   },
 );
 export const getAllMessages = createAsyncThunk<void, IGetAllMessages, { dispatch: AppDispatch }>(
   'dialog/getAllMessage',
   async (data, { dispatch }) => {
-    const response = await dialogAPI.getAllMessages(data);
-    console.log('join to room');
-    socket.emit('join to room', { id: data.id });
+    const response = await dialogAPI.getAllMessages({ token: data.token, id: data.id });
+    data.socket.emit('DIALOG:JOIN_TO_DIALOG', { id: data.id });
     dispatch(setAllMessages(response.data.data));
   },
 );

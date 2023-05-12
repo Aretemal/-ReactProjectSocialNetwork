@@ -7,11 +7,13 @@ import {
   IRegistrationData,
 } from './interfaces/authInterface';
 import { AppDispatch } from '../store';
+import socket from '../../socket/socket';
 
 const initialState: AuthInterface = {
   isAuth: false,
   token: '',
   authId: '',
+  socket,
 };
 
 const authSlice = createSlice({
@@ -23,12 +25,14 @@ const authSlice = createSlice({
         state.token = '';
         state.isAuth = false;
         state.authId = '';
+        state.socket.connect();
       } else {
         state.token = `Bearer ${action.payload.token}`;
         state.isAuth = true;
         if (action.payload.id) {
           state.authId = action.payload.id;
         }
+        state.socket.disconnect();
       }
     },
   },

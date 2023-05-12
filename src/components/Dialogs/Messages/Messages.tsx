@@ -11,8 +11,12 @@ const Messages: React.FC<IMessagesProps> = ({
   onSendMessage,
   authId,
   activeId,
+  onBack,
 }) => (
   <div className={styles.container}>
+    <div className={styles.search}>
+      <div onClick={onBack}>Back</div>
+    </div>
     <div className={styles.messages}>
       {messages.map((item) => (
         <Message

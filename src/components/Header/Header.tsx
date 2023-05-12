@@ -7,10 +7,12 @@ import FindUsersIcon from '../../assets/images/icons/FindUsersIcon.png';
 import MusicIcon from '../../assets/images/icons/MusicIcon.png';
 import NewsIcon from '../../assets/images/icons/NewsIcon.png';
 import MessagesIcon from '../../assets/images/icons/MessagesIcon.png';
-import { useAppSelector } from '../../hook/hook';
+import { useAppDispatch, useAppSelector } from '../../hook/hook';
+import { toggleToken } from '../../store/slices/authSlice';
 
 const Header:React.FC = () => {
   const { isAuth } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
   if (isAuth) {
     return (
       <div className={styles.nav}>
@@ -32,6 +34,12 @@ const Header:React.FC = () => {
         <NavLink to="/users" className={styles.item}>
           <img className={styles.icon} src={FindUsersIcon} alt="FindUsersIcon" />
         </NavLink>
+        <div onClick={() => {
+          dispatch(toggleToken({}));
+        }}
+        >
+          Log out
+        </div>
       </div>
     );
   } return <div />;

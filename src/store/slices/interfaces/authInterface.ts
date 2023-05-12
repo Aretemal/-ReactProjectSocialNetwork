@@ -2,6 +2,7 @@ export interface AuthInterface {
     isAuth: boolean,
     token: string,
     authId: string,
+    socket: any,
 }
 
 export interface IToken{
