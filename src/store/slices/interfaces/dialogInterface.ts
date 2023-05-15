@@ -20,8 +20,9 @@ export interface IDialog {
 }
 export interface IGetAllMessages{
     token: string,
-    id: string,
+    dialogId: string,
     socket: any,
+    userId: string,
 }
 
 export interface ISendMessage{

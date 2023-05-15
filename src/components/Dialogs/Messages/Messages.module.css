@@ -1,5 +1,7 @@
 .wrap {
-    width: 100%;
+    margin-left: 5%;
+    margin-top: 30px;
+    width: 90%;
     height: 100vh;
     display: flex;
     align-items: center;
@@ -55,18 +57,31 @@
 .input {
     flex-grow: 1;
     height: 100%;
+    border: none;
+    background: none;
+    outline: none;
+    color: #e8e8e8;
+    font-size: 16px;
+    padding-top: 25px;
+    font-family: Rubik, Roboto, sans-serif;
 }
 
 .input input {
     width: 100%;
     height: 100%;
-    color: #fff;
+    color: #e8e8e8;
     font-size: 18px;
     font-weight: 500;
 }
 
 .button {
     text-align: center;
+    border: none;
+    background: none;
+    outline: none;
+    color: #e8e8e8;
+    font-size: 16px;
+    font-family: Rubik, Roboto, sans-serif;
 }
 
 .button input {
