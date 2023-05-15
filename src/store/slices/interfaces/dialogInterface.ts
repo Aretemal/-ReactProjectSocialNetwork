@@ -21,10 +21,12 @@ export interface IDialog {
 export interface IGetAllMessages{
     token: string,
     id: string,
+    socket: any,
 }
 
 export interface ISendMessage{
     token: string,
     id: string,
     message: string,
+    socket: any,
 }
