@@ -45,15 +45,14 @@ export default dialogSlice.reducer;
 export const sendMessage = createAsyncThunk<void, ISendMessage, { dispatch: AppDispatch }>(
   'dialog/sendMessage',
   async (data) => {
-    const response = await dialogAPI.sendMessage({ id: data.id, token: data.token, message: data.message });
-    data.socket.emit('DIALOG:SEND_MESSAGE', { response, id: data.id });
+    await dialogAPI.sendMessage({ id: data.id, token: data.token, message: data.message });
   },
 );
 export const getAllMessages = createAsyncThunk<void, IGetAllMessages, { dispatch: AppDispatch }>(
   'dialog/getAllMessage',
   async (data, { dispatch }) => {
-    const response = await dialogAPI.getAllMessages({ token: data.token, id: data.id });
-    data.socket.emit('DIALOG:JOIN_TO_DIALOG', { id: data.id });
+    const response = await dialogAPI.getAllMessages({ token: data.token, id: data.dialogId });
+    data.socket.emit('DIALOG:JOIN_TO_DIALOG', { dialogId: data.dialogId, usersId: data.userId });
     dispatch(setAllMessages(response.data.data));
   },
 );

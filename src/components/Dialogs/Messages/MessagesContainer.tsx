@@ -12,13 +12,18 @@ const MessagesContainer: React.FC<any> = ({ socket }) => {
   const { messages, activeId } = useAppSelector((state) => state.dialog);
   const { token, authId } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
+  const onGetMessage = (response: any) => {
+    dispatch(addMessage(response.message.data));
+  };
 
   useEffect(() => {
-    dispatch(getAllMessages({ token, id: activeId, socket }));
-    socket.on('DIALOG:GET_MESSAGE', (response: any) => {
-      console.log(response);
-      dispatch(addMessage(response.data.data));
-    });
+    dispatch(getAllMessages({
+      token, dialogId: activeId, socket, userId: authId,
+    }));
+    socket.on('DIALOG:SEND_MESSAGE', onGetMessage);
+    return () => {
+      socket.off('DIALOG:SEND_MESSAGE', onGetMessage);
+    };
   }, []);
 
   const onSendMessage = (message: string, id: string) => {
@@ -27,7 +32,7 @@ const MessagesContainer: React.FC<any> = ({ socket }) => {
     }));
   };
   const onBack = () => {
-    socket.emit('DIALOG:LEAVE_FROM_DIALOG', { id: activeId });
+    socket.emit('DIALOG:LEAVE_FROM_DIALOG', { dialogId: activeId, userId: authId });
     dispatch(setDialogId(''));
   };
 
