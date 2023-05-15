@@ -7,7 +7,6 @@ import { IOnAuthentication } from './LoginInterface';
 const LoginContainer:React.FC = () => {
   const { isAuth } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
-
   const onAuthentication = (data:IOnAuthentication) => {
     dispatch(authentication(data));
   };

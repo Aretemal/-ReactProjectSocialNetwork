@@ -3,9 +3,9 @@ import DialogsNavbarContainer from './DialogList/DialogsListContainer';
 import MessagesContainer from './Messages/MessagesContainer';
 import { IDialogsProps } from './DialogsInterface';
 
-const Dialogs: React.FC<IDialogsProps> = ({ activeId }) => {
+const Dialogs: React.FC<IDialogsProps> = ({ activeId, socket }) => {
   if (activeId) {
-    return <MessagesContainer />;
+    return <MessagesContainer socket={socket} />;
   }
   return <DialogsNavbarContainer />;
 };

@@ -12,7 +12,7 @@ import Header from './components/Header/Header';
 import Registration from './components/Registration/RegistrationContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 
-const App:React.FC = () => (
+const App:React.FC<any> = ({ socket }) => (
   <BrowserRouter>
     <div className='app-wrapper'>
       <Header />
@@ -20,7 +20,7 @@ const App:React.FC = () => (
         <Routes>
           <Route
             path="/dialogs"
-            element={<DialogsContainer />}
+            element={<DialogsContainer socket={socket} />}
           />
           <Route
             path='/profile'
