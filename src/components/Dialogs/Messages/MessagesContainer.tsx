@@ -1,15 +1,19 @@
 import React, { useEffect } from 'react';
+import { Socket } from 'socket.io-client';
 import { withAuthRedirect } from '../../../hoc/WithAuthRedirect';
 import {
   addMessage,
   getAllMessages,
-  sendMessage, setDialogId,
+  sendMessage, setActiveDialog,
 } from '../../../store/slices/dialogSlice';
 import Messages from './Messages';
 import { useAppDispatch, useAppSelector } from '../../../hook/hook';
 
-const MessagesContainer: React.FC<any> = ({ socket }) => {
-  const { messages, activeId } = useAppSelector((state) => state.dialog);
+interface MessagesProps{
+  socket: Socket,
+}
+const MessagesContainer: React.FC<MessagesProps> = ({ socket }) => {
+  const { messages, activeId, senders } = useAppSelector((state) => state.dialog);
   const { token, authId } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const onGetMessage = (response: any) => {
@@ -32,12 +36,13 @@ const MessagesContainer: React.FC<any> = ({ socket }) => {
     }));
   };
   const onBack = () => {
-    socket.emit('DIALOG:LEAVE_FROM_DIALOG', { dialogId: activeId, userId: authId });
-    dispatch(setDialogId(''));
+    socket.emit('DIALOG:LEAVE_DIALOG', { dialogId: activeId, userId: authId });
+    dispatch(setActiveDialog(''));
   };
 
   return (
     <Messages
+      senders={senders}
       activeId={activeId}
       messages={messages}
       authId={authId}

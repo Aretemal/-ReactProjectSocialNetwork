@@ -11,28 +11,34 @@ const Messages: React.FC<IMessagesProps> = ({
   authId,
   activeId,
   onBack,
+  senders,
 }) => (
   <div className={styles.wrap}>
     <div className={styles.header}>
       <div className={styles.title}>Dialog name</div>
-      <div className={styles.users}>Users online</div>
+      <div className={styles.users}> users online</div>
       <button
         className={styles.left}
         onClick={onBack}
         type='submit'
       >
-        Left the dialog
+        Exit
       </button>
     </div>
     <div className={styles.messages}>
-      {messages.map((item) => (
-        <Message
-          key={item.id}
-          message={item.attributes.message}
-          authId={authId}
-          senderId={item.attributes.senderId}
-        />
-      ))}
+      {messages.map((item) => {
+        const sender = senders.find((u) => u.id === `${item.attributes.senderId}`);
+        if (!sender) return null;
+        return (
+          <Message
+            sender={sender}
+            key={item.id}
+            message={item.attributes.message}
+            authId={authId}
+            senderId={item.attributes.senderId}
+          />
+        );
+      })}
     </div>
     <Formik
       initialValues={{ newMessageBody: '' }}

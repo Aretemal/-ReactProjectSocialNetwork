@@ -22,10 +22,10 @@ const persistConfig = {
   key: 'root',
   storage,
 };
-const persistedReducer = persistReducer(persistConfig, authReducer);
+const persistenceReducer = persistReducer(persistConfig, authReducer);
 
 const reducers = combineReducers({
-  auth: persistedReducer,
+  auth: persistenceReducer,
   post: postReducer,
   profile: profileReducer,
   users: usersReducer,

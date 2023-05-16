@@ -21,14 +21,14 @@ export const dialogAPI = {
   },
 };
 export const contactAPI: IContactAPI = {
-  getFriends(token, count = 'all') {
-    return makeInstanceWithToken(token).get(`friends/${count}`);
+  getFriends(token, perPage = 'all') {
+    return makeInstanceWithToken(token).get(`friends/${perPage}`);
   },
-  getSubscribers(token, count = 'all') {
-    return makeInstanceWithToken(token).get(`subscribers/${count}`);
+  getSubscribers(token, perPage = 'all') {
+    return makeInstanceWithToken(token).get(`subscribers/${perPage}`);
   },
-  getSubscriptions(token, count = 'all') {
-    return makeInstanceWithToken(token).get(`subscriptions/${count}`);
+  getSubscriptions(token, perPage = 'all') {
+    return makeInstanceWithToken(token).get(`subscriptions/${perPage}`);
   },
 };
 export const profileAPI = {

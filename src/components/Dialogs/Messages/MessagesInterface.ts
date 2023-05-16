@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 
-import { IMessageItem } from '../../../store/slices/interfaces/dialogInterface';
+import { IMessageItem, IUserItem } from '../../../store/slices/interfaces/dialogInterface';
 
 export interface IMessagesProps{
     messages: IMessageItem[],
@@ -8,9 +8,11 @@ export interface IMessagesProps{
     onBack: () => void,
     authId: string,
     activeId: string,
+    senders: IUserItem[],
 }
 export interface IMessageProps{
     message: string,
     authId: string,
     senderId: string,
+    sender: IUserItem,
 }

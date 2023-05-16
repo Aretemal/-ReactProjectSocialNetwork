@@ -1,53 +1,45 @@
-.message{
-    border-radius: 10px 10px 10px 0;
-    background-color: #e8e8e8;
-    height: 40px;
-    min-width: 80px;
-    max-width: 300px;
-    padding-right: 10px;
+.message {
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    width: 100%;
+}
+.text {
+    padding: 10px;
+    border-radius: 12px;
+    font-size: 15px;
+    color: #fff;
+}
+.img {
+    width: 30px;
+    height: 30px;
+}
+.user {
+    font-size: 14px;
+    color: rgb(176, 176, 176);
+}
+
+.user {
+    align-items: flex-start;
+}
+
+.user .text {
+    background: #514c4c;
+}
+
+.user .user {
     padding-left: 10px;
-    color: black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
-.ava{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-top: -15px;
-    margin-right: 10px;
+
+.me {
+    align-items: flex-end;
 }
-.authAva{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-top: -15px;
-    margin-left: 10px;
+
+.me .text {
+    background: #0d49d7;
 }
-.authMessage{
-    border-radius: 10px 10px 0 10px;
-    background-color: #0d6efd;
-    height: 40px;
-    min-width: 80px;
-    max-width: 300px;
+
+.me .user {
     padding-right: 10px;
-    padding-left: 10px;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.otherSender{
-    display: flex;
-    justify-content:flex-start;
-    margin-left: -10px;
-    align-items: center;
-    align-self: flex-start;
-}
-.authSender{
-    display: flex;
-    justify-content:flex-end;
-    align-items: center;
-    align-self: flex-end;
 }
