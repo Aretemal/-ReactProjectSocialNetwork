@@ -5,12 +5,14 @@ import {
   IMessageItem,
   IGetAllMessages,
   ISendMessage, IDialog,
+  ISetMessage,
 } from './interfaces/dialogInterface';
 import { AppDispatch } from '../store';
 
 const initialState: IDialog = {
   messages: [],
   dialogs: [],
+  senders: [],
   activeId: '',
 };
 
@@ -21,13 +23,14 @@ const dialogSlice = createSlice({
     addMessage: (state, action: PayloadAction<IMessageItem>) => {
       state.messages.push(action.payload);
     },
-    setAllMessages: (state, action: PayloadAction<IMessageItem[]>) => {
-      state.messages = action.payload;
+    setAllMessages: (state, action: PayloadAction<ISetMessage>) => {
+      state.messages = action.payload.data;
+      state.senders = action.payload.included;
     },
     setAllDialogs: (state, action: PayloadAction<IDialogItem[]>) => {
       state.dialogs = action.payload;
     },
-    setDialogId: (state, action: PayloadAction<string>) => {
+    setActiveDialog: (state, action: PayloadAction<string>) => {
       if (action.payload) {
         state.activeId = action.payload;
       } else {
@@ -37,7 +40,7 @@ const dialogSlice = createSlice({
   },
 });
 export const {
-  addMessage, setAllMessages, setDialogId, setAllDialogs,
+  addMessage, setAllMessages, setActiveDialog, setAllDialogs,
 } = dialogSlice.actions;
 
 export default dialogSlice.reducer;
@@ -52,8 +55,8 @@ export const getAllMessages = createAsyncThunk<void, IGetAllMessages, { dispatch
   'dialog/getAllMessage',
   async (data, { dispatch }) => {
     const response = await dialogAPI.getAllMessages({ token: data.token, id: data.dialogId });
-    data.socket.emit('DIALOG:JOIN_TO_DIALOG', { dialogId: data.dialogId, usersId: data.userId });
-    dispatch(setAllMessages(response.data.data));
+    data.socket.emit('DIALOG:JOIN_DIALOG', { dialogId: data.dialogId, usersId: data.userId });
+    dispatch(setAllMessages(response.data));
   },
 );
 export const getAllDialogs = createAsyncThunk<void, string, { dispatch: AppDispatch }>(

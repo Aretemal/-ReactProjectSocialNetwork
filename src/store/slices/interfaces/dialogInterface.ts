@@ -13,10 +13,30 @@ export interface IDialogItem {
         name: string,
     }
 }
+export interface IUserItem {
+    attributes: {
+        ava: any,
+        email: string,
+        firstName: string,
+        lastName: string,
+        login: string,
+        status: string,
+    },
+    id: string,
+    links: {
+        self: string,
+    },
+    type: string,
+}
+export interface ISetMessage {
+    data: IMessageItem[],
+    included: IUserItem[],
+}
 export interface IDialog {
     messages: IMessageItem[],
     dialogs: IDialogItem[],
     activeId: string,
+    senders: IUserItem[],
 }
 export interface IGetAllMessages{
     token: string,

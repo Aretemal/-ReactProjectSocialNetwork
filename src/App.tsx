@@ -5,6 +5,7 @@ import {
   Route,
   Routes,
 } from 'react-router-dom';
+import { Socket } from 'socket.io-client';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import Login from './components/Login/LoginContainer';
@@ -12,7 +13,10 @@ import Header from './components/Header/Header';
 import Registration from './components/Registration/RegistrationContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 
-const App:React.FC<any> = ({ socket }) => (
+interface AppProps {
+  socket: Socket,
+}
+const App:React.FC<AppProps> = ({ socket }) => (
   <BrowserRouter>
     <div className='app-wrapper'>
       <Header />
