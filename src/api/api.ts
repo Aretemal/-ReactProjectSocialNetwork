@@ -21,30 +21,48 @@ export const dialogAPI = {
   },
 };
 export const contactAPI: IContactAPI = {
-  getFriends(token, perPage = 'all') {
-    return makeInstanceWithToken(token).get(`friends/${perPage}`);
+  getFriends({ token, id }, perPage = 'all') {
+    return makeInstanceWithToken(token).get(`friends?perPage=${perPage}&id=${id}`);
   },
-  getSubscribers(token, perPage = 'all') {
-    return makeInstanceWithToken(token).get(`subscribers/${perPage}`);
+  getSubscribers({ token, id }, perPage = 'all') {
+    return makeInstanceWithToken(token).get(`subscribers?perPage=${perPage}&id=${id}`);
   },
-  getSubscriptions(token, perPage = 'all') {
-    return makeInstanceWithToken(token).get(`subscriptions/${perPage}`);
+  getSubscriptions({ token, id }, perPage = 'all') {
+    return makeInstanceWithToken(token).get(`subscriptions?perPage=${perPage}&id=${id}`);
   },
 };
 export const profileAPI = {
   getInfoAuthUser(token: string) {
     return makeInstanceWithToken(token).get('profile/user');
   },
+  getOne({ token, id }: { token: string, id: string }) {
+    return makeInstanceWithToken(token).get(`/user/${id}`);
+  },
   updateStatus({ status, token }: { status: string, token: string }) {
     return makeInstanceWithToken(token).put('profile/status', { status });
   },
 };
 export const postAPI = {
-  getAllPosts(token: string) {
-    return makeInstanceWithToken(token).get('profile/posts');
+  getAllPosts({ token, id } :{ token: string, id: string }) {
+    return makeInstanceWithToken(token).get(`profile/posts/${id}`);
+  },
+  getAllComments({ token, id } :{ token: string, id: string }) {
+    return makeInstanceWithToken(token).get(`/profile/posts/comments/${id}`);
+  },
+  getOnePost({ id, token }: { id: string, token: string }) {
+    return makeInstanceWithToken(token).get(`profile/posts/${id}`);
+  },
+  sendComment({ token, message, id }: { message: string, token: string, id: string }) {
+    return makeInstanceWithToken(token).post('/profile/posts/comment/create', { message, id });
   },
   addPost({ newMessageText, token }: { newMessageText: string, token: string }) {
     return makeInstanceWithToken(token).post('profile/posts', { newMessageText });
+  },
+  setLike({ id, token }: { id: string, token: string }) {
+    return makeInstanceWithToken(token).post(`profile/posts/like/${id}`);
+  },
+  deleteLike({ id, token }: { id: string, token: string }) {
+    return makeInstanceWithToken(token).delete(`profile/posts/unlike/${id}`);
   },
 };
 export const usersAPI = {
@@ -53,7 +71,24 @@ export const usersAPI = {
       `/users?page=${currentPage}&count=${pageSize}`,
     );
   },
+  getUserInfo({ id, token }: { token: string, id: string }) {
+    return makeInstanceWithToken(token).get(
+      `/user/${id}`,
+    );
+  },
 };
+export const settingsAPI = {
+  changeLang({ lang, token }: { lang: string, token: string }) {
+    return makeInstanceWithToken(token).put('/settings/language', { lang });
+  },
+  getLang(token: string) {
+    return makeInstanceWithToken(token).get('/settings/language');
+  },
+  changePassword({ newPassword, token }: { newPassword: string, token: string }) {
+    return makeInstanceWithToken(token).put('/settings/password', { newPassword });
+  },
+};
+
 export const followAPI = {
   follow({ id, token }: { id: string, token: string }) {
     return makeInstanceWithToken(token).post('follow', { id });
