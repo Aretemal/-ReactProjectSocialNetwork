@@ -24,8 +24,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
+../idea
 .vscode/
 .idea/
 .idea/codeStyles/Project.xml
-.idea
+src/.idea

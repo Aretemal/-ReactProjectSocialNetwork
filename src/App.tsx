@@ -12,6 +12,7 @@ import Login from './components/Login/LoginContainer';
 import Header from './components/Header/Header';
 import Registration from './components/Registration/RegistrationContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
+import SettingsContainer from './components/Settings/SettingsContainer';
 
 interface AppProps {
   socket: Socket,
@@ -27,7 +28,11 @@ const App:React.FC<AppProps> = ({ socket }) => (
             element={<DialogsContainer socket={socket} />}
           />
           <Route
-            path='/profile'
+            path="/settings"
+            element={<SettingsContainer />}
+          />
+          <Route
+            path="/profile/:login"
             element={<ProfileContainer />}
           />
           <Route

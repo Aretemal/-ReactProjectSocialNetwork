@@ -17,20 +17,23 @@ import profileReducer from './slices/profileSlice';
 import usersReducer from './slices/usersSlice';
 import dialogReducer from './slices/dialogSlice';
 import contactReducer from './slices/contactSlice';
+import settingsReducer from './slices/settingsSlice';
 
 const persistConfig = {
   key: 'root',
   storage,
 };
-const persistenceReducer = persistReducer(persistConfig, authReducer);
+const persistenceReducerAuth = persistReducer(persistConfig, authReducer);
+const persistenceReducerSettings = persistReducer(persistConfig, settingsReducer);
 
 const reducers = combineReducers({
-  auth: persistenceReducer,
+  auth: persistenceReducerAuth,
   post: postReducer,
   profile: profileReducer,
   users: usersReducer,
   dialog: dialogReducer,
   contact: contactReducer,
+  settings: persistenceReducerSettings,
 });
 
 const store = configureStore({

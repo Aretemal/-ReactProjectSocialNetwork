@@ -37,6 +37,7 @@ export interface IDialog {
     dialogs: IDialogItem[],
     activeId: string,
     senders: IUserItem[],
+    usersCount: number,
 }
 export interface IGetAllMessages{
     token: string,

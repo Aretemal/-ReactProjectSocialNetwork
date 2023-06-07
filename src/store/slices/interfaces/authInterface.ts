@@ -1,4 +1,5 @@
 export interface AuthInterface {
+    authLogin: string,
     isAuth: boolean,
     token: string,
     authId: string,
@@ -6,6 +7,7 @@ export interface AuthInterface {
 
 export interface IToken{
     token?: string,
+    login?: string,
     id?: string,
 }
 export interface IAuthenticationData {
