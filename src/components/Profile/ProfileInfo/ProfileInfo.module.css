@@ -11,13 +11,27 @@
     background-color: #fbfcfc;
     width: 1100px;
     height: 150px;
-    grid-template-areas:"ava info";
+    grid-template-areas:"ava info"
+                        "connection info";
     border-radius: 15px;
 }
 .description{
     margin-top: -80px;
     margin-left: 320px;
     grid-area: info;
+}
+.status{
+    margin-left: 10px;
+    font-size: 20px;
+}
+.connection{
+    color: black;
+    margin-left: 120px;
+    font-size: 20px;
+    grid-area: connection;
+}
+.spanStatus{
+    max-width: 360px;
 }
 .ava-container{
     margin-top: -10%;

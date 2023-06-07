@@ -5,7 +5,7 @@ import ProfileStatus from './ProfileStatus/ProfileStatus';
 import DefaultAva from '../../../assets/images/DefaultAva.webp';
 import { IProfileInfoProps } from '../ProfileInterface';
 
-const ProfileInfo: React.FC<IProfileInfoProps> = ({ profile, onUpdateStatus }) => {
+const ProfileInfo: React.FC<IProfileInfoProps> = ({ profile, isAuthProfile, onUpdateStatus }) => {
   if (!profile) {
     return <Preloader />;
   }
@@ -19,11 +19,21 @@ const ProfileInfo: React.FC<IProfileInfoProps> = ({ profile, onUpdateStatus }) =
             alt="Ava"
           />
         </div>
+        {!isAuthProfile ? (
+          <div className={styles.connection}>
+            {profile.hasConnection}
+          </div>
+        ) : null }
         <div className={styles.description}>
           <span className={styles.name}>
             {`${profile.firstName} ${profile.lastName}`}
           </span>
-          <ProfileStatus status={profile.status} onUpdateStatus={onUpdateStatus} />
+          { isAuthProfile ? <ProfileStatus status={profile.status} onUpdateStatus={onUpdateStatus} />
+            : (
+              <div className={styles.status}>
+                <span className={styles.spanStatus}>{ profile.status }</span>
+              </div>
+            ) }
         </div>
       </div>
     </div>
