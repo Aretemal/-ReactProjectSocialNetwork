@@ -10,4 +10,5 @@ export interface IOnRegistration {
 export interface ILoginProps {
     onRegistration: (data: IOnRegistration) => void,
     isAuth: boolean,
+    authLogin: string,
 }

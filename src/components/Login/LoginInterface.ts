@@ -7,4 +7,5 @@ export interface IOnAuthentication {
 export interface ILoginProps {
     onAuthentication: (data: IOnAuthentication) => void,
     isAuth: boolean,
+    authLogin: string,
 }
