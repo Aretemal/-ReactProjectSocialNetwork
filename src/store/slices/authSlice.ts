@@ -11,6 +11,7 @@ import { AppDispatch } from '../store';
 const initialState: AuthInterface = {
   isAuth: false,
   token: '',
+  authLogin: '',
   authId: '',
 };
 
@@ -18,23 +19,30 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
+    setLogin: (state, action: PayloadAction<string>) => {
+      state.authLogin = action.payload;
+    },
     toggleToken: (state, action: PayloadAction<IToken>) => {
       if (state.token) {
         state.token = '';
         state.isAuth = false;
         state.authId = '';
+        state.authLogin = '';
       } else {
         state.token = `Bearer ${action.payload.token}`;
         state.isAuth = true;
         if (action.payload.id) {
           state.authId = action.payload.id;
         }
+        if (action.payload.login) {
+          state.authLogin = action.payload.login;
+        }
       }
     },
   },
 });
 
-export const { toggleToken } = authSlice.actions;
+export const { toggleToken, setLogin } = authSlice.actions;
 
 export default authSlice.reducer;
 
@@ -42,7 +50,11 @@ export const authentication = createAsyncThunk<void, IAuthenticationData, { disp
   'auth/login',
   async (data, { dispatch }) => {
     const response = await authAPI.authentication(data);
-    dispatch(toggleToken({ id: response.data.data.id, token: response.data.data.attributes.token }));
+    dispatch(toggleToken({
+      id: response.data.data.id,
+      token: response.data.data.attributes.token,
+      login: response.data.data.attributes.login,
+    }));
   },
 );
 
@@ -50,6 +62,10 @@ export const registration = createAsyncThunk<void, IRegistrationData, { dispatch
   'auth/registration',
   async (data, { dispatch }) => {
     const response = await authAPI.registration(data);
-    dispatch(toggleToken({ id: response.data.data.id, token: response.data.data.attributes.token }));
+    dispatch(toggleToken({
+      id: response.data.data.id,
+      token: response.data.data.attributes.token,
+      login: response.data.data.attributes.login,
+    }));
   },
 );

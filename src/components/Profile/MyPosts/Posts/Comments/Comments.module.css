@@ -1,0 +1,35 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    flex-grow: 1;
+    max-height: 300px;
+    overflow-y: scroll;
+    width: 630px;
+    font-size: 18px;
+}
+.container-message{
+    grid-area: comm;
+    display: grid;
+    grid-template-areas:
+            "ava name"
+            "ava message";
+    grid-template-columns: 55px 300px ;
+}
+.ava{
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    grid-area: ava;
+}
+.name{
+    font-size: 17px;
+    grid-area: name;
+    color: #808080;
+}
+.message{
+    margin-top: -7px;
+    grid-area: message;
+    font-size: 20px;
+    width: max-content;
+}
