@@ -8,9 +8,11 @@ import LockIcon from '../../assets/images/icons/LockIcon.png';
 import BackgroundLogin from '../../assets/images/BackgroundLogin.jpg';
 import { ILoginProps } from './LoginInterface';
 
-const Login:React.FC<ILoginProps> = ({ onAuthentication, isAuth }) => {
+const Login:React.FC<ILoginProps> = ({
+  onAuthentication, isAuth, authLogin,
+}) => {
   if (isAuth) {
-    return <Navigate to='/profile' />;
+    return <Navigate to={`/profile/${authLogin}`} />;
   }
   return (
     <div className={styles.container}>
@@ -56,7 +58,7 @@ const Login:React.FC<ILoginProps> = ({ onAuthentication, isAuth }) => {
               className={styles.button}
               type="submit"
             >
-              Send
+              Sign in
             </button>
             <span className={styles.or}> Or </span>
             <NavLink to="/registration" className={styles.registration}>

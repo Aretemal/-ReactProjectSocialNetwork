@@ -10,9 +10,9 @@ import styles from './Registration.module.css';
 import BackgroundLogin from '../../assets/images/BackgroundLogin.jpg';
 import { ILoginProps } from './RegistrationInterface';
 
-const Registration: React.FC<ILoginProps> = ({ onRegistration, isAuth }) => {
+const Registration: React.FC<ILoginProps> = ({ onRegistration, isAuth, authLogin }) => {
   if (isAuth) {
-    return <Navigate to='/profile' />;
+    return <Navigate to={`/profile/${authLogin}`} />;
   }
   return (
     <div className={styles.container}>
