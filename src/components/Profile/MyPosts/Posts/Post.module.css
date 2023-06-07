@@ -4,37 +4,105 @@
     margin-bottom: 10px;
     display: grid;
     grid-template-areas:
-            "ava name"
-            "ava date"
-            "info info";
+            "ava name points"
+            "ava date points"
+            "info info points"
+            "like comments comments"
+            "sendcom sendcom sendcom"
+            "comm comm comm";
     grid-template-columns: 85px 500px 65px;
-    grid-template-rows: 25px 30px 60px;
+    grid-template-rows: 25px 30px 60px 50px;
     width: 650px;
     min-height: 120px;
     border-radius: 10px;
     background-color: #fbfcfc;
 }
+.count{
+    margin-top: 5px;
+    margin-left: 4px;
+    color: #808080;
+}
 .points{
-    margin-left: 550px;
     grid-area: points;
     width: 30px;
     height: 30px;
+}
+.likeIcon{
+    width: 30px;
+    height: 30px;
+}
+.like{
+    display: flex;
+    grid-area: like;
+}
+.comments{
+    display: flex;
+    grid-area: comments;
 }
 .date{
     color: #808080;
     grid-area: date;
 }
-.item img{
+.ava{
     width: 60px;
     height: 60px;
     border-radius: 50%;
     grid-area: ava;
 }
 .description{
+    width: max-content;
+    word-wrap: break-word;
     margin-top: 15px;
     grid-area: info;
     color: black;
 }
 .name{
     grid-area: name;
+}
+.form{
+    display: flex;
+    margin-bottom: 10px;
+    width: 600px;
+    background-color: #fbfcfc;
+    border-radius: 10px;
+    grid-area: sendcom;
+}
+.ava{
+    margin-left: 10px;
+    margin-top: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    grid-area: ava;
+}
+.avaf{
+    margin-top: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    grid-area: ava;
+}
+
+.field{
+    outline: none;
+    border: none;
+    color: black;
+    height: 50px;
+    width: 560px;
+    padding-left: 10px;
+    padding-top: 11px;
+    background-color: #fbfcfc;
+    border-radius: 10px;
+}
+.but{
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    border: none;
+    background-color: white;
+}
+.send-icon{
+    margin-top: 10px;
+    width: 30px;
+    height: 30px;
 }
