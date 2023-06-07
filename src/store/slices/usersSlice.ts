@@ -18,28 +18,31 @@ const usersSlice = createSlice({
   initialState,
   reducers: {
     setFollow: (state, action: PayloadAction<string>) => {
-      state.users = state.users.map((u) => {
+      const users = state.users.map((u) => {
         if (u.id === action.payload) {
           return { ...u, followed: 'unfollow' };
         }
         return u;
       });
+      state.users = users;
     },
     setApprove: (state, action: PayloadAction<string>) => {
-      state.users = state.users.map((u) => {
+      const users = state.users.map((u) => {
         if (u.id === action.payload) {
           return { ...u, followed: 'unfollow' };
         }
         return u;
       });
+      state.users = users;
     },
     setUnfollow: (state, action: PayloadAction<string>) => {
-      state.users = state.users.map((u) => {
+      const users = state.users.map((u) => {
         if (u.id === action.payload) {
           return { ...u, followed: 'approve' };
         }
         return u;
       });
+      state.users = users;
     },
     setUsers: (state, action: PayloadAction<IUser[]>) => {
       state.users = action.payload;

@@ -1,8 +1,16 @@
 /* eslint-disable no-unused-vars */
-import { IProfile } from '../../store/slices/interfaces/profileInterface';
 
-export interface IProfileInfoProps extends IProfile{
+export interface IProfileInfoProps {
+    profile: {
+        firstName: string,
+        lastName: string,
+        status: string,
+        login: string,
+        email: string,
+        hasConnection: string,
+    },
     onUpdateStatus: (status: string) => void,
+    isAuthProfile: boolean,
 }
 
 export interface IProfileStatusProps{
