@@ -1,10 +1,16 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import {
+  createAsyncThunk, createSlice, PayloadAction,
+} from '@reduxjs/toolkit';
 import { postAPI } from '../../api/api';
-import { IAddPost, IPostItem, IPost } from './interfaces/postInterface';
+import {
+  IAddPost, IPostItem, IPost, IOnLike, IOnLikePayload, ICommentItem,
+} from './interfaces/postInterface';
 import { AppDispatch } from '../store';
 
 const initialState: IPost = {
   posts: [],
+  comments: [],
+  selectedPost: '',
 };
 const postSlice = createSlice({
   name: 'post',
@@ -13,18 +19,49 @@ const postSlice = createSlice({
     setPosts: (state, action: PayloadAction<IPostItem[]>) => {
       state.posts = action.payload;
     },
+    selectCommentPost: (state, action: PayloadAction<string>) => {
+      state.selectedPost = action.payload;
+    },
+    setComments: (state, action: PayloadAction<ICommentItem[]>) => {
+      state.comments = action.payload;
+    },
     setPost: (state, action: PayloadAction<IPostItem>) => {
       state.posts.push(action.payload);
+    },
+    setComment: (state, action: PayloadAction<ICommentItem>) => {
+      state.comments.push(action.payload);
+    },
+    onLike: (state, action: PayloadAction<IOnLikePayload>) => {
+      const likedPost = state.posts.find((post) => +post.id === +action.payload.attributes.postLikeId);
+      if (likedPost) {
+        likedPost.attributes.isMeLike = !likedPost.attributes.isMeLike;
+        likedPost.attributes.likesCount += action.payload.like;
+      }
     },
     deletePost: (state, action: PayloadAction<IPostItem>) => {
       state.posts = state.posts.filter((p: IPostItem) => p.id !== action.payload.id);
     },
   },
 });
-export const { setPost, setPosts } = postSlice.actions;
+export const {
+  setPost, setComment, setComments, selectCommentPost, setPosts, onLike,
+} = postSlice.actions;
 
 export default postSlice.reducer;
 
+interface IGetAllComments {
+  token: string,
+  id: string,
+}
+
+export const getAllComments = createAsyncThunk<void, IGetAllComments, { dispatch: AppDispatch }>(
+  'post/getAllComments',
+  async (data, { dispatch }) => {
+    const response = await postAPI.getAllComments(data);
+    dispatch(setComments(response.data.data));
+    dispatch(selectCommentPost(data.id));
+  },
+);
 export const addPost = createAsyncThunk<void, IAddPost, { dispatch: AppDispatch }>(
   'post/addPost',
   async (data, { dispatch }) => {
@@ -32,10 +69,31 @@ export const addPost = createAsyncThunk<void, IAddPost, { dispatch: AppDispatch 
     dispatch(setPost(response.data.data));
   },
 );
-export const getAllPosts = createAsyncThunk<void, string, { dispatch: AppDispatch }>(
+export const sendComment = createAsyncThunk<void, { id: string, token: string, message: string }, { dispatch: AppDispatch }>(
+  'post/sendComment',
+  async (data, { dispatch }) => {
+    const response = await postAPI.sendComment(data);
+    dispatch(setComment(response.data.data));
+  },
+);
+export const getAllPosts = createAsyncThunk<void, { token: string, id: string }, { dispatch: AppDispatch }>(
   'post/getAllPosts',
-  async (token, { dispatch }) => {
-    const response = await postAPI.getAllPosts(token);
+  async (data, { dispatch }) => {
+    const response = await postAPI.getAllPosts(data);
     dispatch(setPosts(response.data.data));
+  },
+);
+export const setLike = createAsyncThunk<void, IOnLike, { dispatch: AppDispatch }>(
+  'post/setLike',
+  async (data, { dispatch }) => {
+    const response = await postAPI.setLike({ id: data.id, token: data.token });
+    dispatch(onLike({ ...response.data.data, like: 1 }));
+  },
+);
+export const deleteLike = createAsyncThunk<void, IOnLike, { dispatch: AppDispatch }>(
+  'post/deleteLike',
+  async (data, { dispatch }) => {
+    const response = await postAPI.deleteLike({ id: data.id, token: data.token });
+    dispatch(onLike({ ...response.data.data, like: -1 }));
   },
 );
