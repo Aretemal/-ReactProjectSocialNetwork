@@ -9,6 +9,7 @@ export interface IMessagesProps{
     authId: string,
     activeId: string,
     senders: IUserItem[],
+    usersCount: number,
 }
 export interface IMessageProps{
     message: string,

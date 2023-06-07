@@ -12,11 +12,16 @@ const Messages: React.FC<IMessagesProps> = ({
   activeId,
   onBack,
   senders,
+  usersCount,
 }) => (
   <div className={styles.wrap}>
     <div className={styles.header}>
       <div className={styles.title}>Dialog name</div>
-      <div className={styles.users}> users online</div>
+      <div className={styles.users}>
+        {usersCount / 2}
+        {' '}
+        users online
+      </div>
       <button
         className={styles.left}
         onClick={onBack}

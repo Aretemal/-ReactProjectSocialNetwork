@@ -1,9 +1,14 @@
 .message {
+    padding-right: -10px;
     width: max-content;
     display: flex;
     flex-direction: column;
     row-gap: 5px;
     width: 100%;
+}
+.block {
+    display: flex;
+    flex-direction: row;
 }
 .text {
     padding: 10px;
@@ -12,8 +17,11 @@
     color: #fff;
 }
 .img {
-    width: 30px;
-    height: 30px;
+    margin-left: 5px;
+    margin-bottom: 3px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
 }
 .user {
     font-size: 14px;

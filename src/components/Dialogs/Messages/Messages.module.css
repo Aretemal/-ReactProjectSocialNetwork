@@ -2,7 +2,7 @@
     margin-left: 20%;
     margin-top: 40px;
     width: 60%;
-    height: 100vh;
+    height: 70%;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -42,8 +42,11 @@
 }
 
 .form {
+    position: absolute;
+    top: 89%;
+    left: 20%;
     color: #fff;
-    width: 100%;
+    width: 60%;
     display: flex;
     align-items: center;
     background: rgb(51, 51, 51);
@@ -94,6 +97,8 @@
     flex-direction: column;
     row-gap: 20px;
     flex-grow: 1;
+    max-height: 74vh;
+    overflow-y: scroll;
     width: 100%;
     color: #fff;
     font-size: 18px;

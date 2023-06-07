@@ -14,6 +14,7 @@ const initialState: IDialog = {
   dialogs: [],
   senders: [],
   activeId: '',
+  usersCount: 0,
 };
 
 const dialogSlice = createSlice({
@@ -30,6 +31,9 @@ const dialogSlice = createSlice({
     setAllDialogs: (state, action: PayloadAction<IDialogItem[]>) => {
       state.dialogs = action.payload;
     },
+    setCountUsers: (state, action: PayloadAction<number>) => {
+      state.usersCount = action.payload;
+    },
     setActiveDialog: (state, action: PayloadAction<string>) => {
       if (action.payload) {
         state.activeId = action.payload;
@@ -40,7 +44,7 @@ const dialogSlice = createSlice({
   },
 });
 export const {
-  addMessage, setAllMessages, setActiveDialog, setAllDialogs,
+  addMessage, setCountUsers, setAllMessages, setActiveDialog, setAllDialogs,
 } = dialogSlice.actions;
 
 export default dialogSlice.reducer;
@@ -55,7 +59,7 @@ export const getAllMessages = createAsyncThunk<void, IGetAllMessages, { dispatch
   'dialog/getAllMessage',
   async (data, { dispatch }) => {
     const response = await dialogAPI.getAllMessages({ token: data.token, id: data.dialogId });
-    data.socket.emit('DIALOG:JOIN_DIALOG', { dialogId: data.dialogId, usersId: data.userId });
+    data.socket.emit('DIALOG:JOIN_DIALOG', { dialogId: data.dialogId, userId: data.userId });
     dispatch(setAllMessages(response.data));
   },
 );
