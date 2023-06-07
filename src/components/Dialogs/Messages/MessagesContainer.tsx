@@ -4,7 +4,7 @@ import { withAuthRedirect } from '../../../hoc/WithAuthRedirect';
 import {
   addMessage,
   getAllMessages,
-  sendMessage, setActiveDialog,
+  sendMessage, setActiveDialog, setCountUsers,
 } from '../../../store/slices/dialogSlice';
 import Messages from './Messages';
 import { useAppDispatch, useAppSelector } from '../../../hook/hook';
@@ -13,11 +13,17 @@ interface MessagesProps{
   socket: Socket,
 }
 const MessagesContainer: React.FC<MessagesProps> = ({ socket }) => {
-  const { messages, activeId, senders } = useAppSelector((state) => state.dialog);
+  const {
+    messages, activeId, senders, usersCount,
+  } = useAppSelector((state) => state.dialog);
   const { token, authId } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const onGetMessage = (response: any) => {
     dispatch(addMessage(response.message.data));
+  };
+
+  const onSetCountUsers = (response: any) => {
+    dispatch(setCountUsers(response.count));
   };
 
   useEffect(() => {
@@ -25,8 +31,10 @@ const MessagesContainer: React.FC<MessagesProps> = ({ socket }) => {
       token, dialogId: activeId, socket, userId: authId,
     }));
     socket.on('DIALOG:SEND_MESSAGE', onGetMessage);
+    socket.on('DIALOG:COUNT_USERS', onSetCountUsers);
     return () => {
       socket.off('DIALOG:SEND_MESSAGE', onGetMessage);
+      socket.off('DIALOG:COUNT_USERS', onSetCountUsers);
     };
   }, []);
 
@@ -42,6 +50,7 @@ const MessagesContainer: React.FC<MessagesProps> = ({ socket }) => {
 
   return (
     <Messages
+      usersCount={usersCount}
       senders={senders}
       activeId={activeId}
       messages={messages}

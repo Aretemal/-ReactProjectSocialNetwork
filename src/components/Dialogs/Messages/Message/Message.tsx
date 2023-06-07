@@ -9,7 +9,7 @@ const Message: React.FC<IMessageProps> = ({
   const itsMe = +senderId === +authId;
   const className = itsMe ? styles.me : styles.user;
   return (
-    <div>
+    <div className={`${styles.block} ${className}`}>
       <div className={`${styles.message} ${className}`}>
         <span className={styles.user}>{sender.attributes.login}</span>
         <div className={styles.text}>

@@ -29,14 +29,14 @@ export const { setFriends, setSubscribers, setSubscriptions } = contactSlice.act
 
 export default contactSlice.reducer;
 
-export const getUsersForProfile = createAsyncThunk<void, string, { dispatch: AppDispatch }>(
+export const getUsersForProfile = createAsyncThunk<void, { token: string, id: string }, { dispatch: AppDispatch }>(
   'contact/getUsersForProfile',
-  async (token, { dispatch }) => {
-    let response = await contactAPI.getFriends(token, '4');
+  async (data, { dispatch }) => {
+    let response = await contactAPI.getFriends(data, '4');
     dispatch(setFriends(response.data.data));
-    response = await contactAPI.getSubscribers(token, '4');
+    response = await contactAPI.getSubscribers(data, '4');
     dispatch(setSubscribers(response.data.data));
-    response = await contactAPI.getSubscriptions(token, '4');
+    response = await contactAPI.getSubscriptions(data, '4');
     dispatch(setSubscriptions(response.data.data));
   },
 );
