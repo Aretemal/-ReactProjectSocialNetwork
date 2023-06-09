@@ -1,9 +1,9 @@
-import { Field, Form, Formik } from 'formik';
-import React from 'react';
-import MessageSchema from '../../../utils/validators/MessageSchema';
+import React, { useEffect } from 'react';
 import styles from './Messages.module.css';
 import Message from './Message/Message';
 import { IMessagesProps } from './MessagesInterface';
+import Header from './Header/Header';
+import FormDialog from './FormDialog/FormDialog';
 
 const Messages: React.FC<IMessagesProps> = ({
   messages,
@@ -13,65 +13,38 @@ const Messages: React.FC<IMessagesProps> = ({
   onBack,
   senders,
   usersCount,
-}) => (
-  <div className={styles.wrap}>
-    <div className={styles.header}>
-      <div className={styles.title}>Dialog name</div>
-      <div className={styles.users}>
-        {usersCount / 2}
-        {' '}
-        users online
+}) => {
+  useEffect(() => {
+    const offsetY = document.getElementById('target');
+    if (offsetY) {
+      window.scrollTo(0, offsetY.offsetTop);
+    }
+  }, [messages]);
+  return (
+    <div className={styles.wrap}>
+      <div className={styles.top} />
+      <Header usersCount={usersCount} onBack={onBack} />
+      <div className={styles.messages}>
+        {messages.map((item, index) => {
+          const sender = senders.find((u) => u.id === `${item.attributes.senderId}`);
+          if (!sender) return null;
+          return (
+            <Message
+              index={index}
+              length={messages.length}
+              sender={sender}
+              key={item.id}
+              message={item.attributes.message}
+              authId={authId}
+              senderId={item.attributes.senderId}
+            />
+          );
+        })}
       </div>
-      <button
-        className={styles.left}
-        onClick={onBack}
-        type='submit'
-      >
-        Exit
-      </button>
+      <FormDialog activeId={activeId} onSendMessage={onSendMessage} />
+      <div className={styles.bottom} id="target" />
     </div>
-    <div className={styles.messages}>
-      {messages.map((item) => {
-        const sender = senders.find((u) => u.id === `${item.attributes.senderId}`);
-        if (!sender) return null;
-        return (
-          <Message
-            sender={sender}
-            key={item.id}
-            message={item.attributes.message}
-            authId={authId}
-            senderId={item.attributes.senderId}
-          />
-        );
-      })}
-    </div>
-    <Formik
-      initialValues={{ newMessageBody: '' }}
-      onSubmit={(values, { resetForm }) => {
-        onSendMessage(values.newMessageBody, activeId);
-        resetForm();
-      }}
-      validationSchema={MessageSchema}
-    >
-      {({ errors, touched }) => (
-        <Form className={styles.form}>
-          <Field
-            as="textarea"
-            className={styles.input}
-            name="newMessageBody"
-            placeholder='Enter text ...'
-          />
-          <button
-            disabled={!!(errors.newMessageBody && touched.newMessageBody)}
-            className={styles.button}
-            type='submit'
-          >
-            Send a message
-          </button>
-        </Form>
-      )}
-    </Formik>
-  </div>
-);
+  );
+};
 
 export default Messages;

@@ -13,6 +13,8 @@ export interface IMessagesProps{
 }
 export interface IMessageProps{
     message: string,
+    index: number,
+    length: number,
     authId: string,
     senderId: string,
     sender: IUserItem,

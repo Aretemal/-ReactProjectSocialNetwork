@@ -39,6 +39,7 @@ const dialogSlice = createSlice({
         state.activeId = action.payload;
       } else {
         state.activeId = '';
+        state.messages = [];
       }
     },
   },
