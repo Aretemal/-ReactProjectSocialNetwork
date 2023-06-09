@@ -8,7 +8,9 @@ import MyPosts from './MyPosts';
 import { useAppDispatch, useAppSelector } from '../../../hook/hook';
 
 function MyPostsContainer() {
-  const { posts, comments, selectedPost } = useAppSelector((state) => state.post);
+  const {
+    posts, comments, senders, selectedPost,
+  } = useAppSelector((state) => state.post);
   const { token, authLogin } = useAppSelector((state) => state.auth);
   const { firstName, lastName } = useAppSelector((state) => state.profile.profile);
   const dispatch = useAppDispatch();
@@ -23,8 +25,8 @@ function MyPostsContainer() {
   const onSendComment = ({ id, message }: { id: string, message: string }) => {
     dispatch(sendComment({ id, message, token }));
   };
-  const onSelectCommentPost = (id: string) => {
-    dispatch(getAllComments({ id, token }));
+  const onSelectCommentPost = ({ id, postId }: { postId: string, id: string }) => {
+    dispatch(getAllComments({ id, postId, token }));
   };
   const onDeleteLike = (id: string) => {
     dispatch(deleteLike({ id, token }));
@@ -33,6 +35,7 @@ function MyPostsContainer() {
   return (
     <MyPosts
       t={t}
+      senders={senders}
       isAuthProfile={authLogin === params.login}
       onSendComment={onSendComment}
       selectedPost={selectedPost}

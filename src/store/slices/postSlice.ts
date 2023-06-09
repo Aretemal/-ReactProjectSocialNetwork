@@ -3,13 +3,14 @@ import {
 } from '@reduxjs/toolkit';
 import { postAPI } from '../../api/api';
 import {
-  IAddPost, IPostItem, IPost, IOnLike, IOnLikePayload, ICommentItem,
+  IAddPost, IPostItem, IPost, IOnLike, IOnLikePayload, ICommentItem, ISetComments,
 } from './interfaces/postInterface';
 import { AppDispatch } from '../store';
 
 const initialState: IPost = {
   posts: [],
   comments: [],
+  senders: [],
   selectedPost: '',
 };
 const postSlice = createSlice({
@@ -22,8 +23,9 @@ const postSlice = createSlice({
     selectCommentPost: (state, action: PayloadAction<string>) => {
       state.selectedPost = action.payload;
     },
-    setComments: (state, action: PayloadAction<ICommentItem[]>) => {
-      state.comments = action.payload;
+    setComments: (state, action: PayloadAction<ISetComments>) => {
+      state.comments = action.payload.data;
+      state.senders = action.payload.included;
     },
     setPost: (state, action: PayloadAction<IPostItem>) => {
       state.posts.push(action.payload);
@@ -52,14 +54,19 @@ export default postSlice.reducer;
 interface IGetAllComments {
   token: string,
   id: string,
+  postId: string,
 }
 
 export const getAllComments = createAsyncThunk<void, IGetAllComments, { dispatch: AppDispatch }>(
   'post/getAllComments',
   async (data, { dispatch }) => {
-    const response = await postAPI.getAllComments(data);
-    dispatch(setComments(response.data.data));
-    dispatch(selectCommentPost(data.id));
+    if (data.postId === data.id) {
+      dispatch(selectCommentPost(''));
+    } else {
+      const response = await postAPI.getAllComments(data);
+      dispatch(setComments(response.data));
+      dispatch(selectCommentPost(data.id));
+    }
   },
 );
 export const addPost = createAsyncThunk<void, IAddPost, { dispatch: AppDispatch }>(

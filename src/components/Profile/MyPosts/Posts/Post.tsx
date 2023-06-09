@@ -14,7 +14,7 @@ import SendPost from '../../../../assets/images/icons/SendPost.png';
 const Post: React.FC<IPostProps> = ({
   message, isMeLike, likesCount, onSelectCommentPost, comments,
   firstName, lastName, createdAt, onSetLike, id, onDeleteLike,
-  commentCount, selectedPost, onSendComment,
+  commentCount, selectedPost, onSendComment, senders,
 }) => (
   <div className={styles.item}>
     <img src={DefaultAva} alt="DefaultAva" className={styles.ava} />
@@ -43,12 +43,12 @@ const Post: React.FC<IPostProps> = ({
       <div className={styles.count}>{likesCount}</div>
     </div>
     <div className={styles.comments}>
-      <div onClick={() => onSelectCommentPost(id)}>
+      <div onClick={() => onSelectCommentPost({ id, postId: selectedPost })}>
         <img src={CommentsIcon} alt="CommentsIcon" />
       </div>
       <div className={styles.count}>{commentCount}</div>
     </div>
-    {selectedPost === id && <Comments comments={comments} />}
+    {selectedPost === id && <Comments senders={senders} comments={comments} />}
     {selectedPost === id
       && (
       <Formik

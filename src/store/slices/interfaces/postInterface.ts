@@ -1,3 +1,5 @@
+import { IUserItem } from './dialogInterface';
+
 export interface IPostItem {
     id: string,
     type: string,
@@ -20,9 +22,14 @@ export interface ICommentItem {
         createdAt: string,
     }
 }
+export interface ISetComments {
+    data: ICommentItem[],
+    included: IUserItem[],
+}
 export interface IPost {
     posts: IPostItem[],
     comments: ICommentItem[],
+    senders: IUserItem[],
     selectedPost: string,
 }
 
