@@ -12,7 +12,7 @@ const DialogUser: React.FC<IDialogUserProps> = ({
       onSetDialogId(id);
     }}
   >
-    <img className={styles.ava} src={DefaultAva} alt="AVA" />
+    <img className={styles['dialog-ava']} src={DefaultAva} alt="AVA" />
     <span className='ms-3 fs-5 text-dark'>
       {`${name}`}
     </span>
