@@ -7,12 +7,13 @@ import SendPost from '../../../assets/images/icons/SendPost.png';
 import { IMyPostsProps } from './MyPostsInterface';
 
 const MyPosts: React.FC<IMyPostsProps> = ({
-  posts, onAddPost, firstName, t, lastName, isAuthProfile,
+  posts, onAddPost, firstName, t, lastName, isAuthProfile, senders,
   onSetLike, onDeleteLike, onSelectCommentPost, comments, selectedPost, onSendComment,
 }) => {
   const postsElements = posts
     .map((post) => (
       <Post
+        senders={senders}
         selectedPost={selectedPost}
         onSelectCommentPost={onSelectCommentPost}
         comments={comments}
