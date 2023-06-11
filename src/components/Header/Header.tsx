@@ -18,7 +18,6 @@ const Header:React.FC = () => {
   const onProfile = () => {
     dispatch(setId(authId));
   };
-
   if (isAuth) {
     return (
       <div className={styles.nav}>
@@ -43,7 +42,7 @@ const Header:React.FC = () => {
         <div
           className={styles.logout}
           onClick={() => {
-            dispatch(toggleToken({}));
+            dispatch(toggleToken());
           }}
         >
           <img

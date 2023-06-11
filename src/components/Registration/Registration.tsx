@@ -1,22 +1,35 @@
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import { Navigate, NavLink } from 'react-router-dom';
-import LockIcon from '../../assets/images/icons/LockIcon.png';
-import UserIcon from '../../assets/images/icons/UserIcon.png';
-import EmailIcon from '../../assets/images/icons/EmailIcon.png';
-import NameIcon from '../../assets/images/icons/NameIcon.png';
 import SignupSchema from '../../utils/validators/RegistrationSchema';
-import styles from './Registration.module.css';
+import styles from '../Login/Login.module.css';
 import BackgroundLogin from '../../assets/images/BackgroundLogin.jpg';
-import { ILoginProps } from './RegistrationInterface';
+import { IError } from '../../store/slices/interfaces/authInterface';
 
-const Registration: React.FC<ILoginProps> = ({ onRegistration, isAuth, authLogin }) => {
+interface IProps {
+  onRegistration: ({
+    login, firstName, lastName, password, email, // eslint-disable-line no-unused-vars
+  }: { login: string, firstName: string, lastName: string, password: string, email: string }) => void, // eslint-disable-line no-unused-vars
+  onDeleteError: (id: number) => void, // eslint-disable-line no-unused-vars
+  isAuth: boolean,
+  authLogin: string,
+  APIErrors: IError[],
+}
+const Registration: React.FC<IProps> = ({
+  onRegistration, isAuth, authLogin, APIErrors, onDeleteError,
+}) => {
   if (isAuth) {
     return <Navigate to={`/profile/${authLogin}`} />;
   }
+  let i = 0;
   return (
     <div className={styles.container}>
       <img className={styles.backgroundTree} src={BackgroundLogin} alt="BackgroundLogin" />
+      <img className={styles.backgroundTree} src={BackgroundLogin} alt="BackgroundLogin" />
+      { APIErrors ? APIErrors.map((error) => {
+        i += 1;
+        return <div key={i} className={styles['block-error']} onClick={() => onDeleteError(i - 1)}>{error.detail}</div>;
+      }) : null}
       <Formik
         initialValues={{
           login: '',
@@ -38,9 +51,8 @@ const Registration: React.FC<ILoginProps> = ({ onRegistration, isAuth, authLogin
       >
         {({ errors, touched }) => (
           <Form className={styles.form}>
-            <h1>Registration</h1>
+            <h1 className={styles.title}>Registration</h1>
             <div className={styles.itemField}>
-              <img className={styles.UserIcon} src={UserIcon} alt="UserIcon" />
               <Field
                 className={styles.field}
                 name="login"
@@ -51,7 +63,6 @@ const Registration: React.FC<ILoginProps> = ({ onRegistration, isAuth, authLogin
               ) : null}
             </div>
             <div className={styles.itemField}>
-              <img className={styles.LockIcon} src={LockIcon} alt="LockIcon" />
               <Field
                 className={styles.field}
                 name="password"
@@ -63,7 +74,6 @@ const Registration: React.FC<ILoginProps> = ({ onRegistration, isAuth, authLogin
               ) : null}
             </div>
             <div className={styles.itemField}>
-              <img className={styles.NameIcon} src={NameIcon} alt="NameIcon" />
               <Field
                 className={styles.field}
                 name="firstName"
@@ -74,9 +84,8 @@ const Registration: React.FC<ILoginProps> = ({ onRegistration, isAuth, authLogin
               ) : null}
             </div>
             <div className={styles.itemField}>
-              <img className={styles.NameIcon} src={NameIcon} alt="NameIcon" />
               <Field
-                className={`${styles.field} + ${styles.reds}`}
+                className={`${styles.field}`}
                 name="lastName"
                 placeholder="Last Name"
               />
@@ -85,7 +94,6 @@ const Registration: React.FC<ILoginProps> = ({ onRegistration, isAuth, authLogin
               ) : null}
             </div>
             <div className={styles.itemField}>
-              <img className={styles.EmailIcon} src={EmailIcon} alt="EmailIcon" />
               <Field
                 className={styles.field}
                 name="email"
@@ -105,7 +113,7 @@ const Registration: React.FC<ILoginProps> = ({ onRegistration, isAuth, authLogin
                   || (errors.lastName && touched.lastName)
                 )
               }
-              className={styles.but}
+              className={styles.button}
               type="submit"
             >
               Send
