@@ -3,20 +3,30 @@ import { Navigate, NavLink } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import SignInSchema from '../../utils/validators/LoginSchema';
 import styles from './Login.module.css';
-import UserIcon from '../../assets/images/icons/UserIcon.png';
-import LockIcon from '../../assets/images/icons/LockIcon.png';
 import BackgroundLogin from '../../assets/images/BackgroundLogin.jpg';
-import { ILoginProps } from './LoginInterface';
+import { IError } from '../../store/slices/interfaces/authInterface';
 
-const Login:React.FC<ILoginProps> = ({
-  onAuthentication, isAuth, authLogin,
+interface IProps {
+  onAuthentication: ({ login, password }: { login: string, password: string}) => void, // eslint-disable-line no-unused-vars
+  onDeleteError: (id: number) => void, // eslint-disable-line no-unused-vars
+  isAuth: boolean,
+  authLogin: string,
+  APIErrors: IError[],
+}
+const Login:React.FC<IProps> = ({
+  onAuthentication, isAuth, authLogin, APIErrors, onDeleteError,
 }) => {
   if (isAuth) {
     return <Navigate to={`/profile/${authLogin}`} />;
   }
+  let i = 0;
   return (
     <div className={styles.container}>
       <img className={styles.backgroundTree} src={BackgroundLogin} alt="BackgroundLogin" />
+      { APIErrors ? APIErrors.map((error) => {
+        i += 1;
+        return <div key={i} className={styles['block-error']} onClick={() => onDeleteError(i - 1)}>{error.detail}</div>;
+      }) : null}
       <Formik
         initialValues={{ login: '', password: '' }}
         onSubmit={(values) => {
@@ -26,9 +36,8 @@ const Login:React.FC<ILoginProps> = ({
       >
         {({ errors, touched }) => (
           <Form className={styles.form}>
-            <h1>Sign in</h1>
+            <h1 className={styles.title}>Sign in</h1>
             <div className={styles['form-item']}>
-              <img className={styles.UserIcon} src={UserIcon} alt="UserIcon" />
               <Field
                 className={styles.field}
                 placeholder="Your login"
@@ -39,7 +48,6 @@ const Login:React.FC<ILoginProps> = ({
               ) : null}
             </div>
             <div className={styles['form-item']}>
-              <img className={styles.LockIcon} src={LockIcon} alt="LockIcon" />
               <Field
                 className={styles.field}
                 placeholder="Your password"
@@ -62,7 +70,7 @@ const Login:React.FC<ILoginProps> = ({
             </button>
             <span className={styles.or}> Or </span>
             <NavLink to="/registration" className={styles.registration}>
-              Сreate a new account
+              Registration
             </NavLink>
           </Form>
         )}

@@ -1,19 +1,35 @@
-import React from 'react';
-import { registration } from '../../store/slices/authSlice';
+import React, { useEffect } from 'react';
+import { deleteAllError, deleteError, registration } from '../../store/slices/authSlice';
 import Registration from './Registration';
 import { useAppDispatch, useAppSelector } from '../../hook/hook';
-import { IOnRegistration } from './RegistrationInterface';
 
 const RegistrationContainer: React.FC = () => {
-  const { isAuth, authLogin } = useAppSelector((state) => state.auth);
+  const { isAuth, authLogin, errors } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
 
-  const onRegistration = (data: IOnRegistration) => {
-    dispatch(registration(data));
+  useEffect(() => {
+    dispatch(deleteAllError());
+  }, [dispatch]);
+  const onRegistration = ({
+    login, firstName, lastName, password, email,
+  }:
+    { login: string, firstName: string, lastName: string, password: string, email: string }) => {
+    dispatch(registration({
+      login, firstName, lastName, password, email,
+    }));
+  };
+  const onDeleteError = (id: number): void => {
+    dispatch(deleteError(id));
   };
 
   return (
-    <Registration authLogin={authLogin} isAuth={isAuth} onRegistration={onRegistration} />
+    <Registration
+      onDeleteError={onDeleteError}
+      authLogin={authLogin}
+      isAuth={isAuth}
+      onRegistration={onRegistration}
+      APIErrors={errors}
+    />
   );
 };
 export default RegistrationContainer;

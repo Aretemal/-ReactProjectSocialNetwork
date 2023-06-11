@@ -1,8 +1,14 @@
+export interface IError {
+    status: string,
+    title: string,
+    detail: string,
+}
 export interface AuthInterface {
     authLogin: string,
     isAuth: boolean,
     token: string,
     authId: string,
+    errors: IError[],
 }
 
 export interface IToken{
@@ -20,4 +26,12 @@ export interface IRegistrationData {
     firstName: string,
     lastName: string,
     email: string,
+}
+export interface ILRResponse {
+    id: string,
+    type: string,
+    attributes: {
+        token: string,
+        login: string,
+    },
 }

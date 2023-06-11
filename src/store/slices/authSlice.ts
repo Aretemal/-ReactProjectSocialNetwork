@@ -1,10 +1,11 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import {
+  createSlice, createAsyncThunk, PayloadAction, AnyAction,
+} from '@reduxjs/toolkit';
 import { authAPI } from '../../api/api';
 import {
   AuthInterface,
   IAuthenticationData,
-  IToken,
-  IRegistrationData,
+  IRegistrationData, ILRResponse, IError,
 } from './interfaces/authInterface';
 import { AppDispatch } from '../store';
 
@@ -13,7 +14,37 @@ const initialState: AuthInterface = {
   token: '',
   authLogin: '',
   authId: '',
+  errors: [],
 };
+
+function isError(action: AnyAction) {
+  return action.type.endsWith('rejected');
+}
+export const authentication = createAsyncThunk<ILRResponse,
+  IAuthenticationData,
+  { dispatch: AppDispatch, rejectValue: IError[] }
+>(
+  'auth/login',
+  async (data, { rejectWithValue }) => {
+    const response = await authAPI.authentication(data);
+    if (response.data.errors) {
+      return rejectWithValue(response.data.errors);
+    }
+    return response.data.data;
+  },
+);
+
+export const registration = createAsyncThunk<ILRResponse, IRegistrationData,
+  { dispatch: AppDispatch, rejectValue: IError[] }>(
+    'auth/registration',
+    async (data, { rejectWithValue }) => {
+      const response = await authAPI.registration(data);
+      if (response.data.errors) {
+        return rejectWithValue(response.data.errors);
+      }
+      return response.data.data;
+    },
+  );
 
 const authSlice = createSlice({
   name: 'auth',
@@ -22,50 +53,57 @@ const authSlice = createSlice({
     setLogin: (state, action: PayloadAction<string>) => {
       state.authLogin = action.payload;
     },
-    toggleToken: (state, action: PayloadAction<IToken>) => {
+    deleteError: (state, action: PayloadAction<number>) => {
+      const array: IError[] = [];
+      state.errors.forEach((error, index) => {
+        if (!(+index === +action.payload)) {
+          array.push(error);
+        }
+      });
+      state.errors = array;
+    },
+    deleteAllError: (state) => {
+      state.errors = [];
+    },
+    toggleToken: (state) => {
       if (state.token) {
         state.token = '';
         state.isAuth = false;
         state.authId = '';
         state.authLogin = '';
-      } else {
-        state.token = `Bearer ${action.payload.token}`;
-        state.isAuth = true;
-        if (action.payload.id) {
-          state.authId = action.payload.id;
-        }
-        if (action.payload.login) {
-          state.authLogin = action.payload.login;
-        }
       }
     },
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(authentication.pending, (state) => {
+        state.errors = [];
+      })
+      .addCase(registration.pending, (state) => {
+        state.errors = [];
+      })
+      .addCase(authentication.fulfilled, (state, action) => {
+        state.token = `Bearer ${action.payload.attributes.token}`;
+        state.errors = [];
+        state.authId = action.payload.id;
+        state.authLogin = action.payload.attributes.login;
+        state.isAuth = true;
+      })
+      .addCase(registration.fulfilled, (state, action) => {
+        state.token = `Bearer ${action.payload.attributes.token}`;
+        state.errors = [];
+        state.authId = action.payload.id;
+        state.authLogin = action.payload.attributes.login;
+        state.isAuth = true;
+      })
+      .addMatcher(isError, (state, action) => {
+        state.errors = action.payload;
+      });
+  },
 });
 
-export const { toggleToken, setLogin } = authSlice.actions;
+export const {
+  toggleToken, deleteAllError, deleteError, setLogin,
+} = authSlice.actions;
 
 export default authSlice.reducer;
-
-export const authentication = createAsyncThunk<void, IAuthenticationData, { dispatch: AppDispatch }>(
-  'auth/login',
-  async (data, { dispatch }) => {
-    const response = await authAPI.authentication(data);
-    dispatch(toggleToken({
-      id: response.data.data.id,
-      token: response.data.data.attributes.token,
-      login: response.data.data.attributes.login,
-    }));
-  },
-);
-
-export const registration = createAsyncThunk<void, IRegistrationData, { dispatch: AppDispatch }>(
-  'auth/registration',
-  async (data, { dispatch }) => {
-    const response = await authAPI.registration(data);
-    dispatch(toggleToken({
-      id: response.data.data.id,
-      token: response.data.data.attributes.token,
-      login: response.data.data.attributes.login,
-    }));
-  },
-);

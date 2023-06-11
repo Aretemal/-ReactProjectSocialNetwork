@@ -1,18 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '../../hook/hook';
-import { authentication } from '../../store/slices/authSlice';
+import { authentication, deleteAllError, deleteError } from '../../store/slices/authSlice';
 import Login from './Login';
-import { IOnAuthentication } from './LoginInterface';
 
 const LoginContainer:React.FC = () => {
-  const { isAuth, authLogin } = useAppSelector((state) => state.auth);
+  const {
+    isAuth, authLogin, errors,
+  } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
-  const onAuthentication = (data:IOnAuthentication) => {
-    dispatch(authentication(data));
+
+  useEffect(() => {
+    dispatch(deleteAllError());
+  }, [dispatch]);
+  const onAuthentication = ({ login, password }: { login: string, password: string}) => {
+    dispatch(authentication({ login, password }));
+  };
+  const onDeleteError = (id: number): void => {
+    dispatch(deleteError(id));
   };
 
   return (
-    <Login authLogin={authLogin} isAuth={isAuth} onAuthentication={onAuthentication} />
+    <Login
+      onDeleteError={onDeleteError}
+      authLogin={authLogin}
+      isAuth={isAuth}
+      onAuthentication={onAuthentication}
+      APIErrors={errors}
+    />
   );
 };
 export default LoginContainer;
