@@ -1,6 +1,11 @@
 .connection{
-    color: #00BFFF;
+    color: #666666;
+    border: none;
+    background-color: white;
+    margin-left: -5px;
+    cursor: pointer;
+    width: 20px;
 }
-.connection:hover{
-    text-decoration: underline;
+.container-disabled{
+    color: #808080;
 }

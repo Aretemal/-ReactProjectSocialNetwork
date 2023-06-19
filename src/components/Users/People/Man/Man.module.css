@@ -1,17 +1,33 @@
-.ava{
-    width: 100px;
-    height: 100px;
+.container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.block-image{
+    display: flex;
+    flex-direction: column;
+}
+.block-image_ava{
+    width: 75px;
+    height: 75px;
     border-radius: 50%;
 }
-.name{
-    margin-left: -8px;
-    color: black;
-    font-size: 20px;
-    text-decoration: none;
-}
-.content{
-    margin-top: 5px;
+.block-content{
+    margin-left: 20px;
+    margin-top: -10px;
     display: flex;
     font-size: 14px;
     flex-direction: column;
+}
+.block-content_name{
+    color: black;
+    font-size: 20px;
+    text-decoration: none;
+    margin-bottom: 2px;
+}
+.block-content_dialog{
+    margin-bottom: 3px;
+    color: #484848;
+    cursor: pointer;
 }

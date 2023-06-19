@@ -1,3 +1,5 @@
+import { IError } from './authInterface';
+
 export interface IUser {
     id: string,
     type: string,
@@ -17,7 +19,8 @@ export interface IUsers {
     totalUsersCount: number,
     currentPage: number,
     isFetching: boolean,
-    followingInProgress: string[],
+    followingInProgress: number[],
+    errors: IError[],
 }
 
 export interface IToggleIsFollowingProgress {
@@ -30,7 +33,11 @@ export interface IRequestUsers {
     pageSize: number,
     token: string,
 }
-
+export interface IRequestUsersResponse {
+    data: IUser[],
+    meta: { countOfUsers: number },
+    currentPage: number,
+}
 export interface IDataConnection {
     id: string,
     token: string,
