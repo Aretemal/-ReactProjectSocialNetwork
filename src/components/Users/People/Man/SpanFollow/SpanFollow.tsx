@@ -3,41 +3,18 @@ import styles from './SpanFollow.module.css';
 import { ISpanFollowProps } from '../../../UsersInterface';
 
 const SpanFollow: React.FC<ISpanFollowProps> = ({
-  content, onApprove, onFollow, onUnfollow, userId,
-}) => {
-  if (content === 'follow') {
-    return (
-      <span
-        className={styles.connection}
-        onClick={() => {
-          onFollow(userId);
-        }}
-      >
-        Follow
-      </span>
-    );
-  } if (content === 'unfollow') {
-    return (
-      <span
-        className={styles.connection}
-        onClick={() => {
-          onUnfollow(userId);
-        }}
-      >
-        Unfollow
-      </span>
-    );
-  }
-  return (
-    <span
-      className={styles.connection}
-      onClick={() => {
-        onApprove(userId);
-      }}
-    >
-      Approve
-    </span>
-  );
-};
+  content, onConnect, userId, isFollowingInProgress,
+}) => (
+  <button
+    type="submit"
+    disabled={isFollowingInProgress}
+    className={`${styles.connection} ${isFollowingInProgress ? styles['container-disabled'] : null}`}
+    onClick={() => {
+      onConnect(userId);
+    }}
+  >
+    {content}
+  </button>
+);
 
 export default SpanFollow;

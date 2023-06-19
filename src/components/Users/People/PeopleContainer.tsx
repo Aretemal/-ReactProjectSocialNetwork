@@ -4,7 +4,7 @@ import People from './People';
 import { useAppDispatch, useAppSelector } from '../../../hook/hook';
 
 function PeopleContainer() {
-  const { users } = useAppSelector((state) => state.users);
+  const { users, followingInProgress } = useAppSelector((state) => state.users);
   const { token } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
 
@@ -20,6 +20,7 @@ function PeopleContainer() {
 
   return (
     <People
+      followingInProgress={followingInProgress}
       users={users}
       onUnfollow={onUnfollow}
       onFollow={onFollow}

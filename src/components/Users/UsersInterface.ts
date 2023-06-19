@@ -17,22 +17,19 @@ export interface IPaginationItemProps {
 
 export interface IPeopleProps {
     users: IUser[],
-
+    followingInProgress: number[],
     onUnfollow: (id: string) => void,
     onFollow: (id: string) => void,
     onApprove: (id: string) => void,
 }
 export interface IManProps {
     user: IUser,
-
-    onUnfollow: (id: string) => void,
-    onFollow: (id: string) => void,
-    onApprove: (id: string) => void,
+    isFollowingInProgress: boolean,
+    onConnect: (id: string) => void,
 }
 export interface ISpanFollowProps {
+    isFollowingInProgress: boolean,
     userId: string,
     content: string,
-    onUnfollow: (id: string) => void,
-    onFollow: (id: string) => void,
-    onApprove: (id: string) => void,
+    onConnect: (id: string) => void,
 }

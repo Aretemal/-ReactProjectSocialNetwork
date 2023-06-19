@@ -20,6 +20,7 @@
     border-radius: 10px;
 }
 .field{
+    resize: none;
     outline: none;
     border: none;
     color: black;
