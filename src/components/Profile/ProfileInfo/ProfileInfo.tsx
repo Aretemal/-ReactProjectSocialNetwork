@@ -11,30 +11,28 @@ const ProfileInfo: React.FC<IProfileInfoProps> = ({ profile, isAuthProfile, onUp
   }
   return (
     <div className={styles.container}>
-      <div className={styles.side}>
-        <div className={styles['ava-container']}>
-          <img
-            className={styles.ava}
-            src={DefaultAva}
-            alt="Ava"
-          />
+      <img
+        className={styles['block-ava']}
+        src={DefaultAva}
+        alt="Ava"
+      />
+      {!isAuthProfile ? (
+        <div className={styles['block-connection']}>
+          {profile.hasConnection}
         </div>
-        {!isAuthProfile ? (
-          <div className={styles.connection}>
-            {profile.hasConnection}
-          </div>
-        ) : null }
-        <div className={styles.description}>
-          <span className={styles.name}>
-            {`${profile.firstName} ${profile.lastName}`}
-          </span>
-          { isAuthProfile ? <ProfileStatus status={profile.status} onUpdateStatus={onUpdateStatus} />
-            : (
-              <div className={styles.status}>
-                <span className={styles.spanStatus}>{ profile.status }</span>
-              </div>
-            ) }
-        </div>
+      ) : null }
+      <div className={styles['block-description']}>
+        <span className={styles['block-description_name']}>
+          {`${profile.firstName} ${profile.lastName}`}
+        </span>
+        { isAuthProfile ? <ProfileStatus status={profile.status} onUpdateStatus={onUpdateStatus} />
+          : (
+            <div className={styles['block-description_status-block']}>
+              <span className={styles['block-description_status-span']}>
+                { profile.status }
+              </span>
+            </div>
+          ) }
       </div>
     </div>
   );

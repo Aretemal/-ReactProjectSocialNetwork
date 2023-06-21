@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Socket } from 'socket.io-client';
+import { useTranslation } from 'react-i18next';
 import { withAuthRedirect } from '../../../hoc/WithAuthRedirect';
 import {
   addMessage,
@@ -18,6 +19,7 @@ const MessagesContainer: React.FC<MessagesProps> = ({ socket }) => {
   } = useAppSelector((state) => state.dialog);
   const { token, authId } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
   const onGetMessage = (response: any) => {
     dispatch(addMessage(response.message.data));
   };
@@ -50,6 +52,7 @@ const MessagesContainer: React.FC<MessagesProps> = ({ socket }) => {
 
   return (
     <Messages
+      t={t}
       usersCount={usersCount}
       senders={senders}
       activeId={activeId}

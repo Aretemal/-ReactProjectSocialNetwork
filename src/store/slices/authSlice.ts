@@ -1,5 +1,5 @@
 import {
-  createSlice, createAsyncThunk, PayloadAction, AnyAction,
+  createSlice, createAsyncThunk, PayloadAction, AnyAction, ActionReducerMapBuilder,
 } from '@reduxjs/toolkit';
 import { authAPI } from '../../api/api';
 import {
@@ -45,7 +45,32 @@ export const registration = createAsyncThunk<ILRResponse, IRegistrationData,
       return response.data.data;
     },
   );
-
+const authenticationReducers = (builder: ActionReducerMapBuilder<AuthInterface>) => {
+  builder
+    .addCase(authentication.pending, (state) => {
+      state.errors = [];
+    })
+    .addCase(registration.pending, (state) => {
+      state.errors = [];
+    })
+    .addCase(authentication.fulfilled, (state, action) => {
+      state.token = `Bearer ${action.payload.attributes.token}`;
+      state.errors = [];
+      state.authId = action.payload.id;
+      state.authLogin = action.payload.attributes.login;
+      state.isAuth = true;
+    })
+    .addCase(registration.fulfilled, (state, action) => {
+      state.token = `Bearer ${action.payload.attributes.token}`;
+      state.errors = [];
+      state.authId = action.payload.id;
+      state.authLogin = action.payload.attributes.login;
+      state.isAuth = true;
+    })
+    .addMatcher(isError, (state, action) => {
+      state.errors = action.payload;
+    });
+};
 const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -74,32 +99,7 @@ const authSlice = createSlice({
       }
     },
   },
-  extraReducers: (builder) => {
-    builder
-      .addCase(authentication.pending, (state) => {
-        state.errors = [];
-      })
-      .addCase(registration.pending, (state) => {
-        state.errors = [];
-      })
-      .addCase(authentication.fulfilled, (state, action) => {
-        state.token = `Bearer ${action.payload.attributes.token}`;
-        state.errors = [];
-        state.authId = action.payload.id;
-        state.authLogin = action.payload.attributes.login;
-        state.isAuth = true;
-      })
-      .addCase(registration.fulfilled, (state, action) => {
-        state.token = `Bearer ${action.payload.attributes.token}`;
-        state.errors = [];
-        state.authId = action.payload.id;
-        state.authLogin = action.payload.attributes.login;
-        state.isAuth = true;
-      })
-      .addMatcher(isError, (state, action) => {
-        state.errors = action.payload;
-      });
-  },
+  extraReducers: authenticationReducers,
 });
 
 export const {

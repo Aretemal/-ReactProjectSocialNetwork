@@ -7,6 +7,7 @@
 .block-image{
     display: flex;
     flex-direction: column;
+    cursor: pointer;
 }
 .block-image_ava{
     width: 75px;

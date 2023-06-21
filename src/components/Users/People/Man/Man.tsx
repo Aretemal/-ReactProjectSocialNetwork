@@ -6,18 +6,19 @@ import styles from './Man.module.css';
 import { IManProps } from '../../UsersInterface';
 
 const Man: React.FC<IManProps> = ({
-  user, onConnect, isFollowingInProgress,
+  user, onConnect, isFollowingInProgress, onUser, t,
 }) => (
   <div key={user.id} className={styles.container}>
     <div className={styles['block-image']}>
-      <NavLink to={`/profile/${user.attributes.login}`}>
+      <NavLink to={`/profile/${user.attributes.login}`} onClick={() => onUser({ profileId: user.id, login: user.attributes.login })}>
         <img alt="ava" className={styles['block-image_ava']} src={DefaultAva} />
       </NavLink>
     </div>
     <div className={styles['block-content']}>
       <div className={styles['block-content_name']}>{`${user.attributes.firstName} ${user.attributes.lastName}`}</div>
-      <div className={styles['block-content_dialog']}>Write message</div>
+      <div className={styles['block-content_dialog']}>{t('Write message')}</div>
       <SpanFollow
+        t={t}
         isFollowingInProgress={isFollowingInProgress}
         userId={user.id}
         onConnect={onConnect}

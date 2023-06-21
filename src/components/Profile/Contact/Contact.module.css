@@ -1,11 +1,10 @@
 .container{
     grid-area: contact;
-    margin-left: 20px;
 }
 .contactItem{
     margin-top: 13px;
     background-color: #fbfcfc;
-    width: 430px;
+    width: 400px;
     height: 150px;
     border-radius: 15px;
 }
