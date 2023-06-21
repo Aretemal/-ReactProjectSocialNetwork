@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { requestUsers } from '../../../store/slices/usersSlice';
 import Pagination from './Pagination';
 import { useAppDispatch, useAppSelector } from '../../../hook/hook';
@@ -9,6 +10,7 @@ const PaginationContainer: React.FC = () => {
   } = useAppSelector((state) => state.users);
   const { token } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
   const pagesCount = Math.ceil(totalUsersCount / pageSize);
   const onPageChanged = (pageNumber: number) => {
     dispatch(requestUsers({ currentPage: pageNumber, pageSize, token }));
@@ -16,6 +18,7 @@ const PaginationContainer: React.FC = () => {
 
   return (
     <Pagination
+      t={t}
       pagesCount={pagesCount}
       onPageChanged={onPageChanged}
       currentPage={currentPage}

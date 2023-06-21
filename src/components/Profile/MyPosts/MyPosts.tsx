@@ -51,7 +51,7 @@ const MyPosts: React.FC<IMyPostsProps> = ({
                 name="newMessageText"
                 type="textarea"
                 as="textarea"
-                placeholder={t('Enter text...')}
+                placeholder={`${t('Enter text ...')}`}
               />
               <button
                 className={styles.but}

@@ -6,6 +6,7 @@ import {
   IAddPost, IPostItem, IPost, IOnLike, IOnLikePayload, ICommentItem, ISetComments,
 } from './interfaces/postInterface';
 import { AppDispatch } from '../store';
+import { IUserItem } from './interfaces/dialogInterface';
 
 const initialState: IPost = {
   posts: [],
@@ -30,14 +31,19 @@ const postSlice = createSlice({
     setPost: (state, action: PayloadAction<IPostItem>) => {
       state.posts.push(action.payload);
     },
-    setComment: (state, action: PayloadAction<ICommentItem>) => {
-      state.comments.push(action.payload);
+    setComment: (state, action: PayloadAction<{ comment: ICommentItem[], sender: IUserItem[]}>) => {
+      state.comments.push(action.payload.comment[0]);
+      state.senders.push(action.payload.sender[0]);
     },
     onLike: (state, action: PayloadAction<IOnLikePayload>) => {
       const likedPost = state.posts.find((post) => +post.id === +action.payload.attributes.postLikeId);
       if (likedPost) {
         likedPost.attributes.isMeLike = !likedPost.attributes.isMeLike;
-        likedPost.attributes.likesCount += action.payload.like;
+        if (!likedPost.attributes.likesCount) {
+          likedPost.attributes.likesCount = '1';
+        } else {
+          likedPost.attributes.likesCount += action.payload.like;
+        }
       }
     },
     deletePost: (state, action: PayloadAction<IPostItem>) => {
@@ -76,13 +82,14 @@ export const addPost = createAsyncThunk<void, IAddPost, { dispatch: AppDispatch 
     dispatch(setPost(response.data.data));
   },
 );
-export const sendComment = createAsyncThunk<void, { id: string, token: string, message: string }, { dispatch: AppDispatch }>(
-  'post/sendComment',
-  async (data, { dispatch }) => {
-    const response = await postAPI.sendComment(data);
-    dispatch(setComment(response.data.data));
-  },
-);
+export const sendComment = createAsyncThunk<void, { id: string, token: string, message: string}
+  , { dispatch: AppDispatch }>(
+    'post/sendComment',
+    async (data, { dispatch }) => {
+      const response = await postAPI.sendComment(data);
+      dispatch(setComment({ comment: response.data.data, sender: response.data.included }));
+    },
+  );
 export const getAllPosts = createAsyncThunk<void, { token: string, id: string }, { dispatch: AppDispatch }>(
   'post/getAllPosts',
   async (data, { dispatch }) => {

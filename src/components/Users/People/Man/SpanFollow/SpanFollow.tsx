@@ -3,7 +3,7 @@ import styles from './SpanFollow.module.css';
 import { ISpanFollowProps } from '../../../UsersInterface';
 
 const SpanFollow: React.FC<ISpanFollowProps> = ({
-  content, onConnect, userId, isFollowingInProgress,
+  content, onConnect, userId, isFollowingInProgress, t,
 }) => (
   <button
     type="submit"
@@ -13,7 +13,7 @@ const SpanFollow: React.FC<ISpanFollowProps> = ({
       onConnect(userId);
     }}
   >
-    {content}
+    {t(content)}
   </button>
 );
 

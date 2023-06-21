@@ -6,11 +6,13 @@ import IconSend from '../../../../assets/images/icons/IconSend.png';
 
 interface IProps {
   onSendMessage: (message: string, id: string) => void, // eslint-disable-line no-unused-vars
+  t: (a: string) => any, // eslint-disable-line no-unused-vars
   activeId: string,
 }
 const FormDialog: React.FC<IProps> = ({
   onSendMessage,
   activeId,
+  t,
 }) => (
   <Formik
     initialValues={{ message: '' }}
@@ -29,7 +31,7 @@ const FormDialog: React.FC<IProps> = ({
           as="textarea"
           className={styles['block-form_input']}
           name="message"
-          placeholder='Enter text ...'
+          placeholder={t('Enter text ...')}
         />
         <button
           disabled={!!(errors.message && touched.message)}

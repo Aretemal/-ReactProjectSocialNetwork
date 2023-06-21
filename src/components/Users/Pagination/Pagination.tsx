@@ -3,7 +3,9 @@ import PaginationItem from './PaginationItem/PaginationItem';
 import { IPaginationProps } from '../UsersInterface';
 import styles from './Pagination.module.css';
 
-const Pagination: React.FC<IPaginationProps> = ({ pagesCount, currentPage, onPageChanged }) => {
+const Pagination: React.FC<IPaginationProps> = ({
+  pagesCount, t, currentPage, onPageChanged,
+}) => {
   const items = [];
   for (let i = 1; i <= pagesCount; i++) {
     items.push(<PaginationItem
@@ -20,11 +22,11 @@ const Pagination: React.FC<IPaginationProps> = ({ pagesCount, currentPage, onPag
       <nav aria-label="Page navigation example">
         <ul className="pagination">
           <li className="page-item">
-            <button type="submit" className={previousStyle} onClick={() => { onPageChanged(currentPage - 1); }}>Previous</button>
+            <button type="submit" className={previousStyle} onClick={() => { onPageChanged(currentPage - 1); }}>{t('Previous')}</button>
           </li>
           {items}
           <li className="page-item">
-            <button type="submit" className={nextStyle} onClick={() => { onPageChanged(currentPage + 1); }}>Next</button>
+            <button type="submit" className={nextStyle} onClick={() => { onPageChanged(currentPage + 1); }}>{t('Next')}</button>
           </li>
         </ul>
       </nav>

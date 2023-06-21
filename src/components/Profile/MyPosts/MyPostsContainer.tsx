@@ -23,7 +23,9 @@ function MyPostsContainer() {
     dispatch(setLike({ id, token }));
   };
   const onSendComment = ({ id, message }: { id: string, message: string }) => {
-    dispatch(sendComment({ id, message, token }));
+    dispatch(sendComment({
+      id, message, token,
+    }));
   };
   const onSelectCommentPost = ({ id, postId }: { postId: string, id: string }) => {
     dispatch(getAllComments({ id, postId, token }));

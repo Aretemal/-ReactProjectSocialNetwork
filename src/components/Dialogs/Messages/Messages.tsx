@@ -13,6 +13,7 @@ const Messages: React.FC<IMessagesProps> = ({
   onBack,
   senders,
   usersCount,
+  t,
 }) => {
   useEffect(() => {
     const offsetY = document.getElementById('target');
@@ -23,7 +24,7 @@ const Messages: React.FC<IMessagesProps> = ({
   return (
     <div className={styles.wrap}>
       <div className={styles.top} />
-      <Header usersCount={usersCount} onBack={onBack} />
+      <Header usersCount={usersCount} onBack={onBack} t={t} />
       <div className={styles.messages}>
         {messages.map((item, index) => {
           const sender = senders.find((u) => u.id === `${item.attributes.senderId}`);
@@ -41,7 +42,7 @@ const Messages: React.FC<IMessagesProps> = ({
           );
         })}
       </div>
-      <FormDialog activeId={activeId} onSendMessage={onSendMessage} />
+      <FormDialog activeId={activeId} onSendMessage={onSendMessage} t={t} />
       <div className={styles.bottom} id="target" />
     </div>
   );

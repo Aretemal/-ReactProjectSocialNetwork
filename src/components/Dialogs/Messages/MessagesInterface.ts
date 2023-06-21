@@ -5,6 +5,7 @@ import { IMessageItem, IUserItem } from '../../../store/slices/interfaces/dialog
 export interface IMessagesProps{
     messages: IMessageItem[],
     onSendMessage: (message: string, id: string) => void,
+    t: (a: string) => any,
     onBack: () => void,
     authId: string,
     activeId: string,
