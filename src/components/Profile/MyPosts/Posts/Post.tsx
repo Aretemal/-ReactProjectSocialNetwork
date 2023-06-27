@@ -10,11 +10,12 @@ import LikeIconOn from '../../../../assets/images/icons/LikeIconOn.png';
 import CommentsIcon from '../../../../assets/images/icons/CommentsIcon.png';
 import Comments from './Comments/Comments';
 import SendPost from '../../../../assets/images/icons/SendPost.png';
+import UpdateForm from './UpdateForm/UpdateForm';
 
 const Post: React.FC<IPostProps> = ({
-  message, isMeLike, likesCount, onSelectCommentPost, comments,
-  firstName, lastName, createdAt, onSetLike, id, onDeleteLike,
-  commentCount, selectedPost, onSendComment, senders,
+  message, isMeLike, likesCount, onSelectCommentPost, comments, onUpdatePost, onSetUpdatedPostId,
+  firstName, lastName, createdAt, onSetLike, id, onDeleteLike, onDeletePost, isUpdatedPost,
+  commentCount, selectedPost, onSendComment, t, senders, onSettings, isSelectedSettings,
 }) => (
   <div className={styles.item}>
     <img src={DefaultAva} alt="DefaultAva" className={styles.ava} />
@@ -24,10 +25,30 @@ const Post: React.FC<IPostProps> = ({
     <span className={styles.date}>
       {`${getDate(createdAt)}`}
     </span>
-    <span className={styles.description}>
-      {message}
-    </span>
-    <img alt='menu' src={MenuIcon} className={styles.points} />
+    {isUpdatedPost
+      ? (
+        <UpdateForm
+          onUpdatePost={onUpdatePost}
+          id={id}
+          t={t}
+          message={message}
+        />
+      )
+      : (
+        <span className={styles.description}>
+          {message}
+        </span>
+      )}
+    {isSelectedSettings
+      ? (
+        <div className={styles.settings}>
+          <div className={styles.setitem} onClick={() => onDeletePost(id)}>{t('Delete')}</div>
+          <div className={styles.setitem} onClick={() => onSetUpdatedPostId(+id)}>{t('Update')}</div>
+        </div>
+      ) : null }
+    <div className={styles.block} onClick={() => onSettings(+id)}>
+      <img alt='menu' src={MenuIcon} className={styles.points} />
+    </div>
     <div className={styles.like}>
       {isMeLike
         ? (
@@ -44,7 +65,7 @@ const Post: React.FC<IPostProps> = ({
     </div>
     <div className={styles.comments}>
       <div onClick={() => onSelectCommentPost({ id, postId: selectedPost })}>
-        <img src={CommentsIcon} alt="CommentsIcon" />
+        <img src={CommentsIcon} alt="CommentsIcon" className={styles.com} />
       </div>
       <div className={styles.count}>{commentCount}</div>
     </div>
@@ -68,7 +89,7 @@ const Post: React.FC<IPostProps> = ({
               name="message"
               type="textarea"
               as="textarea"
-              placeholder="Enter text..."
+              placeholder={t('Enter text ...')}
             />
             <button
               className={styles.but}

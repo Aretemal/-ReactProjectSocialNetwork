@@ -58,6 +58,12 @@ export const postAPI = {
   addPost({ newMessageText, token }: { newMessageText: string, token: string }) {
     return makeInstanceWithToken(token).post('profile/posts', { newMessageText });
   },
+  deletePost({ id, token }: { id: string, token: string }) {
+    return makeInstanceWithToken(token).delete(`/profile/posts/delete/${id}`);
+  },
+  updatePost({ id, token, content }: { content: string, id: string, token: string }) {
+    return makeInstanceWithToken(token).put(`/profile/posts/update/${id}`, { content });
+  },
   setLike({ id, token }: { id: string, token: string }) {
     return makeInstanceWithToken(token).post(`profile/posts/like/${id}`);
   },

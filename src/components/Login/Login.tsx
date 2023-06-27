@@ -4,7 +4,7 @@ import { Formik, Form, Field } from 'formik';
 import SignInSchema from '../../utils/validators/LoginSchema';
 import styles from './Login.module.css';
 import BackgroundLogin from '../../assets/images/BackgroundLogin.jpg';
-import { IError } from '../../store/slices/interfaces/authInterface';
+import { IError } from '../../store/slices/interfaces/allInterfaces';
 
 interface IProps {
   onAuthentication: ({ login, password }: { login: string, password: string}) => void, // eslint-disable-line no-unused-vars

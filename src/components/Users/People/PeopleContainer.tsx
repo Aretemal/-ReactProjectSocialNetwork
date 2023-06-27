@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { approve, follow, unfollow } from '../../../store/slices/usersSlice';
+import { approve, follow, unfollow } from '../../../store/slices/thunks/usersThunks';
 import People from './People';
 import { useAppDispatch, useAppSelector } from '../../../hook/hook';
 import { setId } from '../../../store/slices/profileSlice';

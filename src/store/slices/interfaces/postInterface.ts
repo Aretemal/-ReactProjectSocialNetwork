@@ -1,6 +1,7 @@
 import { IUserItem } from './dialogInterface';
+import { IError } from './allInterfaces';
 
-export interface IPostItem {
+export interface IPost {
     id: string,
     type: string,
     attributes: {
@@ -8,11 +9,11 @@ export interface IPostItem {
         isMeLike: boolean,
         content: string,
         createdAt: string,
-        likesCount: string,
+        likesCount: number,
         commentCount: string,
     }
 }
-export interface ICommentItem {
+export interface IComment {
     id: string,
     type: string,
     attributes: {
@@ -22,31 +23,10 @@ export interface ICommentItem {
         createdAt: string,
     }
 }
-export interface ISetComments {
-    data: ICommentItem[],
-    included: IUserItem[],
-}
-export interface IPost {
-    posts: IPostItem[],
-    comments: ICommentItem[],
+export interface IPostsInitialState {
+    posts: IPost[],
+    comments: IComment[],
     senders: IUserItem[],
     selectedPost: string,
-}
-
-export interface IAddPost {
-    newMessageText: string,
-    token: string,
-}
-
-export interface IOnLike {
-    id: string,
-    token: string,
-}
-
-export interface IOnLikePayload {
-    attributes: {
-        senderLikeId: string,
-        postLikeId: string,
-    }
-    like: number,
+    errors: IError[],
 }

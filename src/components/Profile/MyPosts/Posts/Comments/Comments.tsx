@@ -1,11 +1,11 @@
 import React from 'react';
-import { ICommentItem } from '../../../../../store/slices/interfaces/postInterface';
+import { IComment } from '../../../../../store/slices/interfaces/postInterface';
 import styles from './Comments.module.css';
 import DefaultAva from '../../../../../assets/images/DefaultAva.webp';
 import { IUserItem } from '../../../../../store/slices/interfaces/dialogInterface';
 
 interface ICommentsProps {
-  comments: ICommentItem[],
+  comments: IComment[],
   senders: IUserItem[],
 }
 const Comments: React.FC<ICommentsProps> = ({

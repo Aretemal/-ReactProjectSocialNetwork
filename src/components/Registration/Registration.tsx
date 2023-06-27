@@ -4,7 +4,7 @@ import { Navigate, NavLink } from 'react-router-dom';
 import SignupSchema from '../../utils/validators/RegistrationSchema';
 import styles from '../Login/Login.module.css';
 import BackgroundLogin from '../../assets/images/BackgroundLogin.jpg';
-import { IError } from '../../store/slices/interfaces/authInterface';
+import { IError } from '../../store/slices/interfaces/allInterfaces';
 
 interface IProps {
   onRegistration: ({

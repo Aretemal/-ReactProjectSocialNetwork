@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
-import { deleteAllError, deleteError, registration } from '../../store/slices/authSlice';
+import { deleteAllError, deleteError } from '../../store/slices/authSlice';
 import Registration from './Registration';
 import { useAppDispatch, useAppSelector } from '../../hook/hook';
+import { registration } from '../../store/slices/thunks/authThunks';
 
 const RegistrationContainer: React.FC = () => {
   const { isAuth, authLogin, errors } = useAppSelector((state) => state.auth);

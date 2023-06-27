@@ -52,6 +52,10 @@ const App:React.FC<AppProps> = ({ socket }) => {
               element={<Login />}
             />
             <Route
+              path=''
+              element={<Login />}
+            />
+            <Route
               path='/registration'
               element={<Registration />}
             />
