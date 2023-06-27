@@ -1,29 +1,25 @@
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import styles from './MyPosts.module.css';
-import Post from './Posts/Post';
 import DefaultAva from '../../../assets/images/DefaultAva.webp';
 import SendPost from '../../../assets/images/icons/SendPost.png';
-import { IMyPostsProps } from './MyPostsInterface';
+import PostContainer from './Posts/PostContainer';
+import { IPost } from '../../../store/slices/interfaces/postInterface';
 
+export interface IMyPostsProps {
+  isAuthProfile: boolean,
+  posts: IPost[],
+  onAddPost: (a: string) => void, // eslint-disable-line no-unused-vars
+  t: (a: string) => any, // eslint-disable-line no-unused-vars
+}
 const MyPosts: React.FC<IMyPostsProps> = ({
-  posts, onAddPost, firstName, t, lastName, isAuthProfile, senders,
-  onSetLike, onDeleteLike, onSelectCommentPost, comments, selectedPost, onSendComment,
+  posts, onAddPost, t, isAuthProfile,
 }) => {
   const postsElements = posts
     .map((post) => (
-      <Post
-        senders={senders}
-        selectedPost={selectedPost}
-        onSelectCommentPost={onSelectCommentPost}
-        comments={comments}
-        onSetLike={onSetLike}
-        onDeleteLike={onDeleteLike}
-        firstName={firstName}
-        lastName={lastName}
+      <PostContainer
         key={post.id}
         id={post.id}
-        onSendComment={onSendComment}
         message={post.attributes.content}
         isMeLike={post.attributes.isMeLike}
         likesCount={post.attributes.likesCount}

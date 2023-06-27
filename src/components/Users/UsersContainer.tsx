@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { withAuthRedirect } from '../../hoc/WithAuthRedirect';
-import { requestUsers } from '../../store/slices/usersSlice';
+import { requestUsers } from '../../store/slices/thunks/usersThunks';
 import Users from './Users';
 import { useAppDispatch, useAppSelector } from '../../hook/hook';
 

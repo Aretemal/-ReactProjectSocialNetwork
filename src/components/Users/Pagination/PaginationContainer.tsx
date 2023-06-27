@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { requestUsers } from '../../../store/slices/usersSlice';
+import { requestUsers } from '../../../store/slices/thunks/usersThunks';
 import Pagination from './Pagination';
 import { useAppDispatch, useAppSelector } from '../../../hook/hook';
 

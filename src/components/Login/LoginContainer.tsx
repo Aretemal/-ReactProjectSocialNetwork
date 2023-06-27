@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '../../hook/hook';
-import { authentication, deleteAllError, deleteError } from '../../store/slices/authSlice';
+import { deleteAllError, deleteError } from '../../store/slices/authSlice';
 import Login from './Login';
+import { authentication } from '../../store/slices/thunks/authThunks';
 
 const LoginContainer:React.FC = () => {
   const {

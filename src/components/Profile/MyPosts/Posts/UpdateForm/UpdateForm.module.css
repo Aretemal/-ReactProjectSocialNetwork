@@ -1,0 +1,33 @@
+.form{
+    display: flex;
+    margin-bottom: 10px;
+    width: 550px;
+    background-color: #fbfcfc;
+    margin-top: 10px;
+    border-radius: 10px;
+    grid-area: info;
+    resize: none;
+}
+.field{
+    resize: none;
+    outline: none;
+    border: none;
+    color: black;
+    height: 50px;
+    width: 470px;
+    padding-left: 0px;
+    padding-top: 5px;
+    background-color: #fbfcfc;
+    border-radius: 10px;
+}
+.but{
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    border: none;
+    background-color: white;
+}
+.send-icon{
+    width: 30px;
+    height: 30px;
+}
